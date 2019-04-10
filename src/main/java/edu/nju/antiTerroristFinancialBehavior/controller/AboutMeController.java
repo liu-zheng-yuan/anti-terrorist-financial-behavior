@@ -16,7 +16,7 @@ public class AboutMeController {
 
     @RequestMapping("/aboutMe")
     public String weightList(){
-//        System.out.println("weightList....");
+//        System.out.println("Aboutme....");
         return "aboutMe";
     }
 }
