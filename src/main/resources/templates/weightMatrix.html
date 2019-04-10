@@ -1,258 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="/js/jquery/jquery-1.7.1.js"></script>
-<link href="/css/basic_layout.css" rel="stylesheet" type="text/css">
-<link href="/css/common_style.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="/js/authority/commonAll.js"></script>
-<script type="text/javascript" src="/js/fancybox/jquery.fancybox-1.3.4.js"></script>
-<script type="text/javascript" src="/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
-<link rel="stylesheet" type="text/css" href="/css/jquery.fancybox-1.3.4.css" media="screen"></link>
-<script type="text/javascript" src="/js/artDialog/artDialog.js?skin=default"></script>
-<title>金融指标建模系统</title>
-<script type="text/javascript">
-	$(document).ready(function(){
-		/** 新增   **/
-	    $("#addBtn").fancybox({
-	    	'href'  : '/weightEdit',
-	    	'width' : 733,
-	        'height' : 530,
-	        'type' : 'iframe',
-	        'hideOnOverlayClick' : false,
-	        'showCloseButton' : false,
-	        'onClosed' : function() { 
-	        	window.location.href = '/weightList';
-	        }
-	    });
-		
-	    /** 导入  **/
-	    $("#importBtn").fancybox({
-	    	'href'  : '/xngzf/archives/importFangyuan.action',
-	    	'width' : 633,
-	        'height' : 260,
-	        'type' : 'iframe',
-	        'hideOnOverlayClick' : false,
-	        'showCloseButton' : false,
-	        'onClosed' : function() { 
-	        	window.location.href = '/weightList';
-	        }
-	    });
-		
-	    /**编辑   **/
-	    $("a.edit").fancybox({
-	    	'width' : 733,
-	        'height' : 530,
-	        'type' : 'iframe',
-	        'hideOnOverlayClick' : false,
-	        'showCloseButton' : false,
-	        'onClosed' : function() { 
-	        	window.location.href = '/weightList';
-	        }
-	    });
-	});
-	/** 用户角色   **/
-	var userRole = '';
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="/js/jquery/jquery-1.7.1.js"></script>
+    <link href="/css/basic_layout.css" rel="stylesheet" type="text/css">
+    <link href="/css/common_style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/authority/commonAll.js"></script>
+    <script type="text/javascript" src="/js/fancybox/jquery.fancybox-1.3.4.js"></script>
+    <script type="text/javascript" src="/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/jquery.fancybox-1.3.4.css" media="screen"></link>
+    <script type="text/javascript" src="/js/artDialog/artDialog.js?skin=default"></script>
+    <title>金融指标建模系统</title>
+    <script type="text/javascript">
+        $(document).ready(function(){
 
-	/** 模糊查询来电用户  **/
-	function search(){
-		$("#submitForm").attr("action", "/weightList?page=" + 1).submit();
-	}
+            /**编辑   **/
+            $("a.edit").fancybox({
+                'width' : 733,
+                'height' : 530,
+                'type' : 'iframe',
+                'hideOnOverlayClick' : false,
+                'showCloseButton' : false,
+                'onClosed' : function() {
+                    window.location.href = '/weightMatrix';
+                }
+            });
+        });
+        /** 用户角色   **/
+        var userRole = '';
 
-	/** 新增   **/
-	function add(){
-		$("#submitForm").attr("action", "/xngzf/archives/luruFangyuan.action").submit();	
-	}
-	 
-	/** Excel导出  **/
-	function exportExcel(){
-		if( confirm('您确定要导出吗？') ){
-			var fyXqCode = $("#fyXq").val();
-			var fyXqName = $('#fyXq option:selected').text();
-//	 		alert(fyXqCode);
-			if(fyXqCode=="" || fyXqCode==null){
-				$("#fyXqName").val("");
-			}else{
-//	 			alert(fyXqCode);
-				$("#fyXqName").val(fyXqName);
-			}
-			$("#submitForm").attr("action", "/xngzf/archives/exportExcelFangyuan.action").submit();	
-		}
-	}
-	
-	/** 删除 **/
-	function del(fyID){
-		// 非空判断
-		if(fyID == '') return;
-		if(confirm("您确定要删除吗？")){
-			$("#submitForm").attr("action", "/xngzf/archives/delFangyuan.action?fyID=" + fyID).submit();			
-		}
-	}
-	
-	/** 批量删除 **/
-	function batchDel(){
-		if($("input[name='IDCheck']:checked").size()<=0){
-			art.dialog({icon:'error', title:'友情提示', drag:false, resize:false, content:'至少选择一条', ok:true,});
-			return;
-		}
-		// 1）取出用户选中的checkbox放入字符串传给后台,form提交
-		var allIDCheck = "";
-		$("input[name='IDCheck']:checked").each(function(index, domEle){
-			bjText = $(domEle).parent("td").parent("tr").last().children("td").last().prev().text();
-// 			alert(bjText);
-			// 用户选择的checkbox, 过滤掉“已审核”的，记住哦
-			if($.trim(bjText)=="已审核"){
-// 				$(domEle).removeAttr("checked");
-				$(domEle).parent("td").parent("tr").css({color:"red"});
-				$("#resultInfo").html("已审核的是不允许您删除的，请联系管理员删除！！！");
-// 				return;
-			}else{
-				allIDCheck += $(domEle).val() + ",";
-			}
-		});
-		// 截掉最后一个","
-		if(allIDCheck.length>0) {
-			allIDCheck = allIDCheck.substring(0, allIDCheck.length-1);
-			// 赋给隐藏域
-			$("#allIDCheck").val(allIDCheck);
-			if(confirm("您确定要批量删除这些记录吗？")){
-				// 提交form
-				$("#submitForm").attr("action", "/xngzf/archives/batchDelFangyuan.action").submit();
-			}
-		}
-	}
+        /** 模糊查询来电用户  **/
+        function search(){
+            $("#submitForm").attr("action", "/weightMatrix?page=" + 1).submit();
+        }
 
-	/** 普通跳转 **/
-	function jumpNormalPage(page){
-		$("#submitForm").attr("action", "/weightList?page=" + page).submit();
-	}
-	
-	/** 输入页跳转 **/
-	function jumpInputPage(totalPage){
-		// 如果“跳转页数”不为空
-		if($("#jumpNumTxt").val() != ''){
-			var pageNum = parseInt($("#jumpNumTxt").val());
-			// 如果跳转页数在不合理范围内，则置为1
-			if(pageNum<1 | pageNum>totalPage){
-				art.dialog({icon:'error', title:'友情提示', drag:false, resize:false, content:'请输入合适的页数，\n自动为您跳到首页', ok:true,});
-				pageNum = 1;
-			}
-			$("#submitForm").attr("action", "/weightList?page=" + pageNum).submit();
-		}else{
-			// “跳转页数”为空
-			art.dialog({icon:'error', title:'友情提示', drag:false, resize:false, content:'请输入合适的页数，\n自动为您跳到首页', ok:true,});
-			$("#submitForm").attr("action", "/weightList?page=" + 1).submit();
-		}
-	}
-</script>
-<style>
-	.alt td{ background:black !important;}
-</style>
+        /** 新增   **/
+        function add(){
+            $("#submitForm").attr("action", "/xngzf/archives/luruFangyuan.action").submit();
+        }
+
+
+
+    </script>
+    <style>
+        .alt td{ background:black !important;}
+    </style>
 </head>
 <body>
-	<form id="submitForm" name="submitForm" action="" method="post">
-		<input type="hidden" name="allIDCheck" value="" id="allIDCheck"/>
-		<input type="hidden" name="fangyuanEntity.fyXqName" value="" id="fyXqName"/>
-		<div id="container">
-			<div class="ui_content">
-				<div class="ui_text_indent">
-					<div id="box_border">
-						<div id="box_top">筛选</div>
-						<div id="box_center">
-							一级指标
-							<select name="fangyuanEntity.fyXqCode" id="fyXq" class="ui_select01" onchange="getFyDhListByFyXqCode();">
-                                <option value=""
-                                >--请选择--</option>
-                                <option value="6">流水交易情况</option>
-                                <option value="77">自身账户类型</option>
-                                <option value="83">账户持有人行为</option>
-                            </select>
+<h3><a href="/weightModel" class="edit">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;？模型说明---层次分析法</a></h3>
+<form id="submitForm" name="submitForm" action="" method="post">
+    <input type="hidden" name="allIDCheck" value="" id="allIDCheck"/>
+    <input type="hidden" name="fangyuanEntity.fyXqName" value="" id="fyXqName"/>
+    <div id="container">
+        <div class="ui_content">
+            <p>这里应该是一个矩阵---相应指标</p>
+            <div class="ui_tb">
+                <table class="table" cellspacing="0" cellpadding="0" width="100%" align="center" border="0">
+                    <tr>
+                        <th width="30"><input type="checkbox" id="all" onclick="selectOrClearAllCheckbox(this);" />
+                        </th>
+                        <th>指标名称</th>
+                        <th>描述</th>
+                        <th>指标类型</th>
+                        <th>量化标准</th>
+                        <th>备注</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="IDCheck" value="14458579642011" class="acb" /></td>
+                        <td>账户短期内（如10 个营业日）累计超过规定限额的现金收付 </td>
+                        <td></td>
+                        <td>连续（带限额后离散）</td>
+                        <td>[2]短期为10个营业日[7]10天内短期现金总金额不低于1000000元：否：0   是：1</td>
+                        <td>无</td>
+                        <td>
+                            <a href="/weightModel" class="edit">说明</a>
+                        </td>
+                    </tr>
 
-							二级指标
-							<select name="fangyuanEntity.fyDhCode" id="fyDh" class="ui_select01">
-                                <option value="">--请选择--</option>
-                            </select>
-							三级指标
-							<select name="fangyuanEntity.fyHxCode" id="fyHx" class="ui_select01">
-                                <option value="">--请选择--</option>
-                                <option value="76">强度</option>
-                                <option value="10">数量</option>
-                                <option value="14">...</option>
-                            </select>
 
-							其他&nbsp;&nbsp;<input type="text" id="fyZldz" name="fangyuanEntity.fyZldz" class="ui_input_txt02" />
-						</div>
-						<div id="box_bottom">
-							<input type="button" value="查询" class="ui_input_btn01" onclick="search();" /> 
-							<input type="button" value="新增" class="ui_input_btn01" id="addBtn" /> 
-							<input type="button" value="删除" class="ui_input_btn01" onclick="batchDel();" /> 
-							<input type="button" value="导入" class="ui_input_btn01" id="importBtn" />
-							<input type="button" value="导出" class="ui_input_btn01" onclick="exportExcel();" />
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="ui_content">
-				<div class="ui_tb">
-					<table class="table" cellspacing="0" cellpadding="0" width="100%" align="center" border="0">
-						<tr>
-							<th width="30"><input type="checkbox" id="all" onclick="selectOrClearAllCheckbox(this);" />
-							</th>
-							<th>指标名称</th>
-							<th>描述</th>
-							<th>指标类型</th>
-							<th>量化标准</th>
-							<th>备注</th>
-							<th>操作</th>
-						</tr>
-							<tr>
-								<td><input type="checkbox" name="IDCheck" value="14458579642011" class="acb" /></td>
-								<td>账户短期内（如10 个营业日）累计超过规定限额的现金收付 </td>
-								<td></td>
-								<td>连续（带限额后离散）</td>
-								<td>[2]短期为10个营业日[7]10天内短期现金总金额不低于1000000元：否：0   是：1</td>
-								<td>无</td>
-								<td>
-									<a href="/weightEdit" class="edit">编辑</a>
-									<a href="javascript:del('14458579642011');">删除</a>
-								</td>
-							</tr>
-						
 
-						
-							<tr>
-								<td><input type="checkbox" name="IDCheck" value="14458592537463" class="acb" /></td>
-								<td>账户短期内（如10 个营业日）累计超过规定限额的转账收付 </td>
-								<td></td>
-								<td>连续（带限额后离散）</td>
-								<td>[7]3天内交易金额不少于10000000元
-									否：0   是：1</td>
-								<td>无</td>
-								<td>
-									<a href="weightEdit.html?fyID=14458592537463" class="edit">编辑</a>
-									<a href="javascript:del('14458592537463');">删除</a>
-								</td>
-							</tr>
+                </table>
+            </div>
 
-							<tr>
-								<td><input type="checkbox" name="IDCheck" value="14458619251417" class="acb" /></td>
-								<td>平均交易金额</td>
-								<td>需要抽取大量样本进行计算</td>
-								<td>连续</td>
-								<td>6]定量指标，选取大量随机样本，在计算前均按值大小排序并进行百分制离差标准化，若客户的该项指标值最大则取值100，若该指标值最小则取值0。</td>
-								<td>待定</td>
-								<td>
-									<a href="weightEdit.html?fyID=14458619251417" class="edit">编辑</a>
-									<a href="javascript:del('14458619251417');">删除</a>
-								</td>
-							</tr>
-						
-					</table>
-				</div>
-
-			</div>
-		</div>
-	</form>
+        </div>
+    </div>
+</form>
 
 </body>
 </html>

@@ -29,4 +29,20 @@ public class WeightController {
     public String weightEdit(){
         return "weightEdit";
     }
+
+    /**
+     * 指标定权---矩阵？？
+     */
+    @RequestMapping("/weightMatrix")
+    public String weightMatrix(){
+        return "weightMatrix";
+    }
+
+    /**
+     * 模型说明页
+     */
+    @RequestMapping("/weightModel")
+    public String weightModel(){
+        return "weightModel";
+    }
 }
