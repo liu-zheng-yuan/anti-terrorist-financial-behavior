@@ -47,10 +47,51 @@
     </style>
 </head>
 <body>
-<h3>模型说明---层次分析法</h3>
-层次分析法是指将一个复杂的多目标决策问题作为一个系统，将目标分解为多个目标或准则，进而分解为多指标（或准则、约束）的若干层次，通过定性指标模糊量化方法算出层次单排序（权数）和总排序，以作为目标（多指标）、多方案优化决策的系统方法。
-<br>层次分析法是将决策问题按总目标、各层子目标、评价准则直至具体的备投方案的顺序分解为不同的层次结构，然后用求解判断矩阵特征向量的办法，求得每一层次的各元素对上一层次某元素的优先权重，最后再加权和的方法递阶归并各备择方案对总目标的最终权重，此最终权重最大者即为最优方案。
-<br>层次分析法比较适合于具有分层交错评价指标的目标系统，而且目标值又难于定量描述的决策问题。
-<h3><a href="/Score">开始评分</a></h3>
+<form id="submitForm" name="submitForm" action="" method="post">
+    <input type="hidden" name="allIDCheck" value="" id="allIDCheck"/>
+    <input type="hidden" name="fangyuanEntity.fyXqName" value="" id="fyXqName"/>
+    <div id="container">
+        <div class="ui_content">
+            <p>指标权重（待定，因为要展示每个指标权重，数量太多，不知道有啥意义，觉得没有必要添加）</p>
+            <p>可疑账户列表（待定）</p>
+            <div class="ui_tb">
+                <table class="table" cellspacing="0" cellpadding="0" width="100%" align="center" border="0">
+                    <tr>
+                        <th>账户id</th>
+                        <th>账户名称</th>
+                        <th>转账金额</th>
+                        <th>转账次数</th>
+                        <th>转账地点</th>
+                        <th>可疑度</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
 </body>
 </html>

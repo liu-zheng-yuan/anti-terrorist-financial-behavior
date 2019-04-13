@@ -156,39 +156,10 @@
 		<div id="container">
 			<div class="ui_content">
 				<div class="ui_text_indent">
-					<div id="box_border">
-						<div id="box_top">筛选</div>
-						<div id="box_center">
-							一级指标
-							<select name="fangyuanEntity.fyXqCode" id="fyXq" class="ui_select01" onchange="getFyDhListByFyXqCode();">
-                                <option value=""
-                                >--请选择--</option>
-                                <option value="6">流水交易情况</option>
-                                <option value="77">自身账户类型</option>
-                                <option value="83">账户持有人行为</option>
-                            </select>
-
-							二级指标
-							<select name="fangyuanEntity.fyDhCode" id="fyDh" class="ui_select01">
-                                <option value="">--请选择--</option>
-                            </select>
-							三级指标
-							<select name="fangyuanEntity.fyHxCode" id="fyHx" class="ui_select01">
-                                <option value="">--请选择--</option>
-                                <option value="76">强度</option>
-                                <option value="10">数量</option>
-                                <option value="14">...</option>
-                            </select>
-
-							其他&nbsp;&nbsp;<input type="text" id="fyZldz" name="fangyuanEntity.fyZldz" class="ui_input_txt02" />
-						</div>
-						<div id="box_bottom">
-							<input type="button" value="查询" class="ui_input_btn01" onclick="search();" /> 
-							<input type="button" value="新增" class="ui_input_btn01" id="addBtn" /> 
-							<input type="button" value="删除" class="ui_input_btn01" onclick="batchDel();" /> 
+							<input type="button" value="新增" class="ui_input_btn01" id="addBtn" />
+							<input type="button" value="删除" class="ui_input_btn01" onclick="batchDel();" />
 							<input type="button" value="导入" class="ui_input_btn01" id="importBtn" />
 							<input type="button" value="导出" class="ui_input_btn01" onclick="exportExcel();" />
-						</div>
 					</div>
 				</div>
 			</div>
@@ -202,9 +173,7 @@
 							<th>描述</th>
 							<th>指标类型</th>
 							<th>量化标准</th>
-							<th>备注</th>
-							<th>操作</th>
-						</tr>
+							<th>备注</th>						</tr>
 							<tr>
 								<td><input type="checkbox" name="IDCheck" value="14458579642011" class="acb" /></td>
 								<td>账户短期内（如10 个营业日）累计超过规定限额的现金收付 </td>
@@ -212,14 +181,10 @@
 								<td>连续（带限额后离散）</td>
 								<td>[2]短期为10个营业日[7]10天内短期现金总金额不低于1000000元：否：0   是：1</td>
 								<td>无</td>
-								<td>
-									<a href="/weightEdit" class="edit">编辑</a>
-									<a href="javascript:del('14458579642011');">删除</a>
-								</td>
 							</tr>
-						
 
-						
+
+
 							<tr>
 								<td><input type="checkbox" name="IDCheck" value="14458592537463" class="acb" /></td>
 								<td>账户短期内（如10 个营业日）累计超过规定限额的转账收付 </td>
@@ -228,10 +193,6 @@
 								<td>[7]3天内交易金额不少于10000000元
 									否：0   是：1</td>
 								<td>无</td>
-								<td>
-									<a href="weightEdit.html?fyID=14458592537463" class="edit">编辑</a>
-									<a href="javascript:del('14458592537463');">删除</a>
-								</td>
 							</tr>
 
 							<tr>
@@ -241,12 +202,8 @@
 								<td>连续</td>
 								<td>6]定量指标，选取大量随机样本，在计算前均按值大小排序并进行百分制离差标准化，若客户的该项指标值最大则取值100，若该指标值最小则取值0。</td>
 								<td>待定</td>
-								<td>
-									<a href="weightEdit.html?fyID=14458619251417" class="edit">编辑</a>
-									<a href="javascript:del('14458619251417');">删除</a>
-								</td>
 							</tr>
-						
+
 					</table>
 				</div>
 

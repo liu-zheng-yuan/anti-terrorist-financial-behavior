@@ -29,4 +29,34 @@ public class WeightController {
     public String weightEdit(){
         return "weightEdit";
     }
+
+    /**
+     * 指标定权---矩阵
+     */
+    @RequestMapping("/weightMatrix")
+    public String weightMatrix(){
+        return "weightMatrix";
+    }
+
+
+    @RequestMapping("/modelDisplay")
+    public String modelDisplay() {return "modelDisplay";}
+
+    @RequestMapping("/resultCalculate")
+    public String resultCalculate() {return "resultCalculate";}
+
+    @RequestMapping("/Marking")
+    public String Marking() {return "Marking";}
+
+    @RequestMapping("/index")
+    public String index() {return "index"; }
+
+    @RequestMapping("/Score")
+    public String Score() {return "Score";}
+
+    @RequestMapping("/result")
+    public String result() {return "result";}
+
+    @RequestMapping("/model")
+    public String model() {return "model";}
 }
