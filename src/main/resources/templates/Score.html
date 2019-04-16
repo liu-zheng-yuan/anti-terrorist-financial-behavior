@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="/js/jquery/jquery-1.7.1.js"></script>
+    <link href="/css/basic_layout.css" rel="stylesheet" type="text/css">
+    <link href="/css/common_style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/authority/commonAll.js"></script>
+    <script type="text/javascript" src="/js/fancybox/jquery.fancybox-1.3.4.js"></script>
+    <script type="text/javascript" src="/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/jquery.fancybox-1.3.4.css" media="screen"></link>
+    <script type="text/javascript" src="/js/artDialog/artDialog.js?skin=default"></script>
+    <title>金融指标建模系统</title>
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            /**编辑   **/
+            $("a.edit").fancybox({
+                'width' : 733,
+                'height' : 530,
+                'type' : 'iframe',
+                'hideOnOverlayClick' : false,
+                'showCloseButton' : false,
+                'onClosed' : function() {
+                    window.location.href = '/weightMatrix';
+                }
+            });
+        });
+        /** 用户角色   **/
+        var userRole = '';
+
+        /** 模糊查询来电用户  **/
+        function search(){
+            $("#submitForm").attr("action", "/weightMatrix?page=" + 1).submit();
+        }
+
+        /** 新增   **/
+        function add(){
+            $("#submitForm").attr("action", "/xngzf/archives/luruFangyuan.action").submit();
+        }
+
+
+
+    </script>
+    <style>
+        .alt td{ background:black !important;}
+    </style>
+</head>
+<body>
+<form id="submitForm" name="submitForm" action="" method="post">
+    <input type="hidden" name="allIDCheck" value="" id="allIDCheck"/>
+    <input type="hidden" name="fangyuanEntity.fyXqName" value="" id="fyXqName"/>
+    <div id="container">
+        <div class="ui_content">
+            <p>层次分析法权值设置标准</p>
+            <div class="ui_tb">
+                <table class="table" cellspacing="0" cellpadding="0" width="100%" align="center" border="0">
+                    <tr>
+                        <th>相对重要程度</th>
+                        <th>说明</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>横向指标与纵向指标对目标同样重要</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>横向指标比纵向指标略微重要</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>横向指标比纵向指标重要</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>横向指标比纵向指标显著重要</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>横向指标比纵向指标极显重要</td>
+                    </tr>
+                    <tr>
+                        <td>2,4,6,8</td>
+                        <td>相邻判断中间值</td>
+                    </tr>
+                    <tr>
+                        <td>以上数字的倒数</td>
+                        <td>若纵向指标比横向指标重要，则记为1/3、1/5、1/7、1/9</td>
+                    </tr>
+
+                </table>
+            </div>
+            <p>层次分析法指标矩阵</p>
+            <div class="ui_tb">
+                <table class="table" cellspacing="0" cellpadding="0" width="100%" align="center" border="0">
+                    <tr>
+                        <th>指标名称</th>
+                        <th>三级指标1</th>
+                        <th>三级指标2</th>
+                        <th>三级指标3</th>
+                        <th>三级指标4</th>
+                        <th>三级指标5</th>
+                        <th>三级指标6</th>
+                    </tr>
+                    <tr>
+                        <td>三级指标1</td>
+                        <td>#</td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>三级指标2</td>
+                        <td>#</td>
+                        <td>#</td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>三级指标3</td>
+                        <td>#</td>
+                        <td>#</td>
+                        <td>#</td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>三级指标4</td>
+                        <td>#</td>
+                        <td>#</td>
+                        <td>#</td>
+                        <td>#</td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>三级指标5</td>
+                        <td>#</td>
+                        <td>#</td>
+                        <td>#</td>
+                        <td>#</td>
+                        <td>#</td>
+                        <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>三级指标6</td>
+                        <td>#</td>
+                        <td>#</td>
+                        <td>#</td>
+                        <td>#</td>
+                        <td>#</td>
+                        <td>#</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
+<input type="submit">
+</body>
+</html>

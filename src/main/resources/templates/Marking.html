@@ -1,14 +1,14 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>金融指标建模系统</title>
-	<link href="/css/main_css.css" rel="stylesheet" type="text/css" />
-	<link href="/css/zTreeStyle.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="/js/jquery/jquery-1.7.1.js"></script>
-	<script type="text/javascript" src="/js/zTree/jquery.ztree.core-3.2.js"></script>
-	<script type="text/javascript" src="/js/authority/commonAll.js"></script>
-	<script type="text/javascript">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>金融指标建模系统</title>
+    <link href="/css/main_css.css" rel="stylesheet" type="text/css" />
+    <link href="/css/zTreeStyle.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/jquery/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="/js/zTree/jquery.ztree.core-3.2.js"></script>
+    <script type="text/javascript" src="/js/authority/commonAll.js"></script>
+    <script type="text/javascript">
 		/**退出系统**/
 		function logout(){
 			if(confirm("您确定要退出本系统吗？")){
@@ -29,7 +29,7 @@
 			document.getElementById("day_day").innerHTML =  myYear + "." + myMonth + "." + myDay;
 		}
 	</script>
-	<script type="text/javascript">
+    <script type="text/javascript">
 		/* zTree插件加载目录的处理  */
 		var zTree;
 
@@ -204,23 +204,23 @@
 			});*/
             data = [
                 {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":2,"resourceID":2,"resourceName":"流水交易情况","resourceOrder":0,"resourceType":""},
-                {"accessPath":"/weightList","checked":false,"delFlag":0,"parentID":2,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":5,"resourceName":"数量","resourceOrder":0,"resourceType":""},
-                {"accessPath":"/weightList","checked":false,"delFlag":0,"parentID":2,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":6,"resourceName": "强度","resourceOrder":0,"resourceType":""},
-                {"accessPath":"/weightList","checked":false,"delFlag":0,"parentID":2,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":7,"resourceName":"路径","resourceOrder":0,"resourceType":""},
-                {"accessPath":"/weightList","checked":false,"delFlag":0,"parentID":2,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":8,"resourceName":"交易价值","resourceOrder":0,"resourceType":""},
-                {"accessPath":"/weightList","checked":false,"delFlag":0,"parentID":2,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":9,"resourceName":"交易银行信息","resourceOrder":0,"resourceType":""},
-                {"accessPath":"/weightList","checked":false,"delFlag":0,"parentID":2,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":10,"resourceName":"每笔交易属性","resourceOrder":0,"resourceType":""},
+                {"accessPath":"/weightMatrix","checked":false,"delFlag":0,"parentID":2,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":5,"resourceName":"数量","resourceOrder":0,"resourceType":""},
+                {"accessPath":"/weightMatrix","checked":false,"delFlag":0,"parentID":2,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":6,"resourceName": "强度","resourceOrder":0,"resourceType":""},
+                {"accessPath":"/weightMatrix","checked":false,"delFlag":0,"parentID":2,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":7,"resourceName":"路径","resourceOrder":0,"resourceType":""},
+                {"accessPath":"/weightMatrix","checked":false,"delFlag":0,"parentID":2,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":8,"resourceName":"交易价值","resourceOrder":0,"resourceType":""},
+                {"accessPath":"/weightMatrix","checked":false,"delFlag":0,"parentID":2,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":9,"resourceName":"交易银行信息","resourceOrder":0,"resourceType":""},
+                {"accessPath":"/weightMatrix","checked":false,"delFlag":0,"parentID":2,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":10,"resourceName":"每笔交易属性","resourceOrder":0,"resourceType":""},
 
-                {"accessPath":"/weightList","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":2,"resourceID":3,"resourceName":"自身账户类型","resourceOrder":0,"resourceType":""},
-                {"accessPath":"/weightList","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":11,"resourceName":"开户地区","resourceOrder":0,"resourceType":""},
-                {"accessPath":"/weightList","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":12,"resourceName":"行业","resourceOrder":0,"resourceType":""},
-                {"accessPath":"/weightList","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":13,"resourceName":"客户类型","resourceOrder":0,"resourceType":""},
-                {"accessPath":"/weightList","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":14,"resourceName":"账户状态","resourceOrder":0,"resourceType":""},
+                {"accessPath":"/weightMatrix","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":2,"resourceID":3,"resourceName":"自身账户类型","resourceOrder":0,"resourceType":""},
+                {"accessPath":"/weightMatrix","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":11,"resourceName":"开户地区","resourceOrder":0,"resourceType":""},
+                {"accessPath":"/weightMatrix","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":12,"resourceName":"行业","resourceOrder":0,"resourceType":""},
+                {"accessPath":"/weightMatrix","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":13,"resourceName":"客户类型","resourceOrder":0,"resourceType":""},
+                {"accessPath":"/weightMatrix","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":14,"resourceName":"账户状态","resourceOrder":0,"resourceType":""},
 
-                {"accessPath":"/weightList","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":2,"resourceID":4,"resourceName":"账户持有人行为","resourceOrder":0,"resourceType":""},
-                {"accessPath":"/weightList","checked":false,"delFlag":0,"parentID":4,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":15,"resourceName":"开/销户行为","resourceOrder":0,"resourceType":""},
-                {"accessPath":"/weightList","checked":false,"delFlag":0,"parentID":4,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":16,"resourceName":"对监管态度","resourceOrder":0,"resourceType":""},
-                {"accessPath":"/weightList","checked":false,"delFlag":0,"parentID":4,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":17,"resourceName":"存款","resourceOrder":0,"resourceType":""},
+                {"accessPath":"/weightMatrix","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":2,"resourceID":4,"resourceName":"账户持有人行为","resourceOrder":0,"resourceType":""},
+                {"accessPath":"/weightMatrix","checked":false,"delFlag":0,"parentID":4,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":15,"resourceName":"开/销户行为","resourceOrder":0,"resourceType":""},
+                {"accessPath":"/weightMatrix","checked":false,"delFlag":0,"parentID":4,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":16,"resourceName":"对监管态度","resourceOrder":0,"resourceType":""},
+                {"accessPath":"/weightMatrix","checked":false,"delFlag":0,"parentID":4,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":17,"resourceName":"存款","resourceOrder":0,"resourceType":""},
 
                 {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":2,"resourceID":18,"resourceName":"新增","resourceOrder":0,"resourceType":""}];
             // 如果返回数据不为空，加载"业务模块"目录
@@ -248,66 +248,66 @@
 	</script>
 </head>
 <body onload="getDate01()">
-    <div id="top">
-		<div id="top_logo">
-			<img alt="logo" src="/image/common/logo.png" width="274" height="49" style="vertical-align:middle;">
-		</div>
-		<div id="top_links">
-			<div id="top_op">
-				<ul>
-					<li>
-						<img alt="当前用户" src="/image/common/user.jpg">：
-						<span>admin</span>
-					</li>
-					<li>
-						<img alt="事务月份" src="/image/common/month.jpg">：
-						<span id="yue_fen"></span>
-					</li>
-					<li>
-						<img alt="今天是" src="/image/common/date.jpg">：
-						<span id="day_day"></span>
-					</li>
-				</ul>
-			</div>
-			<div id="top_close">
-				<a href="javascript:void(0);" onclick="logout();" target="_parent">
-					<img alt="退出系统" title="退出系统" src="/image/common/close.jpg" style="position: relative; top: 10px; left: 25px;">
-				</a>
-			</div>
-		</div>
-	</div>
-    <!-- side menu start -->
-	<div id="side">
-		<div id="left_menu">
-		 	<ul id="TabPage2" style="height:200px; margin-top:50px;">
-				<li id="left_tab1" class="selected" onClick="javascript:switchTab('TabPage2','left_tab1');" title="指标模块">
-					<h3><a href="/index">指标展示</a></h3>
-				</li>
-				<li id="left_tab2" class="selected" onClick="javascript:switchTab('TabPage2','left_tab2');" title="定权模块">
-					<h3><a href="/Marking">指标定权</a></h3>
-				</li>
-				<li id="left_tab3" class="selected" onClick="javascript:switchTab('TabPage2','left_tab3');" title="评分模块">
-					<h3><a href="/resultCalculate">评分结果</a></h3>
-				</li>
-				<li id="left_tab4" class="selected" onClick="javascript:switchTab('TabPage2','left_tab4');" title="展示模块">
-					<h3><a href="/modelDisplay">模型展示</a></h3>
-				</li>
-			</ul>
+<div id="top">
+    <div id="top_logo">
+        <img alt="logo" src="/image/common/logo.png" width="274" height="49" style="vertical-align:middle;">
+    </div>
+    <div id="top_links">
+        <div id="top_op">
+            <ul>
+                <li>
+                    <img alt="当前用户" src="/image/common/user.jpg">：
+                    <span>admin</span>
+                </li>
+                <li>
+                    <img alt="事务月份" src="/image/common/month.jpg">：
+                    <span id="yue_fen"></span>
+                </li>
+                <li>
+                    <img alt="今天是" src="/image/common/date.jpg">：
+                    <span id="day_day"></span>
+                </li>
+            </ul>
+        </div>
+        <div id="top_close">
+            <a href="javascript:void(0);" onclick="logout();" target="_parent">
+                <img alt="退出系统" title="退出系统" src="/image/common/close.jpg" style="position: relative; top: 10px; left: 25px;">
+            </a>
+        </div>
+    </div>
+</div>
+<!-- side menu start -->
+<div id="side">
+    <div id="left_menu">
+        <ul id="TabPage2" style="height:200px; margin-top:50px;">
+            <li id="left_tab1" class="selected" onClick="javascript:switchTab('TabPage2','left_tab1');" title="指标模块">
+                <h3><a href="/index">指标展示</a></h3>
+            </li>
+            <li id="left_tab2" class="selected" onClick="javascript:switchTab('TabPage2','left_tab2');" title="定权模块">
+                <h3><a href="/Marking">指标定权</a></h3>
+            </li>
+            <li id="left_tab3" class="selected" onClick="javascript:switchTab('TabPage2','left_tab3');" title="评分模块">
+                <h3><a href="/resultCalculate">评分结果</a></h3>
+            </li>
+            <li id="left_tab4" class="selected" onClick="javascript:switchTab('TabPage2','left_tab4');" title="展示模块">
+                <h3><a href="/modelDisplay">模型展示</a></h3>
+            </li>
+        </ul>
 
 
-			<div id="nav_show" style="position:absolute; bottom:0px; padding:10px;">
-				<a href="javascript:;" id="show_hide_btn">
-					<img alt="显示/隐藏" title="显示/隐藏" src="/image/common/nav_hide.png" width="35" height="35">
-				</a>
-			</div>
-		 </div>
-		 <div id="left_menu_cnt">
-		 	<div id="nav_resource">
-		 		<ul id="dleft_tab1" class="ztree"></ul>
-		 	</div>
-		 </div>
-	</div>
-	<script type="text/javascript">
+        <div id="nav_show" style="position:absolute; bottom:0px; padding:10px;">
+            <a href="javascript:;" id="show_hide_btn">
+                <img alt="显示/隐藏" title="显示/隐藏" src="/image/common/nav_hide.png" width="35" height="35">
+            </a>
+        </div>
+    </div>
+    <div id="left_menu_cnt">
+        <div id="nav_resource">
+            <ul id="dleft_tab1" class="ztree"></ul>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
 		$(function(){
 			$('#TabPage2 li').click(function(){
 				var index = $(this).index();
@@ -356,12 +356,11 @@
 			}
 		}
 	</script>
-    <!-- side menu start -->
-    <div id="main">
-      	<iframe name="right" id="rightMain" src="/weightList" frameborder="no" scrolling="auto" width="100%" height="100%" allowtransparency="true"/>
-    </div>
+<!-- side menu start -->
+<div id="main">
+    <iframe name="right" id="rightMain" src="weightMatrix" frameborder="no" scrolling="auto" width="100%" height="100%" allowtransparency="true"/>
+</div>
 
 </body>
 </html>
-   
- 
+
