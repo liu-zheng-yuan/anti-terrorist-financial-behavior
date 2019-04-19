@@ -27,6 +27,17 @@ public class SecondIndex {
     //所属一级指标
     private FirstIndex first_index;
 
+    //树形菜单表ID
+    private Integer menuID;
+
+    public Integer getMenuID() {
+        return menuID;
+    }
+
+    public void setMenuID(Integer menuID) {
+        this.menuID = menuID;
+    }
+
     public Integer getId() {
         return id;
     }

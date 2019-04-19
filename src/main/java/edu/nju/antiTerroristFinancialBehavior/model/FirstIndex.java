@@ -22,6 +22,17 @@ public class FirstIndex {
     private Integer weight_num;
     private Integer weight_deno;
 
+    //树形菜单表ID
+    private Integer menuID;
+
+    public Integer getMenuID() {
+        return menuID;
+    }
+
+    public void setMenuID(Integer menuID) {
+        this.menuID = menuID;
+    }
+
     public Integer getId() {
         return id;
     }

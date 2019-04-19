@@ -184,16 +184,16 @@
 		});
 
 		function loadMenu(resourceType, treeObj){
-			/*$.ajax({
-				type:"POST",
-				url:"${dynamicURL}/authority/modelPart.action?resourceType=" + resourceType,
+			$.ajax({
+				type:"GET",
+				url:"/loadMenu/1",
 				dataType : "json",
 				success:function(data){
 					// 如果返回数据不为空，加载"业务模块"目录
 					if(data != null){
 						// 将返回的数据赋给zTree
 						$.fn.zTree.init($("#"+treeObj), setting, data);
- 						alert(treeObj);
+ 						//alert(treeObj);
 						zTree = $.fn.zTree.getZTreeObj(treeObj);
 						if( zTree ){
 							// 默认展开所有节点
@@ -201,8 +201,8 @@
 						}
 					}
 				}
-			});*/
-            data = [
+			});
+            /*data = [
                 {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":2,"resourceID":2,"resourceName":"流水交易情况","resourceOrder":0,"resourceType":""},
                 {"accessPath":"/weightList","checked":false,"delFlag":0,"parentID":2,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":5,"resourceName":"数量","resourceOrder":0,"resourceType":""},
                 {"accessPath":"/weightList","checked":false,"delFlag":0,"parentID":2,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":6,"resourceName": "强度","resourceOrder":0,"resourceType":""},
@@ -223,6 +223,7 @@
                 {"accessPath":"/weightList","checked":false,"delFlag":0,"parentID":4,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":17,"resourceName":"存款","resourceOrder":0,"resourceType":""},
 
                 {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":2,"resourceID":18,"resourceName":"新增","resourceOrder":0,"resourceType":""}];
+
             // 如果返回数据不为空，加载"业务模块"目录
             if(data != null){
                 // 将返回的数据赋给zTree
@@ -234,6 +235,7 @@
                     zTree.expandAll(true);
                 }
             }
+            */
 		}
 		//ajax start function
 		function onStart(){

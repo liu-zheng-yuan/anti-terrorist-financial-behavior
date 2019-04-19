@@ -107,4 +107,20 @@ public class MenuItem {
     public void setResourceType(String resourceType) {
         this.resourceType = resourceType;
     }
+
+    public MenuItem(){}
+
+    public MenuItem(String accessPath, Boolean checked, Integer delFlag, Integer parentID, String resourceCode, String resourceDesc, Integer resourceGrade, Integer resourceID, String resourceName, Integer resourceOrder, String resourceType) {
+        this.accessPath = accessPath;
+        this.checked = checked;
+        this.delFlag = delFlag;
+        this.parentID = parentID;
+        this.resourceCode = resourceCode;
+        this.resourceDesc = resourceDesc;
+        this.resourceGrade = resourceGrade;
+        this.resourceID = resourceID;
+        this.resourceName = resourceName;
+        this.resourceOrder = resourceOrder;
+        this.resourceType = resourceType;
+    }
 }

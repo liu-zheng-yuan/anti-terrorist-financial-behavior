@@ -21,4 +21,9 @@
         SELECT * FROM first_index WHERE id = #{id}
     </select>
 
+    <!--通过一级指标查找所属的二级指标-->
+    <select id="findSecondIndices" parameterType="Integer" resultType="edu.nju.antiTerroristFinancialBehavior.model.SecondIndex">
+        select * from second_index where first_index = #{id}
+    </select>
+
 </mapper>
