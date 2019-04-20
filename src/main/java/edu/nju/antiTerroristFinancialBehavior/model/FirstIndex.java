@@ -5,7 +5,7 @@ package edu.nju.antiTerroristFinancialBehavior.model;
  *
  * @author fanleehao on 2019/4/19
  *
- * CREATE TABLE `first_index` (
+ * CREATE TABLE `tb_first_index` (
  *   `id` bigint(20) NOT NULL AUTO_INCREMENT,
  *   `index_name` varchar(255) NOT NULL COMMENT '一级指标名',
  *   `desc` varchar(255) DEFAULT NULL COMMENT '描述',

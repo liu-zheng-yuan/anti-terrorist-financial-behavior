@@ -22,20 +22,7 @@
                 'hideOnOverlayClick': false,
                 'showCloseButton': false,
                 'onClosed': function () {
-                    window.location.href = '/weightList';
-                }
-            });
-
-            /** 导入  **/
-            $("#importBtn").fancybox({
-                'href': '/xngzf/archives/importFangyuan.action',
-                'width': 633,
-                'height': 260,
-                'type': 'iframe',
-                'hideOnOverlayClick': false,
-                'showCloseButton': false,
-                'onClosed': function () {
-                    window.location.href = '/weightList';
+                    window.location.href = '/weightList/45';
                 }
             });
 
@@ -47,7 +34,7 @@
                 'hideOnOverlayClick': false,
                 'showCloseButton': false,
                 'onClosed': function () {
-                    window.location.href = '/weightList';
+                    window.location.href = '/weightList/45';
                 }
             });
         });
@@ -128,20 +115,20 @@
                     <tr>
                         <th width="2%"><input type="checkbox" id="all" onclick="selectOrClearAllCheckbox(this);"/></th>
                         <th width="25%">指标名称</th>
-                        <th width="15%">描述</th>
-                        <th width="10%">指标类型</th>
-                        <th width="28%">量化标准</th>
-                        <th width="10%">备注</th>
+                        <th width="10%">维度</th>
+                        <th width="10%">类型</th>
+                        <th width="15%">范围</th>
+                        <th width="28%">量化标准（计算方法）</th>
                         <th width="10%">操作</th>
                     </tr>
-                    <tr th:each="thirdIndex: ${thirdIndices}" >
+                    <tr th:each="fourthIndex: ${fourthIndices}" >
                         <td><input type="checkbox" name="IDCheck" value="14458579642011" class="acb"/></td>
-                        <td th:text="${thirdIndex.index_name}"></td>
-                        <td th:text="${thirdIndex.desc}"></td>
-                        <td th:text="${thirdIndex.type}"></td>
-                        <td th:text="${thirdIndex.normalize}"></td>
-                        <td th:text="${thirdIndex.source}"></td>
-                        <td><a th:onclick="del([[${thirdIndex.id}]])" style="color:red">删除</a>&nbsp; | &nbsp;<a th:href="/weight">编辑</a></td>
+                        <td th:text="${fourthIndex.index_name}"></td>
+                        <td th:text="${fourthIndex.dimension}"></td>
+                        <td th:text="${fourthIndex.type}"></td>
+                        <td th:text="${fourthIndex.range}"></td>
+                        <td th:text="${fourthIndex.normalize}"></td>
+                        <td><a th:onclick="del([[${fourthIndex.id}]])" style="color:red">删除</a>&nbsp; | &nbsp;<a th:href="@{'/weightEdit/'+ ${fourthIndex.id}}" class="edit">编辑</a></td>
                     </tr>
                 </table>
             </div>

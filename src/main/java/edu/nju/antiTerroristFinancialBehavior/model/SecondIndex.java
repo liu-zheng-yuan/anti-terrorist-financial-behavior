@@ -5,7 +5,7 @@ package edu.nju.antiTerroristFinancialBehavior.model;
  *
  * @author fanleehao on 2019/4/19
  *
- * CREATE TABLE `second_index` (
+ * CREATE TABLE `tb_second_index` (
  *   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '二级指标',
  *   `index_name` varchar(255) NOT NULL COMMENT '二级指标名',
  *   `desc` varchar(255) DEFAULT NULL COMMENT '二级指标描述',
@@ -14,7 +14,7 @@ package edu.nju.antiTerroristFinancialBehavior.model;
  *   `first_index` bigint(20) NOT NULL COMMENT '所属一级指标',
  *   PRIMARY KEY (`id`),
  *   KEY `index-ref` (`first_index`),
- *   CONSTRAINT `index-ref` FOREIGN KEY (`first_index`) REFERENCES `first_index` (`id`)
+ *   CONSTRAINT `index-ref` FOREIGN KEY (`first_index`) REFERENCES `tb_first_index` (`id`)
  * ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8
  */
 public class SecondIndex {

@@ -15,7 +15,6 @@ public interface FirstIndexMapper {
 
     FirstIndex selectByPrimaryKey(Integer id);
 
-    @Select("select * from first_index")
     List<FirstIndex> findAllFirstIndex();
 
     List<SecondIndex> findSecondIndices(Integer id);

@@ -18,12 +18,16 @@
 
     <!--parameterType(输入类型)、resultType(输出类型)-->
     <select id="selectByPrimaryKey" parameterType="Integer" resultMap="BaseResultMap" resultType="edu.nju.antiTerroristFinancialBehavior.model.FirstIndex">
-        SELECT * FROM first_index WHERE id = #{id}
+        SELECT * FROM tb_first_index WHERE id = #{id}
+    </select>
+
+    <select id="findAllFirstIndex" resultType="edu.nju.antiTerroristFinancialBehavior.model.FirstIndex">
+        select * from tb_first_index
     </select>
 
     <!--通过一级指标查找所属的二级指标-->
     <select id="findSecondIndices" parameterType="Integer" resultType="edu.nju.antiTerroristFinancialBehavior.model.SecondIndex">
-        select * from second_index where first_index = #{id}
+        select * from tb_second_index where first_index = #{id}
     </select>
 
 </mapper>

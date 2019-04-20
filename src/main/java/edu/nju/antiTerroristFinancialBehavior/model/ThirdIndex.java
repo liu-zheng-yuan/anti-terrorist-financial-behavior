@@ -5,23 +5,20 @@ package edu.nju.antiTerroristFinancialBehavior.model;
  *
  * @author fanleehao on 2019/4/19
  *
- * CREATE TABLE `third_index` (
+ * CREATE TABLE `tb_third_index` (
  *   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '三级指标',
- *   `index_name` varchar(255) NOT NULL COMMENT '三级指标名称',
- *   `desc` varchar(255) DEFAULT NULL COMMENT '描述',
+ *   `index_name` varchar(255) NOT NULL COMMENT '三级指标名',
+ *   `desc` varchar(255) DEFAULT NULL COMMENT '三级指标描述',
  *   `weight_num` int(11) NOT NULL DEFAULT '1' COMMENT '权重分子',
  *   `weight_deno` int(11) NOT NULL DEFAULT '1' COMMENT '权重分母',
- *   `type` varchar(255) DEFAULT NULL COMMENT '指标类型，离散或连续',
- *   `normalize` varchar(255) DEFAULT NULL COMMENT '量化标准',
- *   `source` varchar(255) DEFAULT NULL COMMENT '指标来源',
  *   `first_index` bigint(20) NOT NULL COMMENT '所属一级指标',
  *   `second_index` bigint(20) NOT NULL COMMENT '所属二级指标',
  *   PRIMARY KEY (`id`),
- *   KEY `third_first_ref` (`first_index`),
- *   KEY `third_second_ref` (`second_index`),
- *   CONSTRAINT `third_first_ref` FOREIGN KEY (`first_index`) REFERENCES `first_index` (`id`),
- *   CONSTRAINT `third_second_ref` FOREIGN KEY (`second_index`) REFERENCES `second_index` (`id`)
- * ) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8
+ *   KEY `third_first_index` (`first_index`),
+ *   KEY `third_second_index` (`second_index`),
+ *   CONSTRAINT `third_first_index` FOREIGN KEY (`first_index`) REFERENCES `tb_first_index` (`id`),
+ *   CONSTRAINT `third_second_index` FOREIGN KEY (`second_index`) REFERENCES `tb_second_index` (`id`)
+ * ) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8
  */
 public class ThirdIndex {
 
@@ -30,12 +27,21 @@ public class ThirdIndex {
     private String desc;
     private Integer weight_num;
     private Integer weight_deno;
-    private String type;
-    private String normalize;
-    private String source;
+
     //所属一二级指标
     private FirstIndex first_index;
     private SecondIndex second_index;
+
+    //树形菜单表ID
+    private Integer menuID;
+
+    public Integer getMenuID() {
+        return menuID;
+    }
+
+    public void setMenuID(Integer menuID) {
+        this.menuID = menuID;
+    }
 
     public Integer getId() {
         return id;
@@ -77,29 +83,6 @@ public class ThirdIndex {
         this.weight_deno = weight_deno;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getNormalize() {
-        return normalize;
-    }
-
-    public void setNormalize(String normalize) {
-        this.normalize = normalize;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
 
     public FirstIndex getFirst_index() {
         return first_index;
@@ -125,9 +108,6 @@ public class ThirdIndex {
                 ", desc='" + desc + '\'' +
                 ", weight_num=" + weight_num +
                 ", weight_deno=" + weight_deno +
-                ", type='" + type + '\'' +
-                ", normalize='" + normalize + '\'' +
-                ", source='" + source + '\'' +
                 ", first_index=" + first_index +
                 ", second_index=" + second_index +
                 '}';

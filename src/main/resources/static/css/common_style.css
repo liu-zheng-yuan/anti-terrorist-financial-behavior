@@ -124,8 +124,8 @@ a:hover {
 }
 
 .ui_input_txt01 {
-	width: 25px;
-	height: 16px;
+	width: 200px;
+	height: 20px;
 	margin: 1px 1px 1px 5px;
 	outline: 0;
 	padding: 5px;
@@ -173,6 +173,7 @@ a:hover {
 	-moz-transition: box-shadow, border-color .5s ease-in-out;
 	-o-transition: box-shadow, border-color .5s ease-in-out;
 }
+
 
 .ui_input_btn01 {
 	width: 80px;

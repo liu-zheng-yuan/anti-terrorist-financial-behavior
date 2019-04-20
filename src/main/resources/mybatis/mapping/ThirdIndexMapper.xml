@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <!--作用域-->
-<mapper namespace="edu.nju.antiTerroristFinancialBehavior.mapper.SecondIndexMapper" >
+<mapper namespace="edu.nju.antiTerroristFinancialBehavior.mapper.ThirdIndexMapper" >
 
     <!--resultMap对应的是表与实体类的映射  - type 数据库表对应的实体类，别名或完整类名都可以-->
-    <resultMap id="BaseResultMap" type="edu.nju.antiTerroristFinancialBehavior.model.SecondIndex" >
+    <resultMap id="BaseResultMap" type="edu.nju.antiTerroristFinancialBehavior.model.ThirdIndex" >
         <!-- 结果集的主键 -->
         <id column="id" property="id" jdbcType="BIGINT" />
         <!-- 普通的列  -column 是数据库中字段， property是实体类中字段-->
@@ -16,9 +16,9 @@
     </resultMap>
 
 
-    <!--通过二级指标查找所属的三级指标-->
-    <select id="findThirdIndicesBySecondIndexId" parameterType="Integer" resultType="edu.nju.antiTerroristFinancialBehavior.model.ThirdIndex">
-        select * from tb_third_index where second_index = #{id}
+    <!--通过三级指标查找所属的四级指标-->
+    <select id="findFourthIndicesByThirdIndexId" parameterType="Integer" resultType="edu.nju.antiTerroristFinancialBehavior.model.FourthIndex">
+        select * from tb_fourth_index where third_index = #{id}
     </select>
 
 </mapper>
