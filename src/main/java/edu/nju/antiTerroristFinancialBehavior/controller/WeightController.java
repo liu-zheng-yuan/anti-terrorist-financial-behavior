@@ -1,7 +1,15 @@
 package edu.nju.antiTerroristFinancialBehavior.controller;
 
+import edu.nju.antiTerroristFinancialBehavior.model.ThirdIndex;
+import edu.nju.antiTerroristFinancialBehavior.service.IndexService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 /**
  * 权重值·
@@ -12,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class WeightController {
 
+    @Autowired
+    private IndexService indexService;
+
     /**
      * 列举三级指标
      * 后续修改：根据不同等级指标的参数，
@@ -21,6 +32,24 @@ public class WeightController {
     public String weightList(){
         return "weightList";
     }
+
+    /**
+     * 根据二级指标，列举三级指标
+     * @param secondIndexId
+     * @return
+     */
+    @GetMapping("/weightList/{secondIndexId}")
+    public String loadThirdIndex(@PathVariable("secondIndexId") Integer secondIndexId, Model model){
+        List<ThirdIndex> thirdIndices = indexService.findThirdIndicesBySecondIndexId(secondIndexId);
+/*        for (ThirdIndex thirdIndex : thirdIndices) {
+            System.out.println(thirdIndex);
+        }*/
+
+        model.addAttribute("thirdIndices", thirdIndices);
+        return "weightList";
+    }
+
+
 
     /**
      * 编辑指标

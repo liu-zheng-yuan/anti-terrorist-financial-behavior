@@ -116,4 +116,20 @@ public class ThirdIndex {
     public void setSecond_index(SecondIndex second_index) {
         this.second_index = second_index;
     }
+
+    @Override
+    public String toString() {
+        return "ThirdIndex{" +
+                "id=" + id +
+                ", index_name='" + index_name + '\'' +
+                ", desc='" + desc + '\'' +
+                ", weight_num=" + weight_num +
+                ", weight_deno=" + weight_deno +
+                ", type='" + type + '\'' +
+                ", normalize='" + normalize + '\'' +
+                ", source='" + source + '\'' +
+                ", first_index=" + first_index +
+                ", second_index=" + second_index +
+                '}';
+    }
 }

@@ -1,9 +1,11 @@
 package edu.nju.antiTerroristFinancialBehavior.service;
 
 import edu.nju.antiTerroristFinancialBehavior.mapper.FirstIndexMapper;
+import edu.nju.antiTerroristFinancialBehavior.mapper.SecondIndexMapper;
 import edu.nju.antiTerroristFinancialBehavior.model.FirstIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.MenuItem;
 import edu.nju.antiTerroristFinancialBehavior.model.SecondIndex;
+import edu.nju.antiTerroristFinancialBehavior.model.ThirdIndex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,8 @@ public class IndexService {
 
     @Autowired
     private FirstIndexMapper firstIndexMapper;
+    @Autowired
+    private SecondIndexMapper secondIndexMapper;
 
 
     /**
@@ -51,5 +55,9 @@ public class IndexService {
         }
 
         return menuItemList;
+    }
+
+    public List<ThirdIndex> findThirdIndicesBySecondIndexId(Integer id) {
+        return secondIndexMapper.findThirdIndicesBySecondIndexId(id);
     }
 }
