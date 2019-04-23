@@ -11,9 +11,11 @@
     <link rel="stylesheet" type="text/css" href="/css/jquery.fancybox-1.3.4.css" media="screen"></link>
     <script type="text/javascript" src="/js/artDialog/artDialog.js?skin=default"></script>
     <title>金融指标建模系统</title>
-    <script type="text/javascript">
+    <!--为了用js获取thymeleaf里的参数 使用了内联的js 不知道会有什么影响-->
+    <script th:inline="javascript">
         $(document).ready(function () {
-
+            /** 用js获取thymeleaf的参数 [[${thirdIndexId}]] **/
+            var thirdIndexId = [[${thirdIndexId}]];
             this.fancybox.close();
 
             /** 新增   **/
@@ -25,7 +27,7 @@
                 'hideOnOverlayClick': false,
                 'showCloseButton': false,
                 'onClosed': function () {
-                    window.location.href = '/weightList/45';
+                    window.location.href = '/weightList/'+thirdIndexId;
                 }
             });
 
@@ -37,7 +39,7 @@
                 'hideOnOverlayClick': true,
                 'showCloseButton': false,
                 'onClosed': function () {
-                    window.location.href = '/weightList/45';
+                    window.location.href = '/weightList'+thirdIndexId;
                 }
             });
         });
