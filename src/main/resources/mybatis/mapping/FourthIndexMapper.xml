@@ -5,7 +5,7 @@
 <mapper namespace="edu.nju.antiTerroristFinancialBehavior.mapper.FourthIndexMapper" >
 
     <!--resultMap对应的是表与实体类的映射  - type 数据库表对应的实体类，别名或完整类名都可以-->
-    <resultMap id="BaseResultMap" type="edu.nju.antiTerroristFinancialBehavior.model.FourthIndex" >
+    <resultMap id="FourthResultMap" type="edu.nju.antiTerroristFinancialBehavior.model.FourthIndex" >
         <!-- 结果集的主键 -->
         <id column="id" property="id" jdbcType="BIGINT" />
         <!-- 普通的列  -column 是数据库中字段， property是实体类中字段-->
@@ -17,16 +17,47 @@
         <result column="type" property="type" jdbcType="VARCHAR"/>
         <result column="dimension" property="dimension" jdbcType="VARCHAR"/>
         <result column="normalize" property="normalize" jdbcType="VARCHAR"/>
+        <!--关联对象-->
+        <association property="firstIndex" column="first_index" select="getFirstIndex" javaType="FirstIndex" />
+        <association property="secondIndex" column="second_index" select="getSecondIndex" javaType="SecondIndex" />
+        <association property="thirdIndex" column="third_index" select="getThirdIndex" javaType="ThirdIndex" />
     </resultMap>
 
 
     <!--通过ID查找四级指标-->
-    <select id="findFourthIndexById" parameterType="Integer" resultType="edu.nju.antiTerroristFinancialBehavior.model.FourthIndex">
+    <select id="findFourthIndexById" parameterType="Integer" resultType="edu.nju.antiTerroristFinancialBehavior.model.FourthIndex" resultMap="FourthResultMap">
         select * from tb_fourth_index where id = #{id}
     </select>
 
     <update id="updateFourthIndex" parameterType="edu.nju.antiTerroristFinancialBehavior.model.FourthIndex">
-        update tb_fourth_index set index_name = #{index_name} where id = #{id}
+        update tb_fourth_index set index_name = #{index_name}, `desc` = #{desc}, weight_num = #{weight_num},weight_deno = #{weight_deno},
+        `range` = #{range},
+        `type`= #{type},
+        dimension = #{dimension},normalize = #{normalize},
+        first_index = #{firstIndex.id},second_index = #{secondIndex.id}, third_index = #{thirdIndex.id}
+        where id = #{id}
     </update>
 
+    <!--关联查询-->
+    <select id="getFirstIndex" parameterType="Integer" resultType="edu.nju.antiTerroristFinancialBehavior.model.FirstIndex">
+        select * from tb_first_index where id = #{id}
+    </select>
+    <select id="getSecondIndex" parameterType="Integer" resultType="edu.nju.antiTerroristFinancialBehavior.model.SecondIndex">
+        select * from tb_second_index where id = #{id}
+    </select>
+    <select id="getThirdIndex" parameterType="Integer" resultType="edu.nju.antiTerroristFinancialBehavior.model.ThirdIndex">
+        select * from tb_third_index where id = #{id}
+    </select>
+
+
+    <!--删除-->
+    <delete id="deleteFourthIndexById" parameterType="Integer" >
+        delete from tb_fourth_index where id = #{id}
+    </delete>
+
+    <!--增加-->
+    <insert id="addFourthIndex" parameterType="FourthIndex">
+        insert into tb_fourth_index(index_name,`desc`,weight_num,weight_deno,`range`,`type`,dimension,normalize,first_index,second_index,third_index)
+        values(#{index_name},#{desc},#{weight_num},#{weight_deno},#{range},#{type},#{dimension},#{normalize},#{firstIndex.id},#{secondIndex.id},#{thirdIndex.id})
+    </insert>
 </mapper>

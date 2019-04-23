@@ -13,6 +13,9 @@
     <title>金融指标建模系统</title>
     <script type="text/javascript">
         $(document).ready(function () {
+
+            this.fancybox.close();
+
             /** 新增   **/
             $("#addBtn").fancybox({
                 'href': '/weightEdit',
@@ -31,7 +34,7 @@
                 'width': 733,
                 'height': 530,
                 'type': 'iframe',
-                'hideOnOverlayClick': false,
+                'hideOnOverlayClick': true,
                 'showCloseButton': false,
                 'onClosed': function () {
                     window.location.href = '/weightList/45';

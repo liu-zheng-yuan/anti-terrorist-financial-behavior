@@ -73,14 +73,18 @@ public class WeightController {
      */
     @PostMapping("/weightUpdate")
     public String weightUpdate(FourthIndex fourthIndex){
-        System.out.println(fourthIndex);
+//        System.out.println(fourthIndex);
 
-
+        FourthIndex newFourthIndex = indexService.updateFourthIndex(fourthIndex);
         //返回主页
-        return "index";
+        return "redirect:weightList/" + newFourthIndex.getThirdIndex().getId();
     }
 
-
+    @PostMapping("/addFourthIndex")
+    public String addFourthIndex(FourthIndex fourthIndex){
+        FourthIndex newFourthIndex = indexService.addFourthIndex(fourthIndex);
+        return "redirect:weightList/" + newFourthIndex.getThirdIndex().getId();
+    }
 
 
 

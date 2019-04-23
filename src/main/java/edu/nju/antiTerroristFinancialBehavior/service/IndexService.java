@@ -94,4 +94,35 @@ public class IndexService {
     public FourthIndex findFourthIndexById(Integer id) {
         return fourthIndexMapper.findFourthIndexById(id);
     }
+
+    public FourthIndex updateFourthIndex(FourthIndex fourthIndex) {
+
+        FourthIndex oldFourthIndex = fourthIndexMapper.findFourthIndexById(fourthIndex.getId());
+
+        oldFourthIndex.setIndex_name(fourthIndex.getIndex_name());
+        oldFourthIndex.setDesc(fourthIndex.getDesc());
+        oldFourthIndex.setDimension(fourthIndex.getDimension());
+        oldFourthIndex.setNormalize(fourthIndex.getNormalize());
+        oldFourthIndex.setRange(fourthIndex.getRange());
+        oldFourthIndex.setType(fourthIndex.getType());
+        oldFourthIndex.setWeight_num(fourthIndex.getWeight_num());
+        oldFourthIndex.setWeight_deno(fourthIndex.getWeight_deno());
+//        System.out.println(oldFourthIndex);
+
+
+//        System.out.println(oldFourthIndex.getFirstIndex());
+        fourthIndexMapper.updateFourthIndex(oldFourthIndex);
+        return oldFourthIndex;
+    }
+
+    public void deleteFourthIndexById(Integer id){
+        fourthIndexMapper.deleteFourthIndexById(id);
+        return;
+    }
+
+    public FourthIndex addFourthIndex(FourthIndex fourthIndex) {
+        fourthIndexMapper.addFourthIndex(fourthIndex);
+
+        return null;
+    }
 }
