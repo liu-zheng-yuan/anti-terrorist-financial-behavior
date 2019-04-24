@@ -76,6 +76,7 @@ public class IndexService {
                             thirdIndex.getMenuID(), thirdIndex.getIndex_name(), 0,"");
                     menuItemList.add(thirdMenuItem);
                 }
+
             }
         }
 
@@ -116,7 +117,9 @@ public class IndexService {
     }
 
     public void deleteFourthIndexById(Integer id){
-        fourthIndexMapper.deleteFourthIndexById(id);
+        if(id != null) {
+            fourthIndexMapper.deleteFourthIndexById(id);
+        }
         return;
     }
 

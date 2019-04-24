@@ -77,16 +77,33 @@ public class WeightController {
 
         FourthIndex newFourthIndex = indexService.updateFourthIndex(fourthIndex);
         //返回主页
-        return "redirect:weightList/" + newFourthIndex.getThirdIndex().getId();
+        return "redirect:/weightList/" + newFourthIndex.getThirdIndex().getId();
     }
 
+    /**
+     * 新增
+     * @param fourthIndex
+     * @return
+     */
     @PostMapping("/addFourthIndex")
     public String addFourthIndex(FourthIndex fourthIndex){
         FourthIndex newFourthIndex = indexService.addFourthIndex(fourthIndex);
-        return "redirect:weightList/" + newFourthIndex.getThirdIndex().getId();
+        return "redirect:/weightList/" + newFourthIndex.getThirdIndex().getId();
     }
 
+    /**
+     * 删除
+     * @param fourthIndexId
+     * @return
+     */
+    @RequestMapping("/weightDelete/{fourthIndexId}")
+    public String weightDelete(@PathVariable("fourthIndexId") Integer fourthIndexId){
+        //System.out.println(fourthIndexId);
 
+        FourthIndex newFourthIndex = indexService.findFourthIndexById(fourthIndexId);
+        indexService.deleteFourthIndexById(fourthIndexId);
+        return "redirect:/weightList/" + newFourthIndex.getThirdIndex().getId();
+    }
 
 
 
