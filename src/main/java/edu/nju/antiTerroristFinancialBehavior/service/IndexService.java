@@ -170,4 +170,13 @@ public class IndexService {
     public int getSecondIndexParentId(Integer secondIndexId) {
         return secondIndexMapper.getSecondIndexParentId(secondIndexId);
     }
+
+    /**
+     * 查询三级指标
+     * @param thirdIndexId
+     * @return
+     */
+    public ThirdIndex findThirdIndexById(Integer thirdIndexId) {
+        return thirdIndexMapper.findThirdIndexById(thirdIndexId);
+    }
 }
