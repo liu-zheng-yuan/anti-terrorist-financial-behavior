@@ -57,7 +57,7 @@
 
     <!--增加-->
     <insert id="addFourthIndex" parameterType="FourthIndex">
-        insert into tb_fourth_index(index_name,`desc`,weight_num,weight_deno,`range`,`type`,dimension,normalize,first_index,second_index,third_index)
-        values(#{index_name},#{desc},#{weight_num},#{weight_deno},#{range},#{type},#{dimension},#{normalize},#{firstIndex.id},#{secondIndex.id},#{thirdIndex.id})
+        insert into tb_fourth_index(index_name,`desc`,`range`,`type`,dimension,normalize,first_index,second_index,third_index)
+        values(#{index_name},#{desc},#{range},#{type},#{dimension},#{normalize},#{firstIndex.id},#{secondIndex.id},#{thirdIndex.id})
     </insert>
 </mapper>

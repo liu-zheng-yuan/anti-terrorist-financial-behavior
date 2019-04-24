@@ -32,4 +32,5 @@ public interface FourthIndexMapper {
      * @param fourthIndex
      */
     void addFourthIndex(FourthIndex fourthIndex);
+
 }

@@ -120,9 +120,43 @@ public class IndexService {
         return;
     }
 
-    public FourthIndex addFourthIndex(FourthIndex fourthIndex) {
+    public void addFourthIndex(FourthIndex fourthIndex) {
         fourthIndexMapper.addFourthIndex(fourthIndex);
+    }
 
-        return null;
+    /**
+     * 判断新增指标的父指标是第几级
+     *
+     * @param parentIndexId
+     * @return
+     */
+    public int getParentIndexIdLevel(String parentIndexId) {
+        FirstIndex firstIndex = firstIndexMapper.selectByPrimaryKey(Integer.valueOf(parentIndexId));
+        if (firstIndex!=null) {
+            return 1;
+        }
+        SecondIndex secondIndex = secondIndexMapper.selectByPrimaryKey(Integer.valueOf(parentIndexId));
+        if (secondIndex != null) {
+            return 2;
+        }
+        return 3;
+    }
+    /**
+     * 找到一个三级指标所属二级指标的Id
+     *
+     * @param thirdIndexId
+     * @return
+     */
+    public int getThirdIndexParentId(Integer thirdIndexId) {
+        return thirdIndexMapper.getThirdIndexParentId(thirdIndexId);
+    }
+    /**
+     * 找到一个二级指标所属一级指标的Id
+     *
+     * @param secondIndexId
+     * @return
+     */
+    public int getSecondIndexParentId(Integer secondIndexId) {
+        return secondIndexMapper.getSecondIndexParentId(secondIndexId);
     }
 }
