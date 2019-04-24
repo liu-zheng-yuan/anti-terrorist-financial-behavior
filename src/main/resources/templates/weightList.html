@@ -107,15 +107,51 @@
     <input type="hidden" name="allIDCheck" value="" id="allIDCheck"/>
     <input type="hidden" name="fangyuanEntity.fyXqName" value="" id="fyXqName"/>
     <div id="container">
+        <p>当前二级指标</p>
         <div class="ui_content">
-            <div class="ui_text_indent">
-                <input type="button" value="新增" class="ui_input_btn01" id="addBtn" onclick="add()"/>
-                <!--<input type="button" value="删除" class="ui_input_btn01" onclick="batchDel();"/>-->
-                <!--<input type="button" value="导入" class="ui_input_btn01" id="importBtn"/>-->
-                <!--<input type="button" value="导出" class="ui_input_btn01" onclick="exportExcel();"/>-->
+            <div class="ui_tb">
+                <table class="table" cellspacing="0" cellpadding="0" width="100%" align="left" border="0">
+                    <tr>
+                        <!--<th width="2%"><input type="checkbox" id="all" onclick="selectOrClearAllCheckbox(this);"/></th>-->
+                        <th width="25%">指标id</th>
+                        <th width="10%">指标名称</th>
+                        <th width="10%">描述</th>
+                        <th width="10%">操作</th>
+                    </tr>
+<!--                    <tr>-->
+<!--                        &lt;!&ndash;<td><input type="checkbox" name="IDCheck" value="14458579642011" class="acb"/></td>&ndash;&gt;-->
+<!--                        <td th:text="${curSecondIndex.id}"></td>-->
+<!--                        <td th:text="${curSecondIndex.index_name}"></td>-->
+<!--                        <td th:text="${curSecondIndex.desc}"></td>-->
+<!--                        <td><a th:href="@{'/weightDelete/' + ${curSecondIndex.id}}" style="color:red">删除</a>&nbsp; | &nbsp;<a th:href="@{'/weightEdit/'+ ${curSecondIndex.id}}" class="edit">编辑</a></td>-->
+<!--                    </tr>-->
+                </table>
             </div>
         </div>
-
+        <hr/>
+        <p>当前三级指标</p>
+        <div class="ui_content">
+            <div class="ui_tb">
+                <table class="table" cellspacing="0" cellpadding="0" width="100%" align="left" border="0">
+                    <tr>
+                        <!--<th width="2%"><input type="checkbox" id="all" onclick="selectOrClearAllCheckbox(this);"/></th>-->
+                        <th width="25%">指标id</th>
+                        <th width="10%">指标名称</th>
+                        <th width="10%">描述</th>
+                        <th width="10%">操作</th>
+                    </tr>
+<!--                    <tr>-->
+<!--                        &lt;!&ndash;<td><input type="checkbox" name="IDCheck" value="14458579642011" class="acb"/></td>&ndash;&gt;-->
+<!--                        <td th:text="${curThirdIndex.id}"></td>-->
+<!--                        <td th:text="${curThirdIndex.index_name}"></td>-->
+<!--                        <td th:text="${curThirdIndex.desc}"></td>-->
+<!--                        <td><a th:href="@{'/weightDelete/' + ${curThirdIndex.id}}" style="color:red">删除</a>&nbsp; | &nbsp;<a th:href="@{'/weightEdit/'+ ${curThirdIndex.id}}" class="edit">编辑</a></td>-->
+<!--                    </tr>-->
+                </table>
+            </div>
+        </div>
+        <hr/>
+        <p>当前四级指标</p>
         <div class="ui_content">
             <div class="ui_tb">
                 <table class="table" cellspacing="0" cellpadding="0" width="100%" align="left" border="0">
@@ -138,6 +174,14 @@
                         <td><a th:href="@{'/weightDelete/' + ${fourthIndex.id}}" style="color:red">删除</a>&nbsp; | &nbsp;<a th:href="@{'/weightEdit/'+ ${fourthIndex.id}}" class="edit">编辑</a></td>
                     </tr>
                 </table>
+            </div>
+        </div>
+        <div class="ui_content">
+            <div class="ui_text_indent">
+                <input type="button" value="新增" class="ui_input_btn01" id="addBtn" onclick="add()"/>
+                <!--<input type="button" value="删除" class="ui_input_btn01" onclick="batchDel();"/>-->
+                <!--<input type="button" value="导入" class="ui_input_btn01" id="importBtn"/>-->
+                <!--<input type="button" value="导出" class="ui_input_btn01" onclick="exportExcel();"/>-->
             </div>
         </div>
     </div>

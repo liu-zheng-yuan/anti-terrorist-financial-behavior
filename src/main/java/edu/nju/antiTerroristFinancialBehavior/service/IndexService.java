@@ -63,6 +63,10 @@ public class IndexService {
                         secondIndex.getMenuID(), secondIndex.getIndex_name(), 0,"");
                 menuItemList.add(secondMenuItem);
             }
+			menuID += 1;
+            menuItemList.add(new MenuItem("/weightAdd?parentIndexId=" + firstIndex.getId(), false,
+                    0, firstIndex.getMenuID(), "", "", 3,
+                    menuID, "新建", 0,""));
 
             /**
              * 再依次查找所属三级指标
@@ -76,6 +80,10 @@ public class IndexService {
                             thirdIndex.getMenuID(), thirdIndex.getIndex_name(), 0,"");
                     menuItemList.add(thirdMenuItem);
                 }
+				menuID += 1;
+                menuItemList.add(new MenuItem("/weightAdd?parentIndexId=" + secondIndex.getId(), false,
+                        0, secondIndex.getMenuID(), "", "", 4,
+                        menuID, "新建", 0,""));
 
             }
         }
