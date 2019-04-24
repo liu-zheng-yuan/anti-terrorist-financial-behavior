@@ -21,4 +21,9 @@
         select * from tb_fourth_index where third_index = #{id}
     </select>
 
+    <!--查找一个三级指标所属二级指标-->
+    <select id="getThirdIndexParentId" parameterType="Integer" resultType="Integer">
+        select second_index from tb_third_index where id = #{thirdIndexId}
+    </select>
+
 </mapper>

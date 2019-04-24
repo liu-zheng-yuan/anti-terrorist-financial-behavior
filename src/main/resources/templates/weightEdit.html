@@ -17,7 +17,9 @@
 		 */
 		$("#submitbutton").click(function() {
 			if(validateForm()){
-				checkIndexSubmit();
+				if(checkIndexSubmit()){
+					//window.parent.$.fancybox.close();
+				}
 			}
 			// window.parent.$.fancybox.close();  //关闭弹出窗口
 		});
@@ -27,7 +29,9 @@
 		 */
 		$("#cancelbutton").click(function() {
 			/**  关闭弹出iframe  **/
-			window.parent.$.fancybox.close();
+			//window.parent.$.fancybox.close();
+			window.parent.rightMain("/weightList/" + $('#thirdIndexId').val());
+			//$("#submitForm").attr("action", "/weightList/" + $('#id').val()).attr("method","get").submit();
 		});
 		
 		var result = 'null';
@@ -80,7 +84,7 @@
 		if(id!="" && index_name!=""){
 			//$(this).attr("target", "‘_main");
 			$("#submitForm").attr("action", "/weightUpdate").submit();
-
+			//window.alert("hhh");
 		}
 		return true;
 	}
@@ -93,13 +97,15 @@
 		}
 		return true;
 	}
+
+	//window.alert("hhh");
 </script>
 </head>
 <body>
 <form id="submitForm" name="submitForm" action="/weightUpdate" method="post">
 	<input type="hidden" name="id" th:value="${fourthIndex.id}" id="id"/>
-	<!--<input type="hidden" name="firstIndex" th:value="${fourthIndex.firstIndex}">
-	<input type="hidden" name="secondIndex" th:value="${fourthIndex.secondIndex}">
+	<input type="hidden" disabled="true" id="thirdIndexId" th:value="${fourthIndex.thirdIndex.id}">
+	<!--<input type="hidden" name="secondIndex" th:value="${fourthIndex.secondIndex}">
 	<input type="hidden" name="thirdIndex" th:value="${fourthIndex.thirdIndex}">-->
 	<input type="hidden" name="weight_num" th:value="${fourthIndex.weight_num}">
 	<input type="hidden" name="weight_deno" th:value="${fourthIndex.weight_deno}">
@@ -107,7 +113,8 @@
 		<div id="nav_links">
 			当前位置：指标展示&nbsp;>&nbsp;<span style="color: #1A5CC6;">指标编辑</span>
 			<div id="page_close">
-				<a href="javascript:parent.$.fancybox.close();">
+				<!--<a href="javascript:parent.$.fancybox.close();">-->
+				<a th:href="@{'/weightList/'+ ${fourthIndex.thirdIndex.id}}">
 					<img src="/image/common/page_close.png" width="20" height="20" style="vertical-align: text-top;"/>
 				</a>
 			</div>

@@ -39,7 +39,7 @@
                 'hideOnOverlayClick': true,
                 'showCloseButton': false,
                 'onClosed': function () {
-                    window.location.href = '/weightList'+thirdIndexId;
+                    window.location.href = '/weightList/'+thirdIndexId;
                 }
             });
         });
@@ -48,7 +48,9 @@
 
         /** 新增   **/
         function add() {
-            $("#submitForm").attr("action", "/xngzf/archives/luruFangyuan.action").submit();
+            var thirdIndexId = [[${thirdIndexId}]];
+            // $("#submitForm").attr("action", "/weightAdd?parentIndexId"+thirdIndexId).submit();
+            window.location.href = "/weightAdd?parentIndexId=" + thirdIndexId;
         }
 
         /** 删除 **/
@@ -56,7 +58,7 @@
             // 非空判断
             if (indexID == '') return;
             if (confirm("您确定要删除吗？" + indexID)) {
-                $("#submitForm").attr("action", "/xngzf/archives/delFangyuan.action?fyID=" + indexID).submit();
+                //this.href('/weightDelete');
             }
         }
 
@@ -107,10 +109,10 @@
     <div id="container">
         <div class="ui_content">
             <div class="ui_text_indent">
-                <input type="button" value="新增" class="ui_input_btn01" id="addBtn"/>
-                <input type="button" value="删除" class="ui_input_btn01" onclick="batchDel();"/>
-                <input type="button" value="导入" class="ui_input_btn01" id="importBtn"/>
-                <input type="button" value="导出" class="ui_input_btn01" onclick="exportExcel();"/>
+                <input type="button" value="新增" class="ui_input_btn01" id="addBtn" onclick="add()"/>
+                <!--<input type="button" value="删除" class="ui_input_btn01" onclick="batchDel();"/>-->
+                <!--<input type="button" value="导入" class="ui_input_btn01" id="importBtn"/>-->
+                <!--<input type="button" value="导出" class="ui_input_btn01" onclick="exportExcel();"/>-->
             </div>
         </div>
 
@@ -118,7 +120,7 @@
             <div class="ui_tb">
                 <table class="table" cellspacing="0" cellpadding="0" width="100%" align="left" border="0">
                     <tr>
-                        <th width="2%"><input type="checkbox" id="all" onclick="selectOrClearAllCheckbox(this);"/></th>
+                        <!--<th width="2%"><input type="checkbox" id="all" onclick="selectOrClearAllCheckbox(this);"/></th>-->
                         <th width="25%">指标名称</th>
                         <th width="10%">维度</th>
                         <th width="10%">类型</th>
@@ -127,13 +129,13 @@
                         <th width="10%">操作</th>
                     </tr>
                     <tr th:each="fourthIndex: ${fourthIndices}" >
-                        <td><input type="checkbox" name="IDCheck" value="14458579642011" class="acb"/></td>
+                        <!--<td><input type="checkbox" name="IDCheck" value="14458579642011" class="acb"/></td>-->
                         <td th:text="${fourthIndex.index_name}"></td>
                         <td th:text="${fourthIndex.dimension}"></td>
                         <td th:text="${fourthIndex.type}"></td>
                         <td th:text="${fourthIndex.range}"></td>
                         <td th:text="${fourthIndex.normalize}"></td>
-                        <td><a th:onclick="del([[${fourthIndex.id}]])" style="color:red">删除</a>&nbsp; | &nbsp;<a th:href="@{'/weightEdit/'+ ${fourthIndex.id}}" class="edit">编辑</a></td>
+                        <td><a th:href="@{'/weightDelete/' + ${fourthIndex.id}}" style="color:red">删除</a>&nbsp; | &nbsp;<a th:href="@{'/weightEdit/'+ ${fourthIndex.id}}" class="edit">编辑</a></td>
                     </tr>
                 </table>
             </div>

@@ -12,4 +12,5 @@ public interface ThirdIndexMapper {
 
     List<FourthIndex> findFourthIndicesByThirdIndexId(Integer id);
 
+    int getThirdIndexParentId(Integer thirdIndexId);
 }

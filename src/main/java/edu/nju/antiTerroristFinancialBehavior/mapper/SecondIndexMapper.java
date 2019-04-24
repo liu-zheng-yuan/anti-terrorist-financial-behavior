@@ -1,5 +1,6 @@
 package edu.nju.antiTerroristFinancialBehavior.mapper;
 
+import edu.nju.antiTerroristFinancialBehavior.model.SecondIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.ThirdIndex;
 
 import java.util.List;
@@ -19,4 +20,18 @@ public interface SecondIndexMapper {
      */
     List<ThirdIndex> findThirdIndicesBySecondIndexId(Integer id);
 
+    /**
+     * 根据id查对应二级指标
+     *
+     * @param id
+     * @return
+     */
+    SecondIndex selectByPrimaryKey(Integer id);
+    /**
+     * 查所属一级指标的Id
+     *
+     * @param secondIndexId
+     * @return
+     */
+    int getSecondIndexParentId(Integer secondIndexId);
 }
