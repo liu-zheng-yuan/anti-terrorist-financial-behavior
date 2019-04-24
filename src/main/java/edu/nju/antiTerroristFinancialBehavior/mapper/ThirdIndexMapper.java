@@ -16,5 +16,6 @@ public interface ThirdIndexMapper {
     int getThirdIndexParentId(Integer thirdIndexId);
 
     ThirdIndex findThirdIndexById(Integer thirdIndexId);
+
     void addThirdIndex(ThirdIndex thirdIndex);
 }

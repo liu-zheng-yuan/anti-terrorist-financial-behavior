@@ -119,7 +119,7 @@ public class WeightController {
         firstIndex.setId(Integer.valueOf(parentIndexId));
         secondIndex.setFirst_index(firstIndex);
         indexService.addSecondIndex(secondIndex);
-        return "redirect:/index";
+        return "redirect:/weightList/34";
     }
     /**
      * 增加指标（可以增加二级、三级、四级指标）
@@ -139,7 +139,7 @@ public class WeightController {
         thirdIndex.setFirst_index(firstIndex);
         thirdIndex.setSecond_index(secondIndex);
         indexService.addThirdIndex(thirdIndex);
-        return "redirect:/index";
+        return "redirect:/weightList/34";
     }
     /**
      * 增加指标（可以增加二级、三级、四级指标）
