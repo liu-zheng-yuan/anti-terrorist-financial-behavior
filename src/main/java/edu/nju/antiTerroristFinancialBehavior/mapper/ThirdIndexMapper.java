@@ -1,6 +1,7 @@
 package edu.nju.antiTerroristFinancialBehavior.mapper;
 
 import edu.nju.antiTerroristFinancialBehavior.model.FourthIndex;
+import edu.nju.antiTerroristFinancialBehavior.model.ThirdIndex;
 
 import java.util.List;
 
@@ -13,4 +14,6 @@ public interface ThirdIndexMapper {
     List<FourthIndex> findFourthIndicesByThirdIndexId(Integer id);
 
     int getThirdIndexParentId(Integer thirdIndexId);
+
+    ThirdIndex findThirdIndexById(Integer thirdIndexId);
 }

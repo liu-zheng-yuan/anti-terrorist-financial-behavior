@@ -85,4 +85,16 @@ public class SecondIndex {
     public void setFirst_index(FirstIndex first_index) {
         this.first_index = first_index;
     }
+
+    @Override
+    public String toString() {
+        return "SecondIndex{" +
+                "id=" + id +
+                ", index_name='" + index_name + '\'' +
+                ", desc='" + desc + '\'' +
+                ", weight_num=" + weight_num +
+                ", weight_deno=" + weight_deno +
+                ", menuID=" + menuID +
+                '}';
+    }
 }

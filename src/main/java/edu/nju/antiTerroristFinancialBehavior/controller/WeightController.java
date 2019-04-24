@@ -51,7 +51,14 @@ public class WeightController {
             System.out.println(fourthIndex);
         }*/
 
+       //V1.0---二级、三级指标的删除，暂且统一读出到本页面，可以直接删除或编辑
+        ThirdIndex curThirdIndex = indexService.findThirdIndexById(thirdIndexId);
+        SecondIndex curSecondIndex = curThirdIndex.getSecond_index();
+
+
         model.addAttribute("fourthIndices", fourthIndices);
+        model.addAttribute("curThirdIndex", curThirdIndex);
+        model.addAttribute("curSecondIndex", curSecondIndex);
         return "weightList";
     }
 
