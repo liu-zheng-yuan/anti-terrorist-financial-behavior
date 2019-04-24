@@ -20,5 +20,13 @@
     <select id="findThirdIndicesBySecondIndexId" parameterType="Integer" resultType="edu.nju.antiTerroristFinancialBehavior.model.ThirdIndex">
         select * from tb_third_index where second_index = #{id}
     </select>
+    <!--根据Id查二级指标-->
+    <select id="selectByPrimaryKey" parameterType="Integer" resultType="edu.nju.antiTerroristFinancialBehavior.model.SecondIndex">
+        select * from tb_second_index where id = #{id}
+    </select>
+    <!--查找一个二级指标所属一级指标-->
+    <select id="getSecondIndexParentId" parameterType="Integer" resultType="Integer">
+        select first_index from tb_second_index where id = #{secondIndexId}
+    </select>
 
 </mapper>

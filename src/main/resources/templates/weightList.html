@@ -11,9 +11,12 @@
     <link rel="stylesheet" type="text/css" href="/css/jquery.fancybox-1.3.4.css" media="screen"></link>
     <script type="text/javascript" src="/js/artDialog/artDialog.js?skin=default"></script>
     <title>金融指标建模系统</title>
-    <script type="text/javascript">
+    <!--为了用js获取thymeleaf里的参数 使用了内联的js 不知道会有什么影响-->
+    <script th:inline="javascript">
         $(document).ready(function () {
+            /** 用js获取thymeleaf的参数 [[${thirdIndexId}]] **/
 
+            var thirdIndexId = [[${thirdIndexId}]];
             this.fancybox.close();
 
             /** 新增   **/
@@ -25,7 +28,7 @@
                 'hideOnOverlayClick': false,
                 'showCloseButton': false,
                 'onClosed': function () {
-                    window.location.href = '/weightList/45';
+                    window.location.href = '/weightList/'+thirdIndexId;
                 }
             });
 
@@ -37,7 +40,7 @@
                 'hideOnOverlayClick': true,
                 'showCloseButton': false,
                 'onClosed': function () {
-                    window.location.href = '/weightList/45';
+                    window.location.href = '/weightList/'+thirdIndexId;
                 }
             });
         });
@@ -46,7 +49,9 @@
 
         /** 新增   **/
         function add() {
-            $("#submitForm").attr("action", "/xngzf/archives/luruFangyuan.action").submit();
+            var thirdIndexId = [[${thirdIndexId}]];
+            // $("#submitForm").attr("action", "/weightAdd?parentIndexId"+thirdIndexId).submit();
+            window.location.href = "/weightAdd?parentIndexId=" + thirdIndexId;
         }
 
         /** 删除 **/
@@ -105,8 +110,10 @@
     <div id="container">
         <div class="ui_content">
             <div class="ui_text_indent">
-                <input type="button" value="新增" class="ui_input_btn01" id="addBtn"/>
-                <input type="button" value="删除" class="ui_input_btn01" onclick="batchDel();"/>
+                <input type="button" value="新增" class="ui_input_btn01" id="addBtn" onclick="add()"/>
+                <!--<input type="button" value="删除" class="ui_input_btn01" onclick="batchDel();"/>-->
+                <!--<input type="button" value="导入" class="ui_input_btn01" id="importBtn"/>-->
+                <!--<input type="button" value="导出" class="ui_input_btn01" onclick="exportExcel();"/>-->
             </div>
         </div>
 
@@ -114,7 +121,7 @@
             <div class="ui_tb">
                 <table class="table" cellspacing="0" cellpadding="0" width="100%" align="left" border="0">
                     <tr>
-                        <th width="2%"><input type="checkbox" id="all" onclick="selectOrClearAllCheckbox(this);"/></th>
+                        <!--<th width="2%"><input type="checkbox" id="all" onclick="selectOrClearAllCheckbox(this);"/></th>-->
                         <th width="25%">指标名称</th>
                         <th width="10%">维度</th>
                         <th width="10%">类型</th>
@@ -123,7 +130,7 @@
                         <th width="10%">操作</th>
                     </tr>
                     <tr th:each="fourthIndex: ${fourthIndices}" >
-                        <td><input type="checkbox" name="IDCheck" value="14458579642011" class="acb"/></td>
+                        <!--<td><input type="checkbox" name="IDCheck" value="14458579642011" class="acb"/></td>-->
                         <td th:text="${fourthIndex.index_name}"></td>
                         <td th:text="${fourthIndex.dimension}"></td>
                         <td th:text="${fourthIndex.type}"></td>
