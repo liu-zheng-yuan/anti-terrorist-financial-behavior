@@ -28,5 +28,8 @@
     <select id="getSecondIndexParentId" parameterType="Integer" resultType="Integer">
         select first_index from tb_second_index where id = #{secondIndexId}
     </select>
-
+    <!--插入一个二级指标-->
+    <insert id="addSecondIndex" parameterType="SecondIndex">
+        insert into tb_second_index(`index_name`,`desc`,`first_index`,`second_index`) values(#{index_name},#{desc},#{firstIndex.id},#{secondIndex.id})
+    </insert>
 </mapper>

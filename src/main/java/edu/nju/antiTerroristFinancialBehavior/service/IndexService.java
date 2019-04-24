@@ -179,4 +179,13 @@ public class IndexService {
     public ThirdIndex findThirdIndexById(Integer thirdIndexId) {
         return thirdIndexMapper.findThirdIndexById(thirdIndexId);
     }
+
+    public void addSecondIndex(SecondIndex secondIndex) {
+        secondIndexMapper.addSecondIndex(secondIndex);
+
+    }
+
+    public void addThirdIndex(ThirdIndex thirdIndex) {
+        thirdIndexMapper.addThirdIndex(thirdIndex);
+    }
 }

@@ -34,4 +34,11 @@ public interface SecondIndexMapper {
      * @return
      */
     int getSecondIndexParentId(Integer secondIndexId);
+    /**
+     * 增加二级指标
+     *
+     * @param secondIndex
+     * @return
+     */
+    void addSecondIndex(SecondIndex secondIndex);
 }

@@ -113,9 +113,13 @@ public class WeightController {
      * @return
      */
     @PostMapping("/weightAdd2")
-    public String weightAdd2(SecondIndex secondIndex) {
-
-        return "weightList";
+    public String weightAdd2(SecondIndex secondIndex,@RequestParam("parentIndexId")String parentIndexId) {
+        //找到二级指标所属一级指标的id
+        FirstIndex firstIndex = new FirstIndex();
+        firstIndex.setId(Integer.valueOf(parentIndexId));
+        secondIndex.setFirst_index(firstIndex);
+        indexService.addSecondIndex(secondIndex);
+        return "redirect:/index";
     }
     /**
      * 增加指标（可以增加二级、三级、四级指标）
@@ -123,8 +127,19 @@ public class WeightController {
      * @return
      */
     @PostMapping("/weightAdd3")
-    public String weightAdd3(ThirdIndex thirdIndex) {
-        return "weightList";
+    public String weightAdd3(ThirdIndex thirdIndex,@RequestParam("parentIndexId")String parentIndexId) {
+        //找到三级指标所属的二级指标的id
+        SecondIndex secondIndex = new SecondIndex();
+        secondIndex.setId(Integer.valueOf(parentIndexId));
+        //找到二级指标所属的一级指标的id
+        int firstIndexId = indexService.getSecondIndexParentId(Integer.valueOf(parentIndexId));
+        FirstIndex firstIndex = new FirstIndex();
+        firstIndex.setId(firstIndexId);
+        //装配
+        thirdIndex.setFirst_index(firstIndex);
+        thirdIndex.setSecond_index(secondIndex);
+        indexService.addThirdIndex(thirdIndex);
+        return "redirect:/index";
     }
     /**
      * 增加指标（可以增加二级、三级、四级指标）
