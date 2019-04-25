@@ -48,7 +48,7 @@ public class InitController {
 
     @GetMapping("/findFirstIndexById")
     public void findFirstIndexById(){
-        FirstIndex firstIndex = firstIndexMapper.selectByPrimaryKey(1);
+        FirstIndex firstIndex = firstIndexMapper.findSecondIndexById(1);
         System.out.println(firstIndex);
     }*/
 

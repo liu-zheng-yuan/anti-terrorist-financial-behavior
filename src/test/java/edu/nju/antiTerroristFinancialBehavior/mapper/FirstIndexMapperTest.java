@@ -24,7 +24,7 @@ public class FirstIndexMapperTest {
     @Test
     public void testSelectByPrimaryKey(){
         System.out.println(firstIndexMapper);
-        //FirstIndex firstIndex = firstIndexMapper.selectByPrimaryKey(1);
+        //FirstIndex firstIndex = firstIndexMapper.findSecondIndexById(1);
         //System.out.println(firstIndex);
     }
 }

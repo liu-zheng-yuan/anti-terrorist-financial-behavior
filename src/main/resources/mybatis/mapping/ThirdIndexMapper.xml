@@ -45,4 +45,20 @@
     <select id="getSecondIndex" parameterType="Integer" resultType="edu.nju.antiTerroristFinancialBehavior.model.SecondIndex">
         select * from tb_second_index where id = #{id}
     </select>
+
+
+    <!--更新-->
+    <update id="updateThirdIndex" parameterType="ThirdIndex">
+        update tb_third_index set
+          `index_name` = #{index_name},
+         `desc` = #{desc}
+        where `id` = #{id}
+    </update>
+
+    <!--删除，级联删除-->
+    <delete id="deleteThirdIndex" parameterType="Integer">
+        delete from tb_third_index where `id` = #{id}
+    </delete>
+
+
 </mapper>

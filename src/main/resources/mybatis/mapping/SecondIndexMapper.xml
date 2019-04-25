@@ -5,7 +5,7 @@
 <mapper namespace="edu.nju.antiTerroristFinancialBehavior.mapper.SecondIndexMapper" >
 
     <!--resultMap对应的是表与实体类的映射  - type 数据库表对应的实体类，别名或完整类名都可以-->
-    <resultMap id="BaseResultMap" type="edu.nju.antiTerroristFinancialBehavior.model.SecondIndex" >
+    <resultMap id="SecondIndexResultMap" type="edu.nju.antiTerroristFinancialBehavior.model.SecondIndex" >
         <!-- 结果集的主键 -->
         <id column="id" property="id" jdbcType="BIGINT" />
         <!-- 普通的列  -column 是数据库中字段， property是实体类中字段-->
@@ -13,6 +13,8 @@
         <result column="desc" property="desc" jdbcType="VARCHAR" />
         <result column="weight_num" property="weight_num" jdbcType="INTEGER" />
         <result column="weight_deno" property="weight_deno" jdbcType="INTEGER" />
+        <!--关联对象-->
+        <association property="first_index" column="first_index" select="getFirstIndex" javaType="FirstIndex" />
     </resultMap>
 
 
@@ -21,7 +23,7 @@
         select * from tb_third_index where second_index = #{id}
     </select>
     <!--根据Id查二级指标-->
-    <select id="selectByPrimaryKey" parameterType="Integer" resultType="edu.nju.antiTerroristFinancialBehavior.model.SecondIndex">
+    <select id="findSecondIndexById" parameterType="Integer" resultType="SecondIndex" resultMap="SecondIndexResultMap">
         select * from tb_second_index where id = #{id}
     </select>
     <!--查找一个二级指标所属一级指标-->
@@ -32,4 +34,24 @@
     <insert id="addSecondIndex" parameterType="SecondIndex">
         insert into tb_second_index(`index_name`,`desc`,`first_index`) values(#{index_name},#{desc},#{first_index.id})
     </insert>
+
+    <!--关联查询-->
+    <select id="getFirstIndex" parameterType="Integer" resultType="edu.nju.antiTerroristFinancialBehavior.model.FirstIndex">
+        select * from tb_first_index where id = #{id}
+    </select>
+
+
+    <!--更新-->
+    <update id="updateSecondIndex" parameterType="SecondIndex">
+        update tb_second_index set
+         `index_name` = #{index_name},
+         `desc` = #{desc}
+        where `id` = #{id}
+    </update>
+
+    <!--删除-->
+    <delete id="deleteSecondIndex" parameterType="Integer">
+        delete from tb_second_index where `id` = #{id}
+    </delete>
+
 </mapper>

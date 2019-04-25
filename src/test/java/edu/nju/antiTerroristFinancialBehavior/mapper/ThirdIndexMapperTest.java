@@ -26,4 +26,17 @@ public class ThirdIndexMapperTest {
         System.out.println(thirdIndex.getSecond_index());
     }
 
+    @Test
+    public void updateThirdIndex(){
+        ThirdIndex thirdIndex = thirdIndexMapper.findThirdIndexById(34);
+        thirdIndex.setDesc("三级指标--测试");
+        thirdIndexMapper.updateThirdIndex(thirdIndex);
+    }
+
+    @Test
+    public void deleteteThirdIndex(){
+        thirdIndexMapper.deleteThirdIndex(54);
+    }
+
+
 }

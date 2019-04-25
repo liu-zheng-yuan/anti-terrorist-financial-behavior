@@ -146,7 +146,7 @@ public class IndexService {
         if (firstIndex!=null) {
             return 1;
         }
-        SecondIndex secondIndex = secondIndexMapper.selectByPrimaryKey(Integer.valueOf(parentIndexId));
+        SecondIndex secondIndex = secondIndexMapper.findSecondIndexById(Integer.valueOf(parentIndexId));
         if (secondIndex != null) {
             return 2;
         }

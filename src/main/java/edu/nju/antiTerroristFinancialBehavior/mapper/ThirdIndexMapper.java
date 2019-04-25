@@ -18,4 +18,8 @@ public interface ThirdIndexMapper {
     ThirdIndex findThirdIndexById(Integer thirdIndexId);
 
     void addThirdIndex(ThirdIndex thirdIndex);
+
+    void updateThirdIndex(ThirdIndex thirdIndex);
+
+    void deleteThirdIndex(Integer id);
 }

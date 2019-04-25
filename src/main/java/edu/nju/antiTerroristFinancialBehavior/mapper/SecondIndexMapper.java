@@ -23,10 +23,10 @@ public interface SecondIndexMapper {
     /**
      * 根据id查对应二级指标
      *
-     * @param id
+     * @param secondIndexId
      * @return
      */
-    SecondIndex selectByPrimaryKey(Integer id);
+    SecondIndex findSecondIndexById(Integer secondIndexId);
     /**
      * 查所属一级指标的Id
      *
@@ -41,4 +41,16 @@ public interface SecondIndexMapper {
      * @return
      */
     void addSecondIndex(SecondIndex secondIndex);
+
+    /**
+     * 更新二级指标
+     * @param secondIndex
+     */
+    void updateSecondIndex(SecondIndex secondIndex);
+
+    /**
+     * 删除，级联操作
+     * @param id
+     */
+    void deleteSecondIndex(Integer id);
 }
