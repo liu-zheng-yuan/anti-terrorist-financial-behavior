@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="/js/jquery/jquery-1.7.1.js"></script>
+    <link href="/css/basic_layout.css" rel="stylesheet" type="text/css">
+    <link href="/css/common_style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/authority/commonAll.js"></script>
+    <script type="text/javascript" src="/js/fancybox/jquery.fancybox-1.3.4.js"></script>
+    <script type="text/javascript" src="/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/jquery.fancybox-1.3.4.css" media="screen"></link>
+    <script type="text/javascript" src="/js/artDialog/artDialog.js?skin=default"></script>
+    <title>金融指标建模系统</title>
+    <!--为了用js获取thymeleaf里的参数 使用了内联的js 不知道会有什么影响-->
+    <script th:inline="javascript">
+        $(document).ready(function () {
+            /** 用js获取thymeleaf的参数 [[${thirdIndexId}]] **/
+            var thirdIndexId = [[${thirdIndexId}]];
+            this.fancybox.close();
+
+            /** 新增   **/
+            $("#addBtn").fancybox({
+                'href': '/weightEdit',
+                'width': 733,
+                'height': 530,
+                'type': 'iframe',
+                'hideOnOverlayClick': false,
+                'showCloseButton': false,
+                'onClosed': function () {
+                    window.location.href = '/weightList/'+thirdIndexId;
+                }
+            });
+
+            /**编辑   **/
+            $("a.edit").fancybox({
+                'width': 733,
+                'height': 530,
+                'type': 'iframe',
+                'hideOnOverlayClick': true,
+                'showCloseButton': false,
+                'onClosed': function () {
+                    window.location.href = '/weightList/'+thirdIndexId;
+                }
+            });
+        });
+        /** 用户角色   **/
+        var userRole = '';
+
+        /** 新增   **/
+        function add() {
+            var thirdIndexId = [[${thirdIndexId}]];
+            // $("#submitForm").attr("action", "/weightAdd?parentIndexId"+thirdIndexId).submit();
+            window.location.href = "/weightAdd?parentIndexId=" + thirdIndexId;
+        }
+
+        /** 删除二级指标 **/
+        function delSecondIndex(indexID) {
+            // 非空判断
+            if (indexID == '') return;
+            if (confirm("您确定要删除吗？删除将导致该级指标所属次级指标全部删除！")) {
+                window.location.href = "/secondIndex/delete/" + indexID;
+            }
+        }
+        /** 删除三级指标 **/
+        function delThirdIndex(indexID) {
+            // 非空判断
+            if (indexID == '') return;
+            if (confirm("您确定要删除吗？删除将导致该级指标所属次级指标全部删除！")) {
+                window.location.href = "/thirdIndex/delete/" + indexID;
+            }
+        }
+        /** 删除四级指标 **/
+        function delFourthIndex(indexID) {
+            // 非空判断
+            if (indexID == '') return;
+            if (confirm("您确定要删除吗？" + indexID)) {
+                //this.href('/weightDelete');
+                window.location.href = "/weightDelete/" + indexID;
+            }
+        }
+
+    </script>
+    <style>
+        .alt td {
+            background: black !important;
+        }
+    </style>
+</head>
+<body>
+<form id="submitForm" name="submitForm" action="" method="post">
+    <input type="hidden" name="allIDCheck" value="" id="allIDCheck"/>
+    <input type="hidden" name="fangyuanEntity.fyXqName" value="" id="fyXqName"/>
+    <div id="container">
+        <p>当前二级指标</p>
+        <div class="ui_content">
+            <div class="ui_tb">
+                <table class="table" cellspacing="0" cellpadding="0" width="100%" align="left" border="0">
+                    <tr>
+                        <!--<th width="2%"><input type="checkbox" id="all" onclick="selectOrClearAllCheckbox(this);"/></th>-->
+                        <th width="25%" hidden="hidden">指标id</th>
+                        <th width="10%">指标名称</th>
+                        <th width="10%">描述</th>
+                    </tr>
+                    <tr>
+                        <!--<td><input type="checkbox" name="IDCheck" value="14458579642011" class="acb"/></td>-->
+                        <td th:text="${curSecondIndex.id}" hidden = "hidden"></td>
+                        <td th:text="${curSecondIndex.index_name}"></td>
+                        <td th:text="${curSecondIndex.desc}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <hr/>
+        <p>当前三级指标</p>
+        <div class="ui_content">
+            <div class="ui_tb">
+                <table class="table" cellspacing="0" cellpadding="0" width="100%" align="left" border="0">
+                    <tr>
+                        <!--<th width="2%"><input type="checkbox" id="all" onclick="selectOrClearAllCheckbox(this);"/></th>-->
+                        <th width="25%" hidden="hidden">指标id</th>
+                        <th width="10%">指标名称</th>
+                        <th width="10%">描述</th>
+                    </tr>
+                    <tr>
+                        <!--<td><input type="checkbox" name="IDCheck" value="14458579642011" class="acb"/></td>-->
+                        <td th:text="${curThirdIndex.id}" hidden="hidden" ></td>
+                        <td th:text="${curThirdIndex.index_name}"></td>
+                        <td th:text="${curThirdIndex.desc}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <hr/>
+        <p>当前四级指标</p>
+        <div class="ui_content">
+            <div class="ui_tb">
+                <table class="table" cellspacing="0" cellpadding="0" width="100%" align="left" border="0">
+                    <tr>
+                        <!--<th width="2%"><input type="checkbox" id="all" onclick="selectOrClearAllCheckbox(this);"/></th>-->
+                        <th width="25%">指标名称</th>
+                        <th width="10%">维度</th>
+                        <th width="10%">类型</th>
+                        <th width="15%">范围</th>
+                        <th width="28%">量化标准（计算方法）</th>
+                    </tr>
+                    <tr th:each="fourthIndex: ${fourthIndices}" >
+                        <!--<td><input type="checkbox" name="IDCheck" value="14458579642011" class="acb"/></td>-->
+                        <td th:text="${fourthIndex.index_name}"></td>
+                        <td th:text="${fourthIndex.dimension}"></td>
+                        <td th:text="${fourthIndex.type}"></td>
+                        <td th:text="${fourthIndex.range}"></td>
+                        <td th:text="${fourthIndex.normalize}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="ui_content">
+            <div class="ui_text_indent">
+<!--                <input type="button" value="新增" class="ui_input_btn01" id="addBtn" onclick="add()"/>-->
+                <!--<input type="button" value="删除" class="ui_input_btn01" onclick="batchDel();"/>-->
+                <!--<input type="button" value="导入" class="ui_input_btn01" id="importBtn"/>-->
+                <!--<input type="button" value="导出" class="ui_input_btn01" onclick="exportExcel();"/>-->
+            </div>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>
