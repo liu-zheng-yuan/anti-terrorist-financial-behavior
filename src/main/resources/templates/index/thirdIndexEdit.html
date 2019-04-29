@@ -12,24 +12,14 @@
 <script type="text/javascript" src="/js/artDialog/artDialog.js?skin=default"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-
-		/*
-		 * 取消
-		 */
 		$("#cancelbutton").click(function() {
-			/**  关闭弹出iframe  **/
-			// window.parent.$.fancybox.close();
-			window.parent.rightMain("/weightList/" + $('#id').val());
+			window.parent.rightMain("/inde/list/" + $('#id').val());
 		});
-		
 		var result = 'null';
 		if(result =='success'){
-			/**  关闭弹出iframe  **/
 			window.parent.$.fancybox.close();
 		}
 	});
-
-	
 	/** 表单验证  **/
 	function validateForm(){
 		if($("#index_name").val()==""){
@@ -50,7 +40,7 @@
 		<div id="nav_links">
 			当前位置：指标设定&nbsp;>&nbsp;<span style="color: #1A5CC6;">编辑三级指标</span>
 			<div id="page_close">
-				<a th:href="@{'/weightList/' + ${thirdIndex.id}}" >
+				<a th:href="@{'/index/list/' + ${thirdIndex.id}}" >
 					<img src="/image/common/page_close.png" width="20" height="20" style="vertical-align: text-top;"/>
 				</a>
 			</div>

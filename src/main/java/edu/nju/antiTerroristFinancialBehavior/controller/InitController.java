@@ -16,7 +16,7 @@ import java.util.List;
  * @author fanleehao on 2019/4/19
  */
 
-@RestController
+@Controller
 public class InitController {
 
 
@@ -39,18 +39,19 @@ public class InitController {
      * @return
      */
     @GetMapping(value = "/loadMenu/{parentID}")
+    @ResponseBody
     public List<MenuItem> loadMenu(@PathVariable("parentID") Integer id){
         return indexService.findMenusItemsByParentID(id);
     }
 
     /**
-     * 主页登录显示--aboutme控制
+     * 主页显示--homepage
      * @return
      */
-    @RequestMapping("/aboutMe")
+    @RequestMapping("/homePage")
     public String weightList(){
         //System.out.println("Aboutme....");
-        return "aboutMe";
+        return "homePage";
     }
 
 

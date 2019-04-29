@@ -12,13 +12,9 @@
 <script type="text/javascript" src="/js/artDialog/artDialog.js?skin=default"></script>
 <script th:inline="javascript">
 	$(document).ready(function() {
-
-		/*
-		 * 取消
-		 */
 		$("#cancelbutton").click(function() {
 			/**  关闭弹出iframe  **/
-			window.parent.rightMain("/index/list" + $('#parentIndexId').val());
+			window.parent.rightMain("/index/list/" + $('#parentIndexId').val());
 		});
 		
 		var result = 'null';
@@ -27,15 +23,6 @@
 			window.parent.$.fancybox.close();
 		}
 	});
-	
-	/** 表单验证  **/
-	function validateForm(){
-		if($("#index_name").val()==""){
-			art.dialog({icon:'error', title:'提示！', drag:false, resize:false, content:'指标名称不能为空', ok:true,});
-			return false;
-		}
-		return true;
-	}
 </script>
 </head>
 <body>
@@ -48,7 +35,7 @@
 		<div id="nav_links">
 			当前位置：指标展示&nbsp;>&nbsp;<span style="color: #1A5CC6;">新增四级指标</span>
 			<div id="page_close">
-				<a th:href="@{'/weightList/'+ ${parentIndexId}}">
+				<a th:href="@{'/index/list/'+ ${parentIndexId}}">
 					<img src="/image/common/page_close.png" width="20" height="20" style="vertical-align: text-top;"/>
 				</a>
 			</div>

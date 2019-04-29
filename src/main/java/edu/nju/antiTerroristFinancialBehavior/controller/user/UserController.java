@@ -1,4 +1,4 @@
-package edu.nju.antiTerroristFinancialBehavior.controller;
+package edu.nju.antiTerroristFinancialBehavior.controller.user;
 
 import edu.nju.antiTerroristFinancialBehavior.model.FourthIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.MenuItem;

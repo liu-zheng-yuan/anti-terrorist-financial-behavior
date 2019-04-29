@@ -12,21 +12,16 @@
 <script type="text/javascript" src="/js/artDialog/artDialog.js?skin=default"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		/*
-		 * 提交
-		 */
 		$("#submitbutton").click(function() {
 			if(validateForm()){
 				if(checkIndexSubmit()){
-					//window.parent.$.fancybox.close();
 				}
 			}
 		});
 
 		$("#cancelbutton").click(function() {
 			/**  关闭弹出iframe  **/
-			//window.parent.$.fancybox.close();
-			window.parent.rightMain("/index/list" + $('#thirdIndexId').val());
+			window.parent.rightMain("/index/list/" + $('#thirdIndexId').val());
 		});
 		
 		var result = 'null';
@@ -41,14 +36,8 @@
 		// 分别获取指标信息
 		var id = $('#id').val();
 		var index_name = $("#index_name").val();
-		var dimension = $("#dimension").val();
-		var type = $("#type").val();
-		var range = $("#range").val();
-		var normalize = $("#normalize").val();
 		if(id!="" && index_name!=""){
-			//$(this).attr("target", "‘_main");
-			$("#submitForm").attr("action", "/weightUpdate").submit();
-			//window.alert("hhh");
+			$("#submitForm").attr("action", "/fourthIndex/update").submit();
 		}
 		return true;
 	}
@@ -77,7 +66,7 @@
 			当前位置：指标展示&nbsp;>&nbsp;<span style="color: #1A5CC6;">指标编辑</span>
 			<div id="page_close">
 				<!--<a href="javascript:parent.$.fancybox.close();">-->
-				<a th:href="@{'/weightList/'+ ${fourthIndex.thirdIndex.id}}">
+				<a th:href="@{'/index/list/'+ ${fourthIndex.thirdIndex.id}}">
 					<img src="/image/common/page_close.png" width="20" height="20" style="vertical-align: text-top;"/>
 				</a>
 			</div>

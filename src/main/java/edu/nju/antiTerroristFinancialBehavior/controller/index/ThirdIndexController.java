@@ -61,7 +61,7 @@ public class ThirdIndexController {
         ThirdIndex thirdIndex = thirdIndexService.findThirdIndexById(thirdIndexId);
         model.addAttribute("thirdIndex", thirdIndex);
         //跳转二级编辑页面
-        return "thirdIndexEdit";
+        return "index/thirdIndexEdit";
     }
 
     /**
@@ -74,7 +74,7 @@ public class ThirdIndexController {
         //System.out.println(thirdIndex);
         thirdIndexService.updateThirdIndex(thirdIndex);
 
-        return "redirect:/weightList/" + thirdIndex.getId();
+        return "redirect:/index/list/" + thirdIndex.getId();
     }
 
     /**
@@ -88,7 +88,7 @@ public class ThirdIndexController {
         if(thirdIndex != null) {
             thirdIndexService.deleteThirdIndex(id);
         }
-        return "redirect:/weightList/34";
+        return "redirect:/index/list/34";
     }
 
 

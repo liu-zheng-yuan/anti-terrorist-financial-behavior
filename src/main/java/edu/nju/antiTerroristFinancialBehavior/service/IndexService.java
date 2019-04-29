@@ -75,7 +75,7 @@ public class IndexService {
                 List<ThirdIndex> thirdIndices = secondIndexMapper.findThirdIndicesBySecondIndexId(secondIndex.getId());
                 for (ThirdIndex thirdIndex : thirdIndices) {
                     thirdIndex.setMenuID(menuID++);
-                    MenuItem thirdMenuItem = new MenuItem("/weightList/" + thirdIndex.getId(), false,
+                    MenuItem thirdMenuItem = new MenuItem("/index/list/" + thirdIndex.getId(), false,
                             0, secondIndex.getMenuID(), "", "", 4,
                             thirdIndex.getMenuID(), thirdIndex.getIndex_name(), 0,"");
                     menuItemList.add(thirdMenuItem);

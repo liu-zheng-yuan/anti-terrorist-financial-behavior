@@ -18,18 +18,14 @@
 				checkIndexSubmit();
 			}
 		});
-
 		$("#cancelbutton").click(function() {
-			/**  关闭弹出iframe  **/
-			window.parent.rightMain("/weightList/34");
+			window.parent.rightMain("/homePage");
 		});
 		var result = 'null';
 		if(result =='success'){
-			/**  关闭弹出iframe  **/
 			window.parent.$.fancybox.close();
 		}
 	});
-	
 	/** 表单验证  **/
 	function validateForm(){
 		if($("#index_name").val()==""){
@@ -50,7 +46,7 @@
 		<div id="nav_links">
 			当前位置：指标展示&nbsp;>&nbsp;<span style="color: #1A5CC6;">新增三级指标</span>
 			<div id="page_close">
-				<a th:href="@{'/index/list/34'}">
+				<a th:href="@{'/homePage'}">
 					<img src="/image/common/page_close.png" width="20" height="20" style="vertical-align: text-top;"/>
 				</a>
 			</div>

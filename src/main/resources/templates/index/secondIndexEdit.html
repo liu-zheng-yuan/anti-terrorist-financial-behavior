@@ -12,36 +12,18 @@
 <script type="text/javascript" src="/js/artDialog/artDialog.js?skin=default"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-
-		/*
-		 * 取消
-		 */
 		$("#cancelbutton").click(function() {
-			/**  关闭弹出iframe  **/
-			// window.parent.$.fancybox.close();
-			window.parent.rightMain("/weightList/34");
+			window.parent.rightMain("/homePage");
 		});
-		
 		var result = 'null';
 		if(result =='success'){
-			/**  关闭弹出iframe  **/
 			window.parent.$.fancybox.close();
 		}
 	});
-
-	
-	/** 表单验证  **/
-	function validateForm(){
-		if($("#index_name").val()==""){
-			art.dialog({icon:'error', title:'提示！', drag:false, resize:false, content:'指标名称不能为空', ok:true,});
-			return false;
-		}
-		return true;
-	}
 </script>
 </head>
 <body>
-<form id="submitForm" name="submitForm" action="/secondIndex/update/" method="post">
+<form id="submitForm" name="submitForm" action="/secondIndex/update" method="post">
 	<input type="hidden" name="id"  id="id" th:value="${secondIndex.id}"/>
 	<!--<input type="hidden" name="firstIndex" th:value="${fourthIndex.firstIndex}">
 	<input type="hidden" name="secondIndex" th:value="${fourthIndex.secondIndex}">
@@ -50,7 +32,7 @@
 		<div id="nav_links">
 			当前位置：指标设定&nbsp;>&nbsp;<span style="color: #1A5CC6;">编辑二级指标</span>
 			<div id="page_close">
-				<a th:href="@{'/weightList/34'}" >
+				<a th:href="@{'/homePage'}" >
 					<img src="/image/common/page_close.png" width="20" height="20" style="vertical-align: text-top;"/>
 				</a>
 			</div>
