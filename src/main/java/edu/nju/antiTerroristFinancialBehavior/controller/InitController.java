@@ -19,21 +19,39 @@ import java.util.List;
 @RestController
 public class InitController {
 
-//    @Autowired
-//    private FirstIndexMapper firstIndexMapper;
 
     @Autowired
     private IndexService indexService;
 
+    /**
+     * 首页
+     * @return
+     */
+    @RequestMapping("/index")
+    public String index() {
+        return "index";
+    }
+
+
+    /**
+     * 初始化树形菜单
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/loadMenu/{parentID}")
     public List<MenuItem> loadMenu(@PathVariable("parentID") Integer id){
         return indexService.findMenusItemsByParentID(id);
     }
 
-
-
-
-
+    /**
+     * 主页登录显示--aboutme控制
+     * @return
+     */
+    @RequestMapping("/aboutMe")
+    public String weightList(){
+        //System.out.println("Aboutme....");
+        return "aboutMe";
+    }
 
 
 
@@ -51,6 +69,5 @@ public class InitController {
         FirstIndex firstIndex = firstIndexMapper.findSecondIndexById(1);
         System.out.println(firstIndex);
     }*/
-
 
 }

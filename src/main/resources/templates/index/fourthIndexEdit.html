@@ -21,17 +21,12 @@
 					//window.parent.$.fancybox.close();
 				}
 			}
-			// window.parent.$.fancybox.close();  //关闭弹出窗口
 		});
-		
-		/*
-		 * 取消
-		 */
+
 		$("#cancelbutton").click(function() {
 			/**  关闭弹出iframe  **/
 			//window.parent.$.fancybox.close();
-			window.parent.rightMain("/weightList/" + $('#thirdIndexId').val());
-			//$("#submitForm").attr("action", "/weightList/" + $('#id').val()).attr("method","get").submit();
+			window.parent.rightMain("/index/list" + $('#thirdIndexId').val());
 		});
 		
 		var result = 'null';
@@ -40,38 +35,7 @@
 			window.parent.$.fancybox.close();
 		}
 	});
-	
-	/** 检测房源房号是否存在  **/
-	function checkFyFh(){
-		// 分别获取小区编号、栋号、层号、房号
-		var fyID = $('#fyID').val();
-		var fyXqCode = $("#fyXq").val();
-		var fyDh = $("#fyDh").val();
-		var fyCh = $("#fyCh").val();	
-		var fyFh = $("#fyFh").val();
-		if(fyXqCode!="" && fyDh!="" && fyCh!="" && fyFh!=""){
-			// 给房屋坐落地址赋值
-			$("#fyZldz").val($('#fyDh option:selected').text() + fyCh + "-" + fyFh);
-			// 异步判断该房室是否存在，如果已存在，给用户已提示哦
-			$.ajax({
-				type:"POST",
-				url:"checkFyFhIsExists.action",
-				data:{"fangyuanEntity.fyID":fyID,"fangyuanEntity.fyXqCode":fyXqCode, "fangyuanEntity.fyDhCode":fyDh, "fangyuanEntity.fyCh":fyCh, "fangyuanEntity.fyFh":fyFh},
-				dataType : "text",
-				success:function(data){
-// 					alert(data);
-					// 如果返回数据不为空，更改“房源信息”
-					if(data=="1"){
-						 art.dialog({icon:'error', title:'友情提示', drag:false, resize:false, content:'该房室在系统中已经存在哦，\n请维护其他房室数据', ok:true,});
-						 $("#fyFh").css("background", "#EEE");
-						 $("#fyFh").focus();
-						 return false;
-					}
-				}
-			});
-		}
-	}
-	
+
 	/** 提交form  **/
 	function checkIndexSubmit(){
 		// 分别获取指标信息
@@ -98,11 +62,10 @@
 		return true;
 	}
 
-	//window.alert("hhh");
 </script>
 </head>
 <body>
-<form id="submitForm" name="submitForm" action="/weightUpdate" method="post">
+<form id="submitForm" name="submitForm" action="/fourthIndex/update" method="post">
 	<input type="hidden" name="id" th:value="${fourthIndex.id}" id="id"/>
 	<input type="hidden" disabled="true" id="thirdIndexId" th:value="${fourthIndex.thirdIndex.id}">
 	<!--<input type="hidden" name="secondIndex" th:value="${fourthIndex.secondIndex}">

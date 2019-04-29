@@ -2,6 +2,8 @@ package edu.nju.antiTerroristFinancialBehavior.mapper;
 
 import edu.nju.antiTerroristFinancialBehavior.model.FourthIndex;
 
+import java.util.List;
+
 /**
  * @author fanleehao on 2019/4/20
  */
@@ -14,6 +16,13 @@ public interface FourthIndexMapper {
      * @return
      */
     FourthIndex findFourthIndexById(Integer id);
+
+    /**
+     * 查询所有某一类的四级指标
+     * @param thirdIndexId
+     * @return
+     */
+    List<FourthIndex> findFourthIndicesByThirdIndexId(Integer thirdIndexId);
 
     /**
      * 更新四级指标

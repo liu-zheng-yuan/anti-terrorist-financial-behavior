@@ -29,6 +29,11 @@
         select * from tb_fourth_index where id = #{id}
     </select>
 
+    <!--查找所属某类三级指标的四级指标-->
+    <select id="findFourthIndicesByThirdIndexId" parameterType="Integer" resultType="edu.nju.antiTerroristFinancialBehavior.model.FourthIndex">
+        select * from tb_fourth_index where third_index = #{id}
+    </select>
+
     <update id="updateFourthIndex" parameterType="edu.nju.antiTerroristFinancialBehavior.model.FourthIndex">
         update tb_fourth_index set index_name = #{index_name}, `desc` = #{desc}, weight_num = #{weight_num},weight_deno = #{weight_deno},
         `range` = #{range},

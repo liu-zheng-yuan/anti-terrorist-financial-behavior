@@ -18,19 +18,6 @@
             var thirdIndexId = [[${thirdIndexId}]];
             this.fancybox.close();
 
-            /** 新增   **/
-            $("#addBtn").fancybox({
-                'href': '/weightEdit',
-                'width': 733,
-                'height': 530,
-                'type': 'iframe',
-                'hideOnOverlayClick': false,
-                'showCloseButton': false,
-                'onClosed': function () {
-                    window.location.href = '/weightList/'+thirdIndexId;
-                }
-            });
-
             /**编辑   **/
             $("a.edit").fancybox({
                 'width': 733,
@@ -39,17 +26,14 @@
                 'hideOnOverlayClick': true,
                 'showCloseButton': false,
                 'onClosed': function () {
-                    window.location.href = '/weightList/'+thirdIndexId;
+                    window.location.href = '/index/list/'+thirdIndexId;
                 }
             });
         });
-        /** 用户角色   **/
-        var userRole = '';
 
         /** 新增   **/
         function add() {
             var thirdIndexId = [[${thirdIndexId}]];
-            // $("#submitForm").attr("action", "/weightAdd?parentIndexId"+thirdIndexId).submit();
             window.location.href = "/weightAdd?parentIndexId=" + thirdIndexId;
         }
 
@@ -74,8 +58,7 @@
             // 非空判断
             if (indexID == '') return;
             if (confirm("您确定要删除吗？" + indexID)) {
-                //this.href('/weightDelete');
-                window.location.href = "/weightDelete/" + indexID;
+                window.location.href = "/fourthIndex/delete/" + indexID;
             }
         }
 
@@ -155,7 +138,7 @@
                         <td th:text="${fourthIndex.type}"></td>
                         <td th:text="${fourthIndex.range}"></td>
                         <td th:text="${fourthIndex.normalize}"></td>
-                        <td><a th:onclick="delFourthIndex([[${fourthIndex.id}]])"  style="color:red">删除</a>&nbsp; | &nbsp;<a th:href="@{'/weightEdit/'+ ${fourthIndex.id}}" class="edit">编辑</a></td>
+                        <td><a th:onclick="delFourthIndex([[${fourthIndex.id}]])"  style="color:red">删除</a>&nbsp; | &nbsp;<a th:href="@{'/fourthIndex/edit/'+ ${fourthIndex.id}}" class="edit">编辑</a></td>
                     </tr>
                 </table>
             </div>
@@ -163,9 +146,6 @@
         <div class="ui_content">
             <div class="ui_text_indent">
                 <input type="button" value="新增" class="ui_input_btn01" id="addBtn" onclick="add()"/>
-                <!--<input type="button" value="删除" class="ui_input_btn01" onclick="batchDel();"/>-->
-                <!--<input type="button" value="导入" class="ui_input_btn01" id="importBtn"/>-->
-                <!--<input type="button" value="导出" class="ui_input_btn01" onclick="exportExcel();"/>-->
             </div>
         </div>
     </div>
