@@ -224,4 +224,10 @@ public class WeightController {
 
     @RequestMapping("/model")
     public String model() {return "model";}
+
+    @RequestMapping("/weightDisplay")
+    public String weightDisplay() {return "weightDisplay";}
+
+    @RequestMapping("/weightShow")
+    public String weightShow() {return "weightShow";}
 }
