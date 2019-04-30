@@ -1,7 +1,5 @@
 package edu.nju.antiTerroristFinancialBehavior.controller.weight;
 
-import edu.nju.antiTerroristFinancialBehavior.service.IndexService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class WeightController {
 
-    @Autowired
-    private IndexService indexService;
+/*    @Autowired
+    private IndexService indexService;*/
 
     /**
      * 指标定权---矩阵
@@ -27,9 +25,15 @@ public class WeightController {
     }
 
 
-    @RequestMapping("/marking")
-    public String Marking() {return "weight/marking";}
+    @RequestMapping("/weightDisplay")
+    public String weightDisplay(){
+        return "weight/weightDisplay";
+    }
 
+    @RequestMapping("/weightShow")
+    public String weightShow(){
+        return "weight/weightShow";
+    }
 
 
 

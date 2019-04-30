@@ -2,8 +2,8 @@ package edu.nju.antiTerroristFinancialBehavior.controller.index;
 
 import edu.nju.antiTerroristFinancialBehavior.model.FirstIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.SecondIndex;
-import edu.nju.antiTerroristFinancialBehavior.service.IndexService;
-import edu.nju.antiTerroristFinancialBehavior.service.SecondIndexService;
+import edu.nju.antiTerroristFinancialBehavior.service.index.FirstIndexService;
+import edu.nju.antiTerroristFinancialBehavior.service.index.SecondIndexService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +24,8 @@ public class SecondIndexController {
     @Autowired
     private SecondIndexService secondIndexService;
     @Autowired
-    private IndexService indexService;
+    private FirstIndexService firstIndexService;
+
 
     /**
      * 跳转二级指标编辑
@@ -49,7 +50,7 @@ public class SecondIndexController {
         //System.out.println(secondIndex);
         secondIndexService.updateSecondIndex(secondIndex);
 
-        return "redirect:/index/list/34";
+        return "redirect:/homePage";
     }
 
 
@@ -61,11 +62,13 @@ public class SecondIndexController {
     @PostMapping("/secondIndex/add")
     public String weightAdd2(SecondIndex secondIndex, @RequestParam("parentIndexId")String parentIndexId) {
         //找到二级指标所属一级指标的id
-        FirstIndex firstIndex = new FirstIndex();
-        firstIndex.setId(Integer.valueOf(parentIndexId));
+        //FirstIndex firstIndex = new FirstIndex();
+        //firstIndex.setId(Integer.valueOf(parentIndexId));
+        FirstIndex firstIndex = firstIndexService.findFirstIndexById(Integer.valueOf(parentIndexId));
         secondIndex.setFirst_index(firstIndex);
-        indexService.addSecondIndex(secondIndex);
-        return "redirect:/index/list/34";
+
+        secondIndexService.addSecondIndex(secondIndex);
+        return "redirect:/homePage";
     }
 
     /**
@@ -79,6 +82,6 @@ public class SecondIndexController {
         if (secondIndex != null){
             secondIndexService.deleteSecondIndex(id);
         }
-        return "redirect:/index/list/34";
+        return "redirect:/homePage";
     }
 }

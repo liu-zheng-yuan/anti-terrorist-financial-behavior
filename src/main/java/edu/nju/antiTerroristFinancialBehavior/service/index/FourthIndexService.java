@@ -1,4 +1,4 @@
-package edu.nju.antiTerroristFinancialBehavior.service;
+package edu.nju.antiTerroristFinancialBehavior.service.index;
 
 import edu.nju.antiTerroristFinancialBehavior.mapper.FourthIndexMapper;
 import edu.nju.antiTerroristFinancialBehavior.model.FourthIndex;
@@ -49,5 +49,21 @@ public class FourthIndexService {
         //System.out.println(oldFourthIndex.getFirstIndex());
         fourthIndexMapper.updateFourthIndex(oldFourthIndex);
         return oldFourthIndex;
+    }
+
+    /**
+     * 新增
+     * @param fourthIndex
+     */
+    public void addFourthIndex(FourthIndex fourthIndex) {
+        fourthIndexMapper.addFourthIndex(fourthIndex);
+    }
+
+    /**
+     * 删除
+     * @param fourthIndexId
+     */
+    public void deleteFourthIndexById(Integer fourthIndexId) {
+        fourthIndexMapper.deleteFourthIndexById(fourthIndexId);
     }
 }

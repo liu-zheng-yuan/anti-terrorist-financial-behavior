@@ -3,8 +3,8 @@ package edu.nju.antiTerroristFinancialBehavior.controller.index;
 import edu.nju.antiTerroristFinancialBehavior.model.FirstIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.SecondIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.ThirdIndex;
-import edu.nju.antiTerroristFinancialBehavior.service.IndexService;
-import edu.nju.antiTerroristFinancialBehavior.service.ThirdIndexService;
+import edu.nju.antiTerroristFinancialBehavior.service.index.SecondIndexService;
+import edu.nju.antiTerroristFinancialBehavior.service.index.ThirdIndexService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,9 +24,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ThirdIndexController {
 
     @Autowired
-    private ThirdIndexService thirdIndexService;
+    private SecondIndexService secondIndexService;
     @Autowired
-    private IndexService indexService;
+    private ThirdIndexService thirdIndexService;
 
     /**
      * 增加指标（可以增加二级、三级、四级指标）
@@ -36,23 +36,26 @@ public class ThirdIndexController {
     @PostMapping("/thirdIndex/add")
     public String weightAdd3(ThirdIndex thirdIndex, @RequestParam("parentIndexId")String parentIndexId) {
         //找到三级指标所属的二级指标的id
-        SecondIndex secondIndex = new SecondIndex();
-        secondIndex.setId(Integer.valueOf(parentIndexId));
+        //SecondIndex secondIndex = new SecondIndex();
+        //secondIndex.setId(Integer.valueOf(parentIndexId));
+        SecondIndex secondIndex = secondIndexService.findSecondIndexById(Integer.valueOf(parentIndexId));
+
         //找到二级指标所属的一级指标的id
-        int firstIndexId = indexService.getSecondIndexParentId(Integer.valueOf(parentIndexId));
-        FirstIndex firstIndex = new FirstIndex();
-        firstIndex.setId(firstIndexId);
+        //int firstIndexId = commonIndexService.getSecondIndexParentId(Integer.valueOf(parentIndexId));
+        //FirstIndex firstIndex = new FirstIndex();
+        //firstIndex.setId(firstIndexId);
+        FirstIndex firstIndex = secondIndex.getFirst_index();
         //装配
         thirdIndex.setFirst_index(firstIndex);
         thirdIndex.setSecond_index(secondIndex);
-        indexService.addThirdIndex(thirdIndex);
-        return "redirect:/index/list/34";
+        thirdIndexService.addThirdIndex(thirdIndex);
+        return "redirect:/homePage";
     }
 
 
 
     /**
-     * 跳转二级指标编辑
+     * 跳转三级级指标编辑
      * @param thirdIndexId
      * @return
      */
@@ -88,7 +91,7 @@ public class ThirdIndexController {
         if(thirdIndex != null) {
             thirdIndexService.deleteThirdIndex(id);
         }
-        return "redirect:/index/list/34";
+        return "redirect:/homePage";
     }
 
 

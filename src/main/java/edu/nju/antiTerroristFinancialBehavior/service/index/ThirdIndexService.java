@@ -1,4 +1,4 @@
-package edu.nju.antiTerroristFinancialBehavior.service;
+package edu.nju.antiTerroristFinancialBehavior.service.index;
 
 import edu.nju.antiTerroristFinancialBehavior.mapper.ThirdIndexMapper;
 import edu.nju.antiTerroristFinancialBehavior.model.ThirdIndex;
@@ -41,5 +41,13 @@ public class ThirdIndexService {
      */
     public void deleteThirdIndex(Integer id) {
         thirdIndexMapper.deleteThirdIndex(id);
+    }
+
+    /**
+     * 新增
+     * @param thirdIndex
+     */
+    public void addThirdIndex(ThirdIndex thirdIndex) {
+        thirdIndexMapper.addThirdIndex(thirdIndex);
     }
 }

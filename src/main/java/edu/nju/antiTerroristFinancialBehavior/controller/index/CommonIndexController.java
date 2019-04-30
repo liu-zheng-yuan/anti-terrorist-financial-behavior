@@ -3,10 +3,9 @@ package edu.nju.antiTerroristFinancialBehavior.controller.index;
 import edu.nju.antiTerroristFinancialBehavior.model.FourthIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.SecondIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.ThirdIndex;
-import edu.nju.antiTerroristFinancialBehavior.service.FourthIndexService;
-import edu.nju.antiTerroristFinancialBehavior.service.IndexService;
-import edu.nju.antiTerroristFinancialBehavior.service.SecondIndexService;
-import edu.nju.antiTerroristFinancialBehavior.service.ThirdIndexService;
+import edu.nju.antiTerroristFinancialBehavior.service.index.FourthIndexService;
+import edu.nju.antiTerroristFinancialBehavior.service.CommonIndexService;
+import edu.nju.antiTerroristFinancialBehavior.service.index.ThirdIndexService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,24 +16,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 /**
- * 主页的展示界面控制
+ * 公共指标界面控制
  *
  * @author fanleehao on 2019/4/29
  */
 
 
 @Controller
-public class IndexController {
+public class CommonIndexController {
 
-    @Autowired
-    private SecondIndexService secondIndexService;
     @Autowired
     private ThirdIndexService thirdIndexService;
     @Autowired
     private FourthIndexService fourthIndexService;
 
     @Autowired
-    private IndexService indexService;
+    private CommonIndexService commonIndexService;
 
 
     /**
@@ -71,7 +68,7 @@ public class IndexController {
     public String weightAdd(@RequestParam("parentIndexId") String parentIndexId, Model model) {
         model.addAttribute("parentIndexId", parentIndexId);
         //判断新增指标的父指标是第几级:一级、二级、三级
-        int level = indexService.getParentIndexIdLevel(parentIndexId);
+        int level = commonIndexService.getParentIndexIdLevel(parentIndexId);
         if (level == 1) {
             return "index/secondIndexAdd";
         } else if (level == 2) {

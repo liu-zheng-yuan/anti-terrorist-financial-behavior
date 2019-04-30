@@ -4,8 +4,8 @@ import edu.nju.antiTerroristFinancialBehavior.model.FirstIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.FourthIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.SecondIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.ThirdIndex;
-import edu.nju.antiTerroristFinancialBehavior.service.FourthIndexService;
-import edu.nju.antiTerroristFinancialBehavior.service.IndexService;
+import edu.nju.antiTerroristFinancialBehavior.service.index.FourthIndexService;
+import edu.nju.antiTerroristFinancialBehavior.service.index.ThirdIndexService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +24,7 @@ public class FourthIndexController {
     @Autowired
     private FourthIndexService fourthIndexService;
     @Autowired
-    private IndexService indexService;
+    private ThirdIndexService thirdIndexService;
 
     /**
      * 编辑四级指标页面转发
@@ -59,24 +59,31 @@ public class FourthIndexController {
     @PostMapping("/fouthIndex/add")
     public String indexAdd4(FourthIndex fourthIndex, @RequestParam("parentIndexId")String parentIndexId) {
         //找到四级指标所属三级指标的id
-        ThirdIndex thirdIndex = new ThirdIndex();
+        /*ThirdIndex thirdIndex = new ThirdIndex();
         thirdIndex.setId(Integer.valueOf(parentIndexId));
 
         //找到三级指标所属二级指标的id
-        int secondIndexId = indexService.getThirdIndexParentId(Integer.valueOf(parentIndexId));
+        int secondIndexId = commonIndexService.getThirdIndexParentId(Integer.valueOf(parentIndexId));
+
         SecondIndex secondIndex = new SecondIndex();
         secondIndex.setId(secondIndexId);
         //找到二级指标所属一级指标的id
-        int firstIndexId = indexService.getSecondIndexParentId(secondIndexId);
+        int firstIndexId = commonIndexService.getSecondIndexParentId(secondIndexId);
         FirstIndex firstIndex = new FirstIndex();
-        firstIndex.setId(firstIndexId);
+        firstIndex.setId(firstIndexId);*/
+
+        //1.查询1/2/3级指标
+        ThirdIndex thirdIndex = thirdIndexService.findThirdIndexById(Integer.valueOf(parentIndexId));
+        SecondIndex secondIndex = thirdIndex.getSecond_index();
+        FirstIndex firstIndex = thirdIndex.getFirst_index();
 
         //将一二三级指标装配进FourthIndex中
         fourthIndex.setFirstIndex(firstIndex);
         fourthIndex.setSecondIndex(secondIndex);
         fourthIndex.setThirdIndex(thirdIndex);
         //传过来的fourthIndex应该有所属三级指标的值
-        indexService.addFourthIndex(fourthIndex);
+        fourthIndexService.addFourthIndex(fourthIndex);
+
         return "redirect:/index/list/"+parentIndexId;
     }
 
@@ -89,8 +96,8 @@ public class FourthIndexController {
     public String weightDelete(@PathVariable("fourthIndexId") Integer fourthIndexId){
         //System.out.println(fourthIndexId);
 
-        FourthIndex newFourthIndex = indexService.findFourthIndexById(fourthIndexId);
-        indexService.deleteFourthIndexById(fourthIndexId);
+        FourthIndex newFourthIndex = fourthIndexService.findFourthIndexById(fourthIndexId);
+        fourthIndexService.deleteFourthIndexById(fourthIndexId);
         return "redirect:/index/list/" + newFourthIndex.getThirdIndex().getId();
     }
 }

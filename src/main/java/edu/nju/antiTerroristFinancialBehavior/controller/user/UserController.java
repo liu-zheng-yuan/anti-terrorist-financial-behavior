@@ -4,7 +4,10 @@ import edu.nju.antiTerroristFinancialBehavior.model.FourthIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.MenuItem;
 import edu.nju.antiTerroristFinancialBehavior.model.SecondIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.ThirdIndex;
-import edu.nju.antiTerroristFinancialBehavior.service.IndexService;
+import edu.nju.antiTerroristFinancialBehavior.service.CommonIndexService;
+import edu.nju.antiTerroristFinancialBehavior.service.index.FourthIndexService;
+import edu.nju.antiTerroristFinancialBehavior.service.index.SecondIndexService;
+import edu.nju.antiTerroristFinancialBehavior.service.index.ThirdIndexService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +21,14 @@ import java.util.List;
 @Controller
 public class UserController {
     @Autowired
-    IndexService indexService;
+    CommonIndexService commonIndexService;
+
+    @Autowired
+    private SecondIndexService secondIndexService;
+    @Autowired
+    private ThirdIndexService thirdIndexService;
+    @Autowired
+    private FourthIndexService fourthIndexService;
 //
 //    @RequestMapping("/weightMatrix")
 //    public String weightMatrix(){
@@ -53,7 +63,7 @@ public class UserController {
     @RequestMapping("/indexUser")
     public String index() {
         //“用户”权限所有的页面放在User文件夹下
-        return "User/indexUser";
+        return "user/indexUser";
     }
 
     /**
@@ -61,27 +71,21 @@ public class UserController {
      * @param thirdIndexId
      * @return
      */
-    @GetMapping("/weightListUser/{thirdIndexId}")
+    @GetMapping("/indexListUser/{thirdIndexId}")
     public String loadThirdIndex(@PathVariable("thirdIndexId") Integer thirdIndexId, Model model){
-//        List<ThirdIndex> thirdIndices = indexService.findThirdIndicesBySecondIndexId(thirdIndexId);
-/*        for (ThirdIndex thirdIndex : thirdIndices) {
-            System.out.println(thirdIndex);
-        }*/
 
-        List<FourthIndex> fourthIndices = indexService.findFourthIndicesByThirdIndexId(thirdIndexId);
-       /* for (FourthIndex fourthIndex: fourthIndices) {
-            System.out.println(fourthIndex);
-        }*/
+        List<FourthIndex> fourthIndices = fourthIndexService.findFourthIndicesByThirdIndexId(thirdIndexId);
 
-        //V1.0---二级、三级指标的删除，暂且统一读出到本页面，可以直接删除或编辑
-        ThirdIndex curThirdIndex = indexService.findThirdIndexById(thirdIndexId);
+
+        ThirdIndex curThirdIndex = thirdIndexService.findThirdIndexById(thirdIndexId);
         SecondIndex curSecondIndex = curThirdIndex.getSecond_index();
 
 
         model.addAttribute("fourthIndices", fourthIndices);
         model.addAttribute("curThirdIndex", curThirdIndex);
         model.addAttribute("curSecondIndex", curSecondIndex);
-        return "User/weightListUser";
+
+        return "user/indexListUser";
     }
     /**
      * ("用户"访问时)返回指标封装之后的zTree对象，可以点击跳转
@@ -91,6 +95,6 @@ public class UserController {
     @ResponseBody
     @GetMapping(value = "/loadMenuUser/{parentID}")
     public List<MenuItem> loadMenu(@PathVariable("parentID") Integer id){
-        return indexService.findMenusItemsByParentIDUser(id);
+        return commonIndexService.findMenusItemsByParentIDUser(id);
     }
 }

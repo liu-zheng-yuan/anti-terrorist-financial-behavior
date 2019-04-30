@@ -17,7 +17,7 @@
 
 
     <!--parameterType(输入类型)、resultType(输出类型)-->
-    <select id="selectByPrimaryKey" parameterType="Integer" resultMap="BaseResultMap" resultType="edu.nju.antiTerroristFinancialBehavior.model.FirstIndex">
+    <select id="findFirstIndexById" parameterType="Integer" resultMap="BaseResultMap" resultType="edu.nju.antiTerroristFinancialBehavior.model.FirstIndex">
         SELECT * FROM tb_first_index WHERE id = #{id}
     </select>
 

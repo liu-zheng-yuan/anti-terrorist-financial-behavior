@@ -1,9 +1,7 @@
 package edu.nju.antiTerroristFinancialBehavior.controller;
 
-import edu.nju.antiTerroristFinancialBehavior.mapper.FirstIndexMapper;
-import edu.nju.antiTerroristFinancialBehavior.model.FirstIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.MenuItem;
-import edu.nju.antiTerroristFinancialBehavior.service.IndexService;
+import edu.nju.antiTerroristFinancialBehavior.service.CommonIndexService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +19,7 @@ public class InitController {
 
 
     @Autowired
-    private IndexService indexService;
+    private CommonIndexService commonIndexService;
 
     /**
      * 首页
@@ -41,7 +39,7 @@ public class InitController {
     @GetMapping(value = "/loadMenu/{parentID}")
     @ResponseBody
     public List<MenuItem> loadMenu(@PathVariable("parentID") Integer id){
-        return indexService.findMenusItemsByParentID(id);
+        return commonIndexService.findMenusItemsByParentID(id);
     }
 
     /**

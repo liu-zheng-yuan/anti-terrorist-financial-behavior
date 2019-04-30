@@ -202,18 +202,6 @@
 					}
 				}
 			});
-
-            // 如果返回数据不为空，加载"业务模块"目录
-            if(data != null){
-                // 将返回的数据赋给zTree
-                $.fn.zTree.init($("#"+treeObj), setting, data);
-//              alert(treeObj);
-                zTree = $.fn.zTree.getZTreeObj(treeObj);
-                if( zTree ){
-                    // 默认展开所有节点
-                    zTree.expandAll(true);
-                }
-            }
 		}
 		//ajax start function
 		function onStart(){

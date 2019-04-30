@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface FirstIndexMapper {
 
-    FirstIndex selectByPrimaryKey(Integer id);
+    FirstIndex findFirstIndexById(Integer id);
 
     List<FirstIndex> findAllFirstIndex();
 

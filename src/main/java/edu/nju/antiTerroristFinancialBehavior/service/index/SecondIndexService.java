@@ -1,4 +1,4 @@
-package edu.nju.antiTerroristFinancialBehavior.service;
+package edu.nju.antiTerroristFinancialBehavior.service.index;
 
 import edu.nju.antiTerroristFinancialBehavior.mapper.SecondIndexMapper;
 import edu.nju.antiTerroristFinancialBehavior.model.SecondIndex;
@@ -41,6 +41,15 @@ public class SecondIndexService {
      */
     public void deleteSecondIndex(Integer id) {
         secondIndexMapper.deleteSecondIndex(id);
+        return;
+    }
+
+    /**
+     * 新增
+     * @param secondIndex
+     */
+    public void addSecondIndex(SecondIndex secondIndex) {
+        secondIndexMapper.addSecondIndex(secondIndex);
         return;
     }
 }

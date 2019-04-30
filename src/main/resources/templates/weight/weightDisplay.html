@@ -202,19 +202,7 @@
                     }
                 }
             });
-            /*
-            // 如果返回数据不为空，加载"业务模块"目录
-            if(data != null){
-                // 将返回的数据赋给zTree
-                $.fn.zTree.init($("#"+treeObj), setting, data);
-//              alert(treeObj);
-                zTree = $.fn.zTree.getZTreeObj(treeObj);
-                if( zTree ){
-                    // 默认展开所有节点
-                    zTree.expandAll(true);
-                }
-            }*/
-		}
+        }
 		//ajax start function
 		function onStart(){
 			$("#ajaxDialog").show();
@@ -264,7 +252,7 @@
                 <h3><a href="/index">指标设定</a></h3>
             </li>
             <li id="left_tab2" class="selected" onClick="javascript:switchTab('TabPage2','left_tab2');" title="定权模块">
-                <h3><a href="/Marking">指标定权</a></h3>
+                <h3><a href="/marking">指标定权</a></h3>
             </li>
             <li id="left_tab3" class="selected" onClick="javascript:switchTab('TabPage2','left_tab3');" title="权重模块">
                 <h3><a href="/weightDisplay">权重展示</a></h3>
