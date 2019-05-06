@@ -1,19 +1,26 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>金融指标建模系统</title>
-<link href="/css/basic_layout.css" rel="stylesheet" type="text/css">
-<link href="/css/common_style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>金融指标建模系统</title>
+    <link href="/css/basic_layout.css" rel="stylesheet" type="text/css">
+    <link href="/css/common_style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/jquery/jquery-1.7.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            //刷新菜单
+            window.parent.switchTab('TabPage2', 'left_tab1');
+        });
+    </script>
 </head>
 <body>
-	<div id="container">
-		<center><h3>指标设定</h3></center>
-		<br>
-		<center>点击侧边栏的各个“三级指标”可以看到对应的四级指标，并可以对指标进行“添加”“删除”“修改”操作。</center>
-		<br>
-		<center>点击侧边栏的“新增”按钮可以新增二级、三级指标。</center>
-	</div>
+<div id="container">
+    <center><h3>指标设定</h3></center>
+    <br>
+    <center>点击侧边栏的各个“三级指标”可以看到对应的四级指标，并可以对指标进行“添加”“删除”“修改”操作。</center>
+    <br>
+    <center>点击侧边栏的“新增”按钮可以新增二级、三级指标。</center>
+</div>
 
 </body>
 </html>

@@ -78,6 +78,7 @@ public class ThirdIndexController {
         thirdIndexService.updateThirdIndex(thirdIndex);
 
         return "redirect:/index/list/" + thirdIndex.getId();
+//        return "redirect:/index";
     }
 
     /**

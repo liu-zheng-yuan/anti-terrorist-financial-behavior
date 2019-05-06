@@ -16,19 +16,20 @@
         $(document).ready(function () {
             /** 用js获取thymeleaf的参数 [[${thirdIndexId}]] **/
             var thirdIndexId = [[${thirdIndexId}]];
-            this.fancybox.close();
 
             /**编辑   **/
-            $("a.edit").fancybox({
-                'width': 733,
-                'height': 530,
-                'type': 'iframe',
-                'hideOnOverlayClick': true,
-                'showCloseButton': false,
-                'onClosed': function () {
-                    window.location.href = '/index/list/'+thirdIndexId;
-                }
-            });
+            // $("a.edit").fancybox({
+            //     // 'width': 733,
+            //     // 'height': 530,
+            //     // 'type': 'iframe',
+            //     // 'hideOnOverlayClick': true,
+            //     // 'showCloseButton': false,
+            //     'onClosed': function () {
+            //         window.location.href = '/index/list/'+thirdIndexId;
+            //     }
+            // });
+
+            window.parent.switchTab('TabPage2','left_tab1');
         });
 
         /** 新增   **/
@@ -61,7 +62,6 @@
                 window.location.href = "/fourthIndex/delete/" + indexID;
             }
         }
-
     </script>
     <style>
         .alt td {
