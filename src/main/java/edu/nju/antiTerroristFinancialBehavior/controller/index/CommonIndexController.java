@@ -68,7 +68,7 @@ public class CommonIndexController {
     public String weightAdd(@RequestParam("parentIndexId") String parentIndexId, Model model) {
         model.addAttribute("parentIndexId", parentIndexId);
         //判断新增指标的父指标是第几级:一级、二级、三级
-        int level = commonIndexService.getParentIndexIdLevel(parentIndexId);
+        int level = commonIndexService.getIndexLevel(parentIndexId);
         if (level == 1) {
             return "index/secondIndexAdd";
         } else if (level == 2) {

@@ -1,9 +1,12 @@
 package edu.nju.antiTerroristFinancialBehavior.service.index;
 
 import edu.nju.antiTerroristFinancialBehavior.mapper.ThirdIndexMapper;
+import edu.nju.antiTerroristFinancialBehavior.model.FourthIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.ThirdIndex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 三级指标业务逻辑处理
@@ -49,5 +52,9 @@ public class ThirdIndexService {
      */
     public void addThirdIndex(ThirdIndex thirdIndex) {
         thirdIndexMapper.addThirdIndex(thirdIndex);
+    }
+
+    public List<ThirdIndex> findThirdIndicesBySecondIndexId(Integer secondIndexId) {
+        return thirdIndexMapper.findThirdIndicesBySecondIndexId(secondIndexId);
     }
 }

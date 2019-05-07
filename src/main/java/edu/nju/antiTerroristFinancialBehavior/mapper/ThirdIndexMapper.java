@@ -22,4 +22,7 @@ public interface ThirdIndexMapper {
     void updateThirdIndex(ThirdIndex thirdIndex);
 
     void deleteThirdIndex(Integer id);
+
+    List<ThirdIndex> findThirdIndicesBySecondIndexId(Integer secondIndexId);
+
 }

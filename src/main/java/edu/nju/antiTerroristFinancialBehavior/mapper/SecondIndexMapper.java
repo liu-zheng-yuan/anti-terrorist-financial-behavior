@@ -53,4 +53,6 @@ public interface SecondIndexMapper {
      * @param id
      */
     void deleteSecondIndex(Integer id);
+
+    List<SecondIndex> findSecondIndicesByFirstIndexId(Integer firstIndexId);
 }

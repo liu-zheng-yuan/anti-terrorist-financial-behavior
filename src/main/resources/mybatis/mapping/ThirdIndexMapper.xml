@@ -59,6 +59,10 @@
     <delete id="deleteThirdIndex" parameterType="Integer">
         delete from tb_third_index where `id` = #{id}
     </delete>
+    <!--查找一个二级指标所属的所有三级指标-->
+    <select id="findThirdIndicesBySecondIndexId" parameterType="Integer" resultType="edu.nju.antiTerroristFinancialBehavior.model.ThirdIndex">
+        select * from tb_third_index where second_index = #{secondIndexId}
+    </select>
 
 
 </mapper>
