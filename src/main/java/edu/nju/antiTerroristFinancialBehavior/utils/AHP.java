@@ -1,5 +1,8 @@
 package edu.nju.antiTerroristFinancialBehavior.utils;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class AHP {
 
     public static double[] ri = {0, 0, 0, 0.58, 0.90, 1.12, 1.24, 1.32, 1.41, 1.45, 1.49, 1.51};
@@ -25,6 +28,9 @@ public class AHP {
         }
     }
 
+    /*
+    * 计算权重,要在一致性检验之后
+    * */
     public double[] getWeight(){
         double[] weight = new double[w.length];
         if(w.length != 0){
@@ -35,6 +41,9 @@ public class AHP {
         return weight;
     }
 
+    /*
+    * 一致性检验 先检验
+    * */
     public boolean isConsistency(double[][] matrix){
         w = computeWeight(matrix);
         if(cr >= 0.1){
@@ -91,18 +100,18 @@ public class AHP {
 
         Double[] bw = new Double[n];
         for(int i = 0; i < n; i++){
-            for(int j = 0;j < n; j++){
-                if(bw[i] != null){
-                    bw[i] = bw[i] + matrix[i][j] * w[j];
-                }else{
-                    bw[i] = matrix[i][j] * w[j];
+                for(int j = 0;j < n; j++){
+                    if(bw[i] != null){
+                        bw[i] = bw[i] + matrix[i][j] * w[j];
+                    }else{
+                        bw[i] = matrix[i][j] * w[j];
+                    }
                 }
             }
-        }
 
-        Double sumR = 0.0;                        //最大特征跟R
-        for(int i = 0; i < n; i++){
-            sumR=sumR + bw[i] / (n * w[i]);
+            Double sumR = 0.0;                        //最大特征跟R
+            for(int i = 0; i < n; i++){
+                sumR=sumR + bw[i] / (n * w[i]);
         }
 
         Double ci = (sumR - n) / (n - 1);                //矩阵一致性指标

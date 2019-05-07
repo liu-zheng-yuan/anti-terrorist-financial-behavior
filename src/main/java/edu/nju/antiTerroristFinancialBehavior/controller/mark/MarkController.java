@@ -49,6 +49,7 @@ public class MarkController {
             List<FourthIndex> childrenIndices = fourthIndexService.findFourthIndicesByThirdIndexId(indexId);
             model.addAttribute("childrenIndices", childrenIndices);
         }
+        model.addAttribute("indexId", indexId);
         return "mark/everyIndexMark";
     }
 

@@ -50,7 +50,10 @@
 <div id="container">
     <div class="ui_content">
         <div class="ui_tb">
+            <span th:if="${flag eq 1}">该项指标已评分完毕,请点击左侧下一个指标继续评分</span>
+            <span th:if="${flag eq 0}">该项指标已评分完毕,但未通过一致性检验,请重新评分</span>
             <form method="post" th:action="@{/saveMarkWeight}">
+                <input name="indexId" hidden = "hidden" th:value="${indexId}">
                 <table class="table" cellspacing="0" cellpadding="0" width="100%" align="left" border="0">
                     <tr>
                         <th></th>
