@@ -39,49 +39,95 @@ public class CommonIndexService {
 
         List<MenuItem> menuItemList = new ArrayList<>();
         int menuID = 1;
-
         List<FirstIndex> firstIndices = firstIndexMapper.findAllFirstIndex();
-        //添加一级指标
-        for (FirstIndex firstIndex : firstIndices) {
-            firstIndex.setMenuID(menuID++);
-            MenuItem firstMenuItem = new MenuItem("", false, 0, 0, "",
-                    "", 2, firstIndex.getMenuID(), firstIndex.getIndex_name(), 0,"");
-            menuItemList.add(firstMenuItem);
-        }
-        //添加二级及三级指标
-        for (FirstIndex firstIndex : firstIndices) {
-
-            List<SecondIndex> secondIndices = firstIndexMapper.findSecondIndices(firstIndex.getId());
-
-            for (SecondIndex secondIndex: secondIndices) {
-                secondIndex.setMenuID(menuID++);
-                MenuItem secondMenuItem = new MenuItem("" + secondIndex.getId(), false,
-                        0, firstIndex.getMenuID(), "", "", 3,
-                        secondIndex.getMenuID(), secondIndex.getIndex_name(), 0,"");
-                menuItemList.add(secondMenuItem);
+        if(id == 1){
+            //添加一级指标
+            for (FirstIndex firstIndex : firstIndices) {
+                menuID += 1;
+                firstIndex.setMenuID(menuID);
+                MenuItem firstMenuItem = new MenuItem("", false, 0, 0, "",
+                        "", 2, firstIndex.getMenuID(), firstIndex.getIndex_name(), 0,"");
+                menuItemList.add(firstMenuItem);
             }
-			menuID += 1;
-            menuItemList.add(new MenuItem("/weightAdd?parentIndexId=" + firstIndex.getId(), false,
-                    0, firstIndex.getMenuID(), "", "", 3,
-                    menuID, "新建", 0,""));
+            //添加二级及三级指标
+            for (FirstIndex firstIndex : firstIndices) {
+                Integer firstIndexId = firstIndex.getId();
+                List<SecondIndex> secondIndices = firstIndexMapper.findSecondIndices(firstIndexId);
 
-            /**
-             * 再依次查找所属三级指标
-             */
-            for (SecondIndex secondIndex : secondIndices) {
-                List<ThirdIndex> thirdIndices = secondIndexMapper.findThirdIndicesBySecondIndexId(secondIndex.getId());
-                for (ThirdIndex thirdIndex : thirdIndices) {
-                    thirdIndex.setMenuID(menuID++);
-                    MenuItem thirdMenuItem = new MenuItem("/index/list/" + thirdIndex.getId(), false,
-                            0, secondIndex.getMenuID(), "", "", 4,
-                            thirdIndex.getMenuID(), thirdIndex.getIndex_name(), 0,"");
-                    menuItemList.add(thirdMenuItem);
+                for (SecondIndex secondIndex: secondIndices) {
+                    menuID = menuID + 1;
+                    secondIndex.setMenuID(menuID);
+                    MenuItem secondMenuItem = new MenuItem("" + secondIndex.getId(), false,
+                            0, firstIndex.getMenuID(), "", "", 3,
+                            secondIndex.getMenuID(), secondIndex.getIndex_name(), 0,"");
+                    menuItemList.add(secondMenuItem);
                 }
-				menuID += 1;
-                menuItemList.add(new MenuItem("/weightAdd?parentIndexId=" + secondIndex.getId(), false,
-                        0, secondIndex.getMenuID(), "", "", 4,
+                menuID += 1;
+                menuItemList.add(new MenuItem("/weightAdd?parentIndexId=" + firstIndex.getId(), false,
+                        0, firstIndex.getMenuID(), "", "", 3,
                         menuID, "新建", 0,""));
 
+                /**
+                 * 再依次查找所属三级指标
+                 */
+                for (SecondIndex secondIndex : secondIndices) {
+                    Integer secondIndexId = secondIndex.getId();
+                    List<ThirdIndex> thirdIndices = secondIndexMapper.findThirdIndicesBySecondIndexId(secondIndexId);
+                    for (ThirdIndex thirdIndex : thirdIndices) {
+                        menuID += 1;
+                        thirdIndex.setMenuID(menuID);
+                        MenuItem thirdMenuItem = new MenuItem("/index/list/" + thirdIndex.getId(), false,
+                                0, secondIndex.getMenuID(), "", "", 4,
+                                thirdIndex.getMenuID(), thirdIndex.getIndex_name(), 0,"");
+                        menuItemList.add(thirdMenuItem);
+                    }
+                    menuID += 1;
+                    menuItemList.add(new MenuItem("/weightAdd?parentIndexId=" + secondIndex.getId(), false,
+                            0, secondIndex.getMenuID(), "", "", 4,
+                            menuID, "新建", 0,""));
+
+                }
+            }
+        }
+        /**
+         * 加载定权时的菜单
+         */
+        else if(id == 2){
+            //添加一级指标
+            for (FirstIndex firstIndex : firstIndices) {
+                menuID++;
+                firstIndex.setMenuID(menuID);
+                MenuItem firstMenuItem = new MenuItem("/", false, 0, 0, "",
+                        "", 2, firstIndex.getMenuID(), firstIndex.getIndex_name(), 0,"");
+                menuItemList.add(firstMenuItem);
+            }
+            //添加二级及三级指标
+            for (FirstIndex firstIndex : firstIndices) {
+
+                List<SecondIndex> secondIndices = firstIndexMapper.findSecondIndices(firstIndex.getId());
+
+                for (SecondIndex secondIndex: secondIndices) {
+                    menuID++;
+                    secondIndex.setMenuID(menuID);
+                    MenuItem secondMenuItem = new MenuItem("/" + secondIndex.getId(), false,
+                            0, firstIndex.getMenuID(), "", "", 3,
+                            secondIndex.getMenuID(), secondIndex.getIndex_name(), 0,"");
+                    menuItemList.add(secondMenuItem);
+                }
+
+                /**
+                 * 再依次查找所属三级指标
+                 */
+                for (SecondIndex secondIndex : secondIndices) {
+                    List<ThirdIndex> thirdIndices = secondIndexMapper.findThirdIndicesBySecondIndexId(secondIndex.getId());
+                    for (ThirdIndex thirdIndex : thirdIndices) {
+                        thirdIndex.setMenuID(++menuID);
+                        MenuItem thirdMenuItem = new MenuItem("/" + thirdIndex.getId(), false,
+                                0, secondIndex.getMenuID(), "", "", 4,
+                                thirdIndex.getMenuID(), thirdIndex.getIndex_name(), 0,"");
+                        menuItemList.add(thirdMenuItem);
+                    }
+                }
             }
         }
 
