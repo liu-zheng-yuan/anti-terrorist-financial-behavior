@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 //todo
 @SpringBootApplication
-@MapperScan("edu.nju.antiTerroristFinancialBehavior.mapper")  //mapper接口
+@MapperScan({"edu.nju.antiTerroristFinancialBehavior.mapper","edu.nju.antiTerroristFinancialBehavior.mapper.*"})  //mapper接口
 public class AntiTerroristFinancialBehaviorApplication {
 
     public static void main(String[] args) {
