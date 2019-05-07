@@ -97,7 +97,7 @@ public class CommonIndexService {
             for (FirstIndex firstIndex : firstIndices) {
                 menuID++;
                 firstIndex.setMenuID(menuID);
-                MenuItem firstMenuItem = new MenuItem("/", false, 0, 0, "",
+                MenuItem firstMenuItem = new MenuItem("/everyIndexMark?indexId=" + firstIndex.getId(), false, 0, 0, "",
                         "", 2, firstIndex.getMenuID(), firstIndex.getIndex_name(), 0,"");
                 menuItemList.add(firstMenuItem);
             }
@@ -109,7 +109,7 @@ public class CommonIndexService {
                 for (SecondIndex secondIndex: secondIndices) {
                     menuID++;
                     secondIndex.setMenuID(menuID);
-                    MenuItem secondMenuItem = new MenuItem("/" + secondIndex.getId(), false,
+                    MenuItem secondMenuItem = new MenuItem("/everyIndexMark?indexId=" + secondIndex.getId(), false,
                             0, firstIndex.getMenuID(), "", "", 3,
                             secondIndex.getMenuID(), secondIndex.getIndex_name(), 0,"");
                     menuItemList.add(secondMenuItem);
@@ -122,7 +122,7 @@ public class CommonIndexService {
                     List<ThirdIndex> thirdIndices = secondIndexMapper.findThirdIndicesBySecondIndexId(secondIndex.getId());
                     for (ThirdIndex thirdIndex : thirdIndices) {
                         thirdIndex.setMenuID(++menuID);
-                        MenuItem thirdMenuItem = new MenuItem("/" + thirdIndex.getId(), false,
+                        MenuItem thirdMenuItem = new MenuItem("/everyIndexMark?indexId=" + thirdIndex.getId(), false,
                                 0, secondIndex.getMenuID(), "", "", 4,
                                 thirdIndex.getMenuID(), thirdIndex.getIndex_name(), 0,"");
                         menuItemList.add(thirdMenuItem);
