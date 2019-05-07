@@ -1,7 +1,12 @@
 package edu.nju.antiTerroristFinancialBehavior.controller.weight;
 
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * 权重值· 控制器
@@ -13,9 +18,13 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class WeightController {
 
-/*    @Autowired
-    private IndexService indexService;*/
 
+    @RequestMapping(value = "/saveMarkWeight",method = RequestMethod.POST)
+    public String saveMarkWeight(HttpServletRequest request) {
+        System.out.println(request.getParameter("0+0"));
+        System.out.println(request.getParameter("length"));
+        return "1";
+    }
     /**
      * 指标定权---矩阵
      */

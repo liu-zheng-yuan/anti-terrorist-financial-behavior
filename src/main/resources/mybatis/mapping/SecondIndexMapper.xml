@@ -53,5 +53,8 @@
     <delete id="deleteSecondIndex" parameterType="Integer">
         delete from tb_second_index where `id` = #{id}
     </delete>
-
+    <!--查找一个一级指标所属的所有二级指标-->
+    <select id="findSecondIndicesByFirstIndexId" parameterType="Integer" resultType="edu.nju.antiTerroristFinancialBehavior.model.SecondIndex">
+        select * from tb_second_index where first_index = #{firstIndexId}
+    </select>
 </mapper>

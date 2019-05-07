@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="/js/jquery/jquery-1.7.1.js"></script>
+    <link href="/css/basic_layout.css" rel="stylesheet" type="text/css">
+    <link href="/css/common_style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/authority/commonAll.js"></script>
+    <script type="text/javascript" src="/js/fancybox/jquery.fancybox-1.3.4.js"></script>
+    <script type="text/javascript" src="/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/jquery.fancybox-1.3.4.css" media="screen"></link>
+    <script type="text/javascript" src="/js/artDialog/artDialog.js?skin=default"></script>
+    <title>金融指标建模系统</title>
+    <script type="text/javascript">
+        // $(document).ready(function(){
+        //
+        //     /**编辑   **/
+        //     $("a.edit").fancybox({
+        //         'width' : 733,
+        //         'height' : 530,
+        //         'type' : 'iframe',
+        //         'hideOnOverlayClick' : false,
+        //         'showCloseButton' : false,
+        //         'onClosed' : function() {
+        //             window.location.href = '/weightMatrix';
+        //         }
+        //     });
+        // });
+        // /** 用户角色   **/
+        // var userRole = '';
+        //
+        // /** 模糊查询来电用户  **/
+        // function search(){
+        //     $("#submitForm").attr("action", "/weightMatrix?page=" + 1).submit();
+        // }
+        //
+        // /** 新增   **/
+        // function add(){
+        //     $("#submitForm").attr("action", "/xngzf/archives/luruFangyuan.action").submit();
+        // }
+
+
+
+    </script>
+    <style>
+        .alt td{ background:black !important;}
+    </style>
+</head>
+<body>
+<div id="container">
+    <div class="ui_content">
+        <div class="ui_tb">
+            <form method="post" th:action="@{/saveMarkWeight}">
+                <table class="table" cellspacing="0" cellpadding="0" width="100%" align="left" border="0">
+                    <tr>
+                        <th></th>
+                        <!--<th width="2%"><input type="checkbox" id="all" onclick="selectOrClearAllCheckbox(this);"/></th>-->
+                        <div th:each="childrenIndex: ${childrenIndices}">
+                            <th th:text="${childrenIndex.index_name}"></th>
+                        </div>
+                    </tr>
+                    <tr th:each="childrenIndexI,iStat: ${childrenIndices}" >
+                        <!--<td><input type="checkbox" name="IDCheck" value="14458579642011" class="acb"/></td>-->
+                        <td th:text="${childrenIndexI.index_name}"></td>
+                        <div th:each="childrenIndexJ,jStat: ${childrenIndices}">
+                            <!--<td><input type="text" th:if = "${iStat.index eq jStat.index}" th:name="${iStat.index}+'+'+${jStat.index}" th:value="1"></td>-->
+                            <td><input type="text" th:if = "${jStat.index gt iStat.index}" th:name="${iStat.index}+'+'+${jStat.index}" ></td>
+                        </div>
+                    </tr>
+                </table>
+
+                <input th:each="iter,iterStat: ${childrenIndices}" th:value="${iterStat.size}" hidden = "hidden" name="length"/>
+                <input type="submit" th:value="提交">
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

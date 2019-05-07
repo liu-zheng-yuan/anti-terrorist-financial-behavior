@@ -20,6 +20,4 @@ public class ResultController {
     public String result() {return "result/result";}
 
 
-    @RequestMapping("/score")
-    public String Score() {return "result/score";}
 }

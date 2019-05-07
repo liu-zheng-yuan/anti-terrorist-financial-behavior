@@ -152,17 +152,17 @@ public class CommonIndexService {
     }
 
     /**
-     * 判断新增指标的父指标是第几级
+     * 判断新增指标的父指标是第几级/判断一个指标是第几级的
      *
-     * @param parentIndexId
+     * @param indexId
      * @return
      */
-    public int getParentIndexIdLevel(String parentIndexId) {
-        FirstIndex firstIndex = firstIndexMapper.findFirstIndexById(Integer.valueOf(parentIndexId));
+    public int getIndexLevel(String indexId) {
+        FirstIndex firstIndex = firstIndexMapper.findFirstIndexById(Integer.valueOf(indexId));
         if (firstIndex!=null) {
             return 1;
         }
-        SecondIndex secondIndex = secondIndexMapper.findSecondIndexById(Integer.valueOf(parentIndexId));
+        SecondIndex secondIndex = secondIndexMapper.findSecondIndexById(Integer.valueOf(indexId));
         if (secondIndex != null) {
             return 2;
         }
