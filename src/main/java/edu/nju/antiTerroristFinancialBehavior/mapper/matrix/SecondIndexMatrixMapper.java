@@ -1,4 +1,4 @@
-package edu.nju.antiTerroristFinancialBehavior.mapper;
+package edu.nju.antiTerroristFinancialBehavior.mapper.matrix;
 
 import edu.nju.antiTerroristFinancialBehavior.model.SecondIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.matrix.SecondIndexMatrix;

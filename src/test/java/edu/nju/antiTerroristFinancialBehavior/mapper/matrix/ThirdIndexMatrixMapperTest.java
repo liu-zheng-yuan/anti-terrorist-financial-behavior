@@ -1,7 +1,6 @@
 package edu.nju.antiTerroristFinancialBehavior.mapper.matrix;
 
 import edu.nju.antiTerroristFinancialBehavior.mapper.ThirdIndexMapper;
-import edu.nju.antiTerroristFinancialBehavior.mapper.ThirdIndexMatrixMapper;
 import edu.nju.antiTerroristFinancialBehavior.model.ThirdIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.matrix.ThirdIndexMatrix;
 import org.junit.Test;

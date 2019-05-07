@@ -1,7 +1,6 @@
 package edu.nju.antiTerroristFinancialBehavior.mapper.matrix;
 
 import edu.nju.antiTerroristFinancialBehavior.mapper.FirstIndexMapper;
-import edu.nju.antiTerroristFinancialBehavior.mapper.FirstIndexMatrixMapper;
 import edu.nju.antiTerroristFinancialBehavior.model.FirstIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.matrix.FirstIndexMatrix;
 import org.junit.Test;
@@ -12,8 +11,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

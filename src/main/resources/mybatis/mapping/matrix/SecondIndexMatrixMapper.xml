@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <!--作用域-->
-<mapper namespace="edu.nju.antiTerroristFinancialBehavior.mapper.SecondIndexMatrixMapper" >
+<mapper namespace="edu.nju.antiTerroristFinancialBehavior.mapper.matrix.SecondIndexMatrixMapper" >
 
     <insert id="insertMatrix" parameterType="SecondIndexMatrix">
         insert into tb_second_index_matrix(`second_index`,`professor`, `matrix`) values(#{second_index.id},#{professor},#{matrix})
