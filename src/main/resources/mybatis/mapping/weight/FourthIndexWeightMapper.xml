@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!--作用域-->
+<mapper namespace="edu.nju.antiTerroristFinancialBehavior.mapper.weight.FourthIndexWeightMapper" >
+
+    <insert id="insertWeight" parameterType="FourthIndexWeight">
+        insert into tb_fourth_index_weight(`fourth_index`,`professor`, `weight`) values(#{fourth_index.id},#{professor},#{weight})
+    </insert>
+
+    <select id="findAllWeight" parameterType="FourthIndex"  resultType="Double">
+        SELECT weight FROM tb_fourth_index_weight WHERE fourth_index = #{id}
+    </select>
+
+
+
+
+</mapper>

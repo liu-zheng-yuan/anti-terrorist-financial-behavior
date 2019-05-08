@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!--作用域-->
+<mapper namespace="edu.nju.antiTerroristFinancialBehavior.mapper.weight.SecondIndexWeightMapper" >
+
+    <insert id="insertWeight" parameterType="SecondIndexWeight">
+        insert into tb_second_index_weight(`second_index`,`professor`, `weight`) values(#{second_index.id},#{professor},#{weight})
+    </insert>
+
+    <select id="findAllWeight" parameterType="SecondIndex"  resultType="Double">
+        SELECT weight FROM tb_second_index_weight WHERE second_index = #{id}
+    </select>
+
+
+
+
+</mapper>
