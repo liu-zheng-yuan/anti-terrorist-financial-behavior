@@ -12,7 +12,9 @@
         SELECT matrix FROM tb_second_index_matrix WHERE second_index = #{id}
     </select>
 
-
+    <select id="findMatrix" resultType="String">
+        SELECT matrix FROM tb_second_index_matrix WHERE second_index = #{secondIndexId} and professor = #{professor}
+    </select>
 
 
 </mapper>

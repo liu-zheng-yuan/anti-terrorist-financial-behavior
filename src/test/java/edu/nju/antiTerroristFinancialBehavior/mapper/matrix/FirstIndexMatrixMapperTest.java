@@ -40,4 +40,9 @@ public class FirstIndexMatrixMapperTest {
         List<String> res = firstIndexMatrixMapper.findAllMatrix(firstIndex);
         System.out.println(res.toString());
     }
+
+    @Test
+    public void findMatrix(){
+        System.out.println(firstIndexMatrixMapper.findMatrix(4, 1));
+    }
 }

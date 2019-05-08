@@ -9,4 +9,6 @@ public interface ThirdIndexMatrixMapper {
     List<String> findAllMatrix(ThirdIndex third_index);
 
     void insertMatrix(ThirdIndexMatrix thirdIndexMatrix);
+
+    String findMatrix(Integer thirdIndexId, Integer professor);
 }

@@ -8,5 +8,7 @@ import java.util.List;
 public interface FirstIndexMatrixMapper {
     List<String> findAllMatrix(FirstIndex first_index);
 
-    void insertMatrix(FirstIndexMatrix secondIndexMatrix);
+    void insertMatrix(FirstIndexMatrix firstIndexMatrix);
+
+    String findMatrix(Integer firstIndexId, Integer professor);
 }

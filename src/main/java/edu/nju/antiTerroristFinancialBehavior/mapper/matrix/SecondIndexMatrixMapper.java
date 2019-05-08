@@ -9,4 +9,6 @@ public interface SecondIndexMatrixMapper {
     List<String> findAllMatrix(SecondIndex second_index);
 
     void insertMatrix(SecondIndexMatrix secondIndexMatrix);
+
+    String findMatrix(Integer secondIndexId, Integer professor);
 }

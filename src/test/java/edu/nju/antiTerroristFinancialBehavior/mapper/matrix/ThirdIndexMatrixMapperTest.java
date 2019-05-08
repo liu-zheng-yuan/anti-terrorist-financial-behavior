@@ -41,4 +41,9 @@ public class ThirdIndexMatrixMapperTest {
         List<String> res = thirdIndexMatrixMapper.findAllMatrix(thirdIndex);
         System.out.println(res.toString());
     }
+
+    @Test
+    public void findMatrix(){
+        System.out.println(thirdIndexMatrixMapper.findMatrix(34, 1));
+    }
 }

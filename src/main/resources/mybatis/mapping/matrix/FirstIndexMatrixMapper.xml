@@ -12,6 +12,9 @@
         SELECT matrix FROM tb_first_index_matrix WHERE first_index = #{id}
     </select>
 
+    <select id="findMatrix" resultType="String">
+        SELECT matrix FROM tb_first_index_matrix WHERE first_index = #{firstIndexId} and professor = #{professor}
+    </select>
 
 
 

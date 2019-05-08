@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!--作用域-->
+<mapper namespace="edu.nju.antiTerroristFinancialBehavior.mapper.weight.FirstIndexWeightMapper" >
+
+    <insert id="insertWeight" parameterType="FirstIndexWeight">
+        insert into tb_first_index_weight(`first_index`,`professor`, `weight`) values(#{first_index.id},#{professor},#{weight})
+    </insert>
+
+    <select id="findAllWeight" parameterType="FirstIndex"  resultType="Double">
+        SELECT weight FROM tb_first_index_weight WHERE first_index = #{id}
+    </select>
+
+    <select id="findWeight" resultType="Double">
+        SELECT weight FROM tb_first_index_weight WHERE first_index = #{firstIndexId} and professor = #{professor}
+    </select>
+
+
+</mapper>

@@ -38,4 +38,9 @@ public class SecondIndexMatrixMapperTest {
         List<String> res = secondIndexMatrixMapper.findAllMatrix(secondIndex);
         System.out.println(res.toString());
     }
+
+    @Test
+    public void findMatrix(){
+        System.out.println(secondIndexMatrixMapper.findMatrix(15, 1));
+    }
 }

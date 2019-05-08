@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!--作用域-->
+<mapper namespace="edu.nju.antiTerroristFinancialBehavior.mapper.matrix.ZeroIndexMatrixMapper" >
+
+    <insert id="insertMatrix" >
+        insert into tb_zero_index_matrix(`professor`, `matrix`) values(#{professor},#{matrix})
+    </insert>
+
+    <select id="findAllMatrix" resultType="String">
+        SELECT matrix FROM tb_zero_index_matrix
+    </select>
+
+    <select id="findMatrix" parameterType="Integer" resultType="String">
+        SELECT matrix FROM tb_zero_index_matrix WHERE professor = #{professor}
+    </select>
+
+
+</mapper>
