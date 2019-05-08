@@ -42,4 +42,11 @@ public class SecondIndexWeightMapperTest {
         System.out.println(list.toString());
     }
 
+    @Test
+    public void  findWeight(){
+        List<Double> list = secondIndexWeightMapper.findWeight(15, 1);
+        System.out.println(list.toString());
+    }
+
+
 }

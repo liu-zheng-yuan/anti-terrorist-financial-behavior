@@ -9,4 +9,6 @@ public interface SecondIndexWeightMapper {
     List<Double> findAllWeight(SecondIndex second_index);
 
     void insertWeight(SecondIndexWeight secondIndexWeight);
+
+    List<Double> findWeight(Integer secondIndexId, Integer professor);
 }

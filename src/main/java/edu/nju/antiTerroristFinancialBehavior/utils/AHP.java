@@ -12,20 +12,46 @@ public class AHP {
     public Double[] w = null;
 
     public static void main(String[] args) {
-        double[][] matrix = {
-                {1,1.0/3,1.0/2,1.0/2},
-                {3,1,2,2},
-                {2,1.0/2,1,2},
-                {2,1.0/2,1.0/2,1}
+        double[][] matrix1 = {
+                {1,2,5},
+                {1.0/2,1,2},
+                {1.0/5,1.0/2,1}
         };
-        AHP ahp = new AHP();
-        if(ahp.isConsistency(matrix)){
-            double[] weight = ahp.getWeight();
-            for(int i = 0; i < weight.length; i++){
-                System.out.print(weight[i]+" ");
+        double[][] matrix2 = {
+                {1,1.0/3,1.0/8},
+                {3,1,1.0/3},
+                {8,3,1}
+        };
+        double[][] avg = new double[3][3];
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                avg[i][j] = (matrix1[i][j] + matrix2[i][j]) / 2;
             }
-            System.out.println();
         }
+        AHP ahp1 = new AHP();
+        System.out.println(ahp1.isConsistency(matrix1));
+        double[] weight1 = ahp1.getWeight();
+        for(int i = 0; i < weight1.length; i++){
+            System.out.print(weight1[i]+" ");
+        }
+        System.out.println();
+
+        AHP ahp2 = new AHP();
+        System.out.println(ahp2.isConsistency(matrix2));
+        double[] weight2 = ahp2.getWeight();
+        for(int i = 0; i < weight2.length; i++){
+            System.out.print(weight2[i]+" ");
+        }
+        System.out.println();
+
+        AHP ahp3 = new AHP();
+        System.out.println(ahp3.isConsistency(avg));
+        double[] weight3 = ahp3.getWeight();
+        for(int i = 0; i < weight3.length; i++){
+            System.out.print(weight3[i]+" ");
+        }
+        System.out.println();
+
     }
 
     /*

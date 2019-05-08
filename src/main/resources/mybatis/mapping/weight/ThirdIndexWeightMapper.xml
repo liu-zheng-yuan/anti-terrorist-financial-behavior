@@ -12,7 +12,9 @@
         SELECT weight FROM tb_third_index_weight WHERE third_index = #{id}
     </select>
 
-
+    <select id="findWeight" resultType="Double">
+        SELECT weight FROM tb_third_index_weight WHERE third_index = #{thirdIndexId} and professor = #{professor}
+    </select>
 
 
 </mapper>

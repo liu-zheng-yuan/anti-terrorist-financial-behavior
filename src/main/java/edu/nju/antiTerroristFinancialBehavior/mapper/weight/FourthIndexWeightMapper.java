@@ -9,4 +9,6 @@ public interface FourthIndexWeightMapper {
     List<Double> findAllWeight(FourthIndex fourthIndex);
 
     void insertWeight(FourthIndexWeight fourthIndexWeight);
+
+    List<Double> findWeight(Integer fourthIndexId, Integer professor);
 }

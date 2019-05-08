@@ -10,4 +10,6 @@ public interface ThirdIndexWeightMapper {
     List<Double> findAllWeight(ThirdIndex thirdIndex);
 
     void insertWeight(ThirdIndexWeight thirdIndexWeight);
+
+    List<Double> findWeight(Integer thirdIndexId, Integer professor);
 }

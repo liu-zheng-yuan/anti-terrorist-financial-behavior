@@ -40,4 +40,11 @@ public class FourthIndexWeightMapperTest {
         System.out.println(list.toString());
     }
 
+    @Test
+    public void  findWeight(){
+        List<Double> list = fourthIndexWeightMapper.findWeight(145, 1);
+        System.out.println(list.toString());
+    }
+
+
 }

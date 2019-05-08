@@ -40,4 +40,10 @@ public class ThirdIndexWeightMapperTest {
         System.out.println(list.toString());
     }
 
+    @Test
+    public void  findWeight(){
+        List<Double> list = thirdIndexWeightMapper.findWeight(34, 1);
+        System.out.println(list.toString());
+    }
+
 }
