@@ -13,7 +13,6 @@
 		function logout(){
 			if(confirm("您确定要退出本系统吗？")){
 				window.parent.rightMain("/loginUI");
-				//window.location.href = "/loginUI";
 			}
 		}
 
@@ -32,7 +31,6 @@
     <script type="text/javascript">
 		/* zTree插件加载目录的处理  */
 		var zTree;
-
 		var setting = {
 				view: {
 					dblClickExpand: false,
@@ -126,10 +124,8 @@
 		function zTreeOnClick(event, treeId, treeNode) {
 			var zTree = $.fn.zTree.getZTreeObj("dleft_tab1");
 			zTree.expandNode(treeNode, null, null, null, true);
-	// 		zTree.expandNode(treeNode);
-			// 规定：如果是父类节点，不允许单击操作
 			if(treeNode.isParent){
-	// 			alert("父类节点无法点击哦...");
+			    //rightMain(treeNode.accessPath)
 				return false;
 			}
 			// 如果节点路径为空或者为"#"，不允许单击操作
@@ -186,7 +182,7 @@
 		function loadMenu(resourceType, treeObj){
             $.ajax({
                 type:"GET",
-                url:"/loadMenu/1",
+                url:"/loadMenu/3",
                 dataType : "json",
                 success:function(data){
                     // 如果返回数据不为空，加载"业务模块"目录
@@ -208,9 +204,7 @@
 			$("#ajaxDialog").show();
 		}
 
-		//ajax stop function
 		function onStop(){
-	// 		$("#ajaxDialog").dialog("close");
 			$("#ajaxDialog").hide();
 		}
 	</script>
