@@ -94,6 +94,13 @@ public class CommonIndexService {
          * 加载定权时的菜单
          */
         else if(id == 2){
+            /**
+             * 添加一个顶级（0）级指标，方便定权
+             */
+            MenuItem rootMenuItem = new MenuItem("/everyIndexMark?indexId=-1", false, 0, 0, "",
+                    "", 2, menuID++, "初级指标", 0,"");
+            menuItemList.add(rootMenuItem);
+
             //添加一级指标
             for (FirstIndex firstIndex : firstIndices) {
                 menuID++;
@@ -136,6 +143,7 @@ public class CommonIndexService {
          * 加载权重展示的菜单
          */
         else if(id == 3){
+
             //添加一级指标
             for (FirstIndex firstIndex : firstIndices) {
                 menuID++;
