@@ -22,4 +22,7 @@ public class FirstIndexService {
         return firstIndexMapper.findFirstIndexById(id);
     }
 
+    public List<FirstIndex> findAllFirstIndex() {
+        return firstIndexMapper.findAllFirstIndex();
+    }
 }

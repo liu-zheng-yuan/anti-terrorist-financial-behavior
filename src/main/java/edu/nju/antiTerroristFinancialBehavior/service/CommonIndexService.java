@@ -1,14 +1,24 @@
 package edu.nju.antiTerroristFinancialBehavior.service;
 
-import edu.nju.antiTerroristFinancialBehavior.mapper.FirstIndexMapper;
-import edu.nju.antiTerroristFinancialBehavior.mapper.SecondIndexMapper;
-import edu.nju.antiTerroristFinancialBehavior.mapper.ThirdIndexMapper;
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
+import edu.nju.antiTerroristFinancialBehavior.mapper.*;
+import edu.nju.antiTerroristFinancialBehavior.mapper.weight.FirstIndexWeightMapper;
+import edu.nju.antiTerroristFinancialBehavior.mapper.weight.FourthIndexWeightMapper;
+import edu.nju.antiTerroristFinancialBehavior.mapper.weight.SecondIndexWeightMapper;
+import edu.nju.antiTerroristFinancialBehavior.mapper.weight.ThirdIndexWeightMapper;
 import edu.nju.antiTerroristFinancialBehavior.model.*;
+import edu.nju.antiTerroristFinancialBehavior.model.matrix.ZeroIndexMatrix;
+import edu.nju.antiTerroristFinancialBehavior.model.weight.FirstIndexWeight;
+import edu.nju.antiTerroristFinancialBehavior.model.weight.FourthIndexWeight;
+import edu.nju.antiTerroristFinancialBehavior.model.weight.SecondIndexWeight;
+import edu.nju.antiTerroristFinancialBehavior.model.weight.ThirdIndexWeight;
+import edu.nju.antiTerroristFinancialBehavior.utils.Algorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @author fanleehao on 2019/4/19
@@ -27,7 +37,23 @@ public class CommonIndexService {
     @Autowired
     private ThirdIndexMapper thirdIndexMapper;
 
+    @Autowired
+    private FourthIndexMapper fourthIndexMapper;
 
+    @Autowired
+    private FirstIndexWeightMapper firstIndexWeightMapper;
+
+    @Autowired
+    private SecondIndexWeightMapper secondIndexWeightMapper;
+
+    @Autowired
+    private ThirdIndexWeightMapper thirdIndexWeightMapper;
+
+    @Autowired
+    private FourthIndexWeightMapper fourthIndexWeightMapper;
+
+    @Autowired
+    private ProfessorMapper professorMapper;
 
     /**
      * 查找非最细粒度级指标，封装成json串；
@@ -290,4 +316,74 @@ public class CommonIndexService {
         return secondIndexMapper.getSecondIndexParentId(secondIndexId);
     }
 
+    /**
+     * 把矩阵转化成的指标插入对应等级的表里（包括当前打分的专家编号）
+     * @param weightResult,parentIndexId
+     * @return
+     */
+    public void insertWeightMatrix(double[] weightResult, Integer parentIndexId) {
+        Integer curProfessor = professorMapper.findMaxProfessorId();
+        //一级指标权重的插入
+        if (parentIndexId == -1) {
+            List<FirstIndex> firstIndices = firstIndexMapper.findAllFirstIndex();
+            if (weightResult.length != firstIndices.size()) {
+                //指标的数量不能和权重的数量一一对应
+                return;
+            }
+
+            for (int i = 0; i < weightResult.length; i++) {
+                FirstIndexWeight newFirstWeight = new FirstIndexWeight();
+                newFirstWeight.setFirst_index(firstIndices.get(i));
+                newFirstWeight.setWeight(weightResult[i]);
+                newFirstWeight.setProfessor(curProfessor);
+                firstIndexWeightMapper.insertWeight(newFirstWeight);
+            }
+            return;
+        }
+        Integer level = getIndexLevel(String.valueOf(parentIndexId));
+        if (level == 1) {
+            //父指标是第一级，说明权重数组对应的指标是第二级
+            List<SecondIndex> secondIndices = secondIndexMapper.findSecondIndicesByFirstIndexId(parentIndexId);
+            if (weightResult.length != secondIndices.size()) {
+                //指标的数量不能和权重的数量一一对应
+                return;
+            }
+            for (int i = 0; i < weightResult.length; i++) {
+                SecondIndexWeight newSecondWeight = new SecondIndexWeight();
+                newSecondWeight.setSecond_index(secondIndices.get(i));
+                newSecondWeight.setWeight(weightResult[i]);
+                newSecondWeight.setProfessor(curProfessor);
+                secondIndexWeightMapper.insertWeight(newSecondWeight);
+            }
+        } else if (level == 2) {
+            //父指标是第二级，说明权重数组对应的指标是第三级
+            List<ThirdIndex> thirdIndices = thirdIndexMapper.findThirdIndicesBySecondIndexId(parentIndexId);
+            if (weightResult.length != thirdIndices.size()) {
+                //指标的数量不能和权重的数量一一对应
+                return;
+            }
+            for (int i = 0; i < weightResult.length; i++) {
+                ThirdIndexWeight newThirdWeight = new ThirdIndexWeight();
+                newThirdWeight.setThird_index(thirdIndices.get(i));
+                newThirdWeight.setWeight(weightResult[i]);
+                newThirdWeight.setProfessor(curProfessor);
+                thirdIndexWeightMapper.insertWeight(newThirdWeight);
+            }
+        } else if (level == 3) {
+            //父指标是第三级，说明权重数组对应的指标是第四级
+            List<FourthIndex> fourthIndices = fourthIndexMapper.findFourthIndicesByThirdIndexId(parentIndexId);
+            if (weightResult.length != fourthIndices.size()) {
+                //指标的数量不能和权重的数量一一对应
+                return;
+            }
+            for (int i = 0; i < weightResult.length; i++) {
+                FourthIndexWeight newFourthWeight = new FourthIndexWeight();
+                newFourthWeight.setFourth_index(fourthIndices.get(i));
+                newFourthWeight.setWeight(weightResult[i]);
+                newFourthWeight.setProfessor(curProfessor);
+                fourthIndexWeightMapper.insertWeight(newFourthWeight);
+            }
+        }
+        return;
+    }
 }

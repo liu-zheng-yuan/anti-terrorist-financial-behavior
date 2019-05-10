@@ -1,9 +1,11 @@
 package edu.nju.antiTerroristFinancialBehavior.controller.mark;
 
+import edu.nju.antiTerroristFinancialBehavior.model.FirstIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.FourthIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.SecondIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.ThirdIndex;
 import edu.nju.antiTerroristFinancialBehavior.service.CommonIndexService;
+import edu.nju.antiTerroristFinancialBehavior.service.index.FirstIndexService;
 import edu.nju.antiTerroristFinancialBehavior.service.index.FourthIndexService;
 import edu.nju.antiTerroristFinancialBehavior.service.index.SecondIndexService;
 import edu.nju.antiTerroristFinancialBehavior.service.index.ThirdIndexService;
@@ -24,6 +26,8 @@ import java.util.List;
 @Controller
 public class MarkController {
     @Autowired
+    FirstIndexService firstIndexService;
+    @Autowired
     CommonIndexService commonIndexService;
     @Autowired
     SecondIndexService secondIndexService;
@@ -38,6 +42,13 @@ public class MarkController {
 
     @RequestMapping("/everyIndexMark")
     public String everyIndexMark(@RequestParam("indexId")Integer indexId, Model model) {
+        if (indexId == -1) {
+            //说明是第0级，应该展示所有的一级指标。
+            List<FirstIndex> childrenIndices = firstIndexService.findAllFirstIndex();
+            model.addAttribute("childrenIndices", childrenIndices);
+            model.addAttribute("indexId", indexId);
+            return "mark/everyIndexMark";
+        }
         Integer level = commonIndexService.getIndexLevel(String.valueOf(indexId));
         if (level == 1) {
             List<SecondIndex> childrenIndices = secondIndexService.findSecondIndicesByFirstIndexId(indexId);

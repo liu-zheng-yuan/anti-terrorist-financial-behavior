@@ -1,5 +1,10 @@
 package edu.nju.antiTerroristFinancialBehavior.controller.weight;
 
+import edu.nju.antiTerroristFinancialBehavior.model.ThirdIndex;
+import edu.nju.antiTerroristFinancialBehavior.model.weight.FourthIndexWeight;
+import edu.nju.antiTerroristFinancialBehavior.service.CommonIndexService;
+import edu.nju.antiTerroristFinancialBehavior.service.index.FourthIndexService;
+import edu.nju.antiTerroristFinancialBehavior.service.index.ThirdIndexService;
 import edu.nju.antiTerroristFinancialBehavior.utils.AHP;
 import edu.nju.antiTerroristFinancialBehavior.utils.Algorithm;
 import org.omg.Messaging.SYNC_WITH_TRANSPORT;
@@ -10,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,7 +27,10 @@ import java.util.Map;
 
 @Controller
 public class WeightController {
-
+    @Autowired
+    ThirdIndexService thirdIndexService;
+    @Autowired
+    CommonIndexService commonIndexService;
 
     @RequestMapping(value = "/saveMarkWeight",method = RequestMethod.POST)
     public String saveMarkWeight(HttpServletRequest request, @RequestParam("indexId") Integer indexId, Model model) {
@@ -36,11 +45,13 @@ public class WeightController {
         AHP ahp = new AHP();//不能是单例的
         if (ahp.isConsistency(m)) {
             weightResult = ahp.getWeight();
+            //将得到的权重插入表里
+            commonIndexService.insertWeightMatrix(weightResult, indexId);
             model.addAttribute("flag", 1);
         } else {
             model.addAttribute("flag", 0);
         }
-        System.out.println(Arrays.toString(weightResult));
+
         return "forward:/everyIndexMark?indexId="+indexId;
     }
     /**
@@ -51,17 +62,25 @@ public class WeightController {
         return "weight/weightMatrix";
     }
 
-
-    @RequestMapping("/weightDisplay")
-    public String weightDisplay(){
-        return "weight/weightDisplay";
-    }
-
     @RequestMapping("/weightShow")
     public String weightShow(){
         return "weight/weightShow";
     }
 
+
+    /*
+     * 跳转权重展示页面
+     * */
+    @RequestMapping("/weightDisplay")
+    public String weightDisplay(@RequestParam("thirdIndexId") Integer thirdIndexId) {
+        if (thirdIndexId == null) {
+            return "redirect:/weightDisplay?thirdIndexId=34";
+        }
+        //获得一个三级指标下属所有四级指标的最终多个专家平均权重
+        //todo
+        List<FourthIndexWeight> res = thirdIndexService.getAllFourthIndexWeights(thirdIndexId);
+        return "redirect:/weightDisplay?thirdIndexId=34";
+    }
 
 
 }
