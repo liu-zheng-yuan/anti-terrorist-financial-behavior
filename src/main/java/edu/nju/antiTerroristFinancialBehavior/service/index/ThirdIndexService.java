@@ -88,6 +88,9 @@ public class ThirdIndexService {
         List<FourthIndexWeight> res = new ArrayList<>();
         for (FourthIndex f : fourthIndices) {
             FourthIndexWeight finalWeight = fourthIndexWeightMapper.findFinalWeight(f);
+            if (finalWeight == null){
+                return res;
+            }
             finalWeight.getFourth_index().setIndex_name(f.getIndex_name());
             if (finalWeight != null) {
                 res.add(finalWeight);

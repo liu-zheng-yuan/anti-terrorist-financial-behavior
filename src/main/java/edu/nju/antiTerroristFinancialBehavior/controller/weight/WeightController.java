@@ -72,7 +72,7 @@ public class WeightController {
      * 展示每个三级指标下属所有四级指标的权重
      * */
     @RequestMapping("/weightShow")
-    public String weightDisplay(@RequestParam("thirdIndexId") Integer thirdIndexId,Model model) {
+    public String weightDisplay(@RequestParam("indexId") Integer thirdIndexId,Model model) {
         if (thirdIndexId == null) {
             return "redirect:/weightDisplay?thirdIndexId=34";
         }
