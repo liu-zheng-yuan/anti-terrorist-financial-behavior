@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script type="text/javascript" src="/js/jquery/jquery-1.7.1.js"></script>
@@ -52,154 +52,19 @@
     <input type="hidden" name="fangyuanEntity.fyXqName" value="" id="fyXqName"/>
     <div id="container">
         <div class="ui_content">
-            <h3>当前二级指标权重展示</h3>
-            <div class="ui_tb">
-                <table class="table" cellspacing="0" cellpadding="0" width="100%" align="center" border="0">
-                    <tr>
-                        <th>指标名称</th>
-                        <th>二级指标1</th>
-                        <th>二级指标2</th>
-                        <th>二级指标3</th>
-                        <th>二级指标4</th>
-                    </tr>
-                    <tr>
-                        <td>二级指标1</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>二级指标2</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>二级指标3</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>二级指标4</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-
-                </table>
-            </div>
-            <hr>
-            <h3>当前三级指标权重展示</h3>
-            <div class="ui_tb">
-                <table class="table" cellspacing="0" cellpadding="0" width="100%" align="center" border="0">
-                    <tr>
-                        <th>指标名称</th>
-                        <th>三级指标1</th>
-                        <th>三级指标2</th>
-                        <th>三级指标3</th>
-                        <th>三级指标4</th>
-                        <th>三级指标5</th>
-                    </tr>
-                    <tr>
-                        <td>三级指标1</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>三级指标2</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>三级指标3</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>三级指标4</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>三级指标5</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-
-                </table>
-            </div>
-            <hr>
             <h3>当前四级指标权重展示</h3>
             <div class="ui_tb">
                 <table class="table" cellspacing="0" cellpadding="0" width="100%" align="center" border="0">
                     <tr>
                         <th>指标名称</th>
-                        <th>四级指标1</th>
-                        <th>四级指标2</th>
-                        <th>四级指标3</th>
-                        <th>四级指标4</th>
-                        <th>四级指标5</th>
+                        <th>最终权重值</th>
                     </tr>
-                    <tr>
-                        <td>四级指标1</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>四级指标2</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>四级指标3</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>四级指标4</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>四级指标5</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    <div th:each="finalWeight: ${finalWeights}">
+                        <tr>
+                            <td th:text="${finalWeight.fourth_index.index_name}"></td>
+                            <td th:text="${#numbers.formatDecimal(finalWeight.weight/100.0,1,2)}"></td>
+                        </tr>
+                    </div>
 
                 </table>
             </div>

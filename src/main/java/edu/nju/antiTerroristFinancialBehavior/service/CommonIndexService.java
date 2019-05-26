@@ -386,4 +386,10 @@ public class CommonIndexService {
         }
         return;
     }
+
+
+    //专家人数加一
+    public void addProfessorNum() {
+        professorMapper.addProfessorNum();
+    }
 }

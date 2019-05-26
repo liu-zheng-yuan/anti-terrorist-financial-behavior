@@ -62,24 +62,33 @@ public class WeightController {
         return "weight/weightMatrix";
     }
 
-    @RequestMapping("/weightShow")
+    @RequestMapping("/weightDisplay")
     public String weightShow(){
-        return "weight/weightShow";
+        return "weight/weightDisplay";
     }
 
 
     /*
-     * 跳转权重展示页面
+     * 展示每个三级指标下属所有四级指标的权重
      * */
-    @RequestMapping("/weightDisplay")
-    public String weightDisplay(@RequestParam("thirdIndexId") Integer thirdIndexId) {
+    @RequestMapping("/weightShow")
+    public String weightDisplay(@RequestParam("thirdIndexId") Integer thirdIndexId,Model model) {
         if (thirdIndexId == null) {
             return "redirect:/weightDisplay?thirdIndexId=34";
         }
         //获得一个三级指标下属所有四级指标的最终多个专家平均权重
-        //todo
+        //如果是空，则要先计算再获取。
         List<FourthIndexWeight> res = thirdIndexService.getAllFourthIndexWeights(thirdIndexId);
-        return "redirect:/weightDisplay?thirdIndexId=34";
+        if (res.size()!=0) {
+            model.addAttribute("finalWeights", res);
+
+        } else {
+            thirdIndexService.calculateFinalWeight(thirdIndexId);
+            res = thirdIndexService.getAllFourthIndexWeights(thirdIndexId);
+            model.addAttribute("finalWeights", res);
+        }
+
+        return "weight/weightShow";
     }
 
 

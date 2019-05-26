@@ -4,6 +4,12 @@
 <!--作用域-->
 <mapper namespace="edu.nju.antiTerroristFinancialBehavior.mapper.weight.FourthIndexWeightMapper" >
 
+    <!--resultMap对应的是表与实体类的映射  - type 数据库表对应的实体类，别名或完整类名都可以-->
+    <resultMap id="BaseResultMap" type="edu.nju.antiTerroristFinancialBehavior.model.weight.FourthIndexWeight" >
+        <!-- 普通的列  -column 是数据库中字段， property是实体类中字段-->
+        <result column="fourth_index" property="fourth_index.id" jdbcType="BIGINT" />
+        <result column="result_weight" property="weight" jdbcType="DOUBLE" />
+    </resultMap>
     <insert id="insertWeight" parameterType="FourthIndexWeight">
         insert into tb_fourth_index_weight(`fourth_index`,`professor`, `weight`) values(#{fourth_index.id},#{professor},#{weight})
     </insert>
@@ -16,5 +22,12 @@
         SELECT weight FROM tb_fourth_index_weight WHERE fourth_index = #{fourthIndexId} and professor = #{professor}
     </select>
 
+    <insert id="insertFinalWeight" parameterType="FourthIndexWeight">
+        insert into tb_result_weight(`fourth_index`, `result_weight`) values(#{fourth_index.id},#{weight})
+    </insert>
+
+    <select id="findFinalWeight" resultMap="BaseResultMap" parameterType="edu.nju.antiTerroristFinancialBehavior.model.FourthIndex">
+        SELECT fourth_index,result_weight FROM tb_result_weight WHERE fourth_index = #{id}
+    </select>
 
 </mapper>
