@@ -2,6 +2,7 @@ package edu.nju.antiTerroristFinancialBehavior.utils;
 
 import edu.nju.antiTerroristFinancialBehavior.service.CommonIndexService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -9,13 +10,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-
 public class ComputeScore {
 
-    @Autowired
     CommonIndexService commonIndexService;
 
-    public Map<String, Double> computeScore(String infile){
+    public ComputeScore(CommonIndexService commonIndexService) {
+        this.commonIndexService = commonIndexService;
+    }
+
+    public LinkedHashMap<String, Double> computeScore(String infile){
         String line = "";
         Map<String, Double> map = new HashMap<>();
         ArrayList<Integer> ids = new ArrayList<>();
@@ -30,7 +33,6 @@ public class ComputeScore {
                         ids.add(Integer.valueOf(strings[i]));
                     }
                     weights = commonIndexService.findResultWeights(ids);
-                    continue;
                 }else{
                     double sum = 0.0;
                     for(int i = 1; i < strings.length; i++){
@@ -52,7 +54,7 @@ public class ComputeScore {
 
         }
         //将最后的结果按照评分降序排列
-        Map<String, Double> sortedMap = new LinkedHashMap<>();
+        LinkedHashMap<String, Double> sortedMap = new LinkedHashMap<>();
 
         map.entrySet().stream()
                 .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))

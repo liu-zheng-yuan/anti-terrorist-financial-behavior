@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script type="text/javascript" src="/js/jquery/jquery-1.7.1.js"></script>
@@ -43,51 +43,28 @@
     </style>
 </head>
 <body>
-<form id="submitForm" name="submitForm" action="" method="post">
-    <input type="hidden" name="allIDCheck" value="" id="allIDCheck"/>
-    <input type="hidden" name="fangyuanEntity.fyXqName" value="" id="fyXqName"/>
-    <div id="container">
-        <div class="ui_content">
-            <p>指标权重（待定，因为要展示每个指标权重，数量太多，不知道有啥意义，觉得没有必要添加）</p>
-            <p>可疑账户列表（待定）</p>
-            <div class="ui_tb">
-                <table class="table" cellspacing="0" cellpadding="0" width="100%" align="center" border="0">
-                    <tr>
-                        <th>账户id</th>
-                        <th>账户名称</th>
-                        <th>转账金额</th>
-                        <th>转账次数</th>
-                        <th>转账地点</th>
-                        <th>可疑度</th>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
-            </div>
+<div id="container">
+    <div class="ui_content">
+        <form method="post" action="/dataUpload" enctype="multipart/form-data">
+            <input type="file" name="dataFile"><br>
+            <input type="submit" value="提交">
+        </form>
+        <span th:if="${flag eq 1}">上传数据成功，请点击计算</span>
+        <span th:if="${flag eq 0}">上传数据失败，请重新上传</span>
+        <p></p>
+        <input type="button" value="计算" onclick="javascrtpt:window.location.href='/calculateFinalResult'">
+        <div th:if="${isCalculated eq 1}">
+            <table class="table" cellspacing="0" cellpadding="0" width="100%" align="left" border="0">
+                <tr>
+                    <th>Id</th>
+                    <th>Score</th>
+                </tr>
+                <tr th:each="entry: ${resultMap}" >
+                    <td th:text="${entry.key}"></td>
+                    <td th:text="${entry.value}"></td>
+                </tr>
+            </table>
         </div>
-    </div>
-</form>
+</div>
 </body>
 </html>
