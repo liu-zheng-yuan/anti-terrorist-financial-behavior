@@ -4,7 +4,6 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-//todo
 @SpringBootApplication
 @MapperScan({"edu.nju.antiTerroristFinancialBehavior.mapper","edu.nju.antiTerroristFinancialBehavior.mapper.*"})  //mapper接口
 public class AntiTerroristFinancialBehaviorApplication {

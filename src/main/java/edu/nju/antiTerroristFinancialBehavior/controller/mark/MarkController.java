@@ -1,5 +1,6 @@
 package edu.nju.antiTerroristFinancialBehavior.controller.mark;
 
+import edu.nju.antiTerroristFinancialBehavior.mapper.ProfessorMapper;
 import edu.nju.antiTerroristFinancialBehavior.model.FirstIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.FourthIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.SecondIndex;
@@ -42,6 +43,11 @@ public class MarkController {
 
     @RequestMapping("/everyIndexMark")
     public String everyIndexMark(@RequestParam("indexId")Integer indexId, Model model) {
+        //如果indexId = -2，说明新一位专家点击了开始评分按钮，专家id+=1.并且跳转到index=-1的情况下
+        if (indexId == -2) {
+            commonIndexService.addProfessorNum();
+            return "forward:/everyIndexMark?indexId=-1";
+        }
         if (indexId == -1) {
             //说明是第0级，应该展示所有的一级指标。
             List<FirstIndex> childrenIndices = firstIndexService.findAllFirstIndex();

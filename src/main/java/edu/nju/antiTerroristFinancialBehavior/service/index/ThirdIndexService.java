@@ -1,13 +1,18 @@
 package edu.nju.antiTerroristFinancialBehavior.service.index;
 
+import edu.nju.antiTerroristFinancialBehavior.mapper.FourthIndexMapper;
+import edu.nju.antiTerroristFinancialBehavior.mapper.SecondIndexMapper;
 import edu.nju.antiTerroristFinancialBehavior.mapper.ThirdIndexMapper;
 import edu.nju.antiTerroristFinancialBehavior.mapper.weight.FirstIndexWeightMapper;
 import edu.nju.antiTerroristFinancialBehavior.mapper.weight.FourthIndexWeightMapper;
 import edu.nju.antiTerroristFinancialBehavior.mapper.weight.SecondIndexWeightMapper;
 import edu.nju.antiTerroristFinancialBehavior.mapper.weight.ThirdIndexWeightMapper;
+import edu.nju.antiTerroristFinancialBehavior.model.FirstIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.FourthIndex;
+import edu.nju.antiTerroristFinancialBehavior.model.SecondIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.ThirdIndex;
 import edu.nju.antiTerroristFinancialBehavior.model.weight.FourthIndexWeight;
+import edu.nju.antiTerroristFinancialBehavior.model.weight.SecondIndexWeight;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +30,8 @@ public class ThirdIndexService {
 
     @Autowired
     private ThirdIndexMapper thirdIndexMapper;
+    @Autowired
+    private SecondIndexMapper secondIndexMapper;
     @Autowired
     private FourthIndexWeightMapper fourthIndexWeightMapper;
     @Autowired
@@ -72,15 +79,43 @@ public class ThirdIndexService {
     }
 
     /**
-     * 获得一个三级指标下属所有四级指标的最终多个专家平均权重
+     * 获得一个三级指标下属所有四级指标的最终权重
      * @param thirdIndexId
      */
-    //todo 计算最终权重的代码
     public List<FourthIndexWeight> getAllFourthIndexWeights(Integer thirdIndexId) {
         //找到三级指标下属所有四级指标
         List<FourthIndex> fourthIndices = thirdIndexMapper.findFourthIndicesByThirdIndexId(thirdIndexId);
         List<FourthIndexWeight> res = new ArrayList<>();
         for (FourthIndex f : fourthIndices) {
+            FourthIndexWeight finalWeight = fourthIndexWeightMapper.findFinalWeight(f);
+            finalWeight.getFourth_index().setIndex_name(f.getIndex_name());
+            if (finalWeight != null) {
+                res.add(finalWeight);
+            }
+        }
+        return res;
+    }
+
+    /**
+     * 计算最终的四级指标的权重
+     * @param thirdIndexId
+     */
+    public void calculateFinalWeight(Integer thirdIndexId) {
+        //找到三级指标下属所有四级指标
+        List<FourthIndex> fourthIndices = thirdIndexMapper.findFourthIndicesByThirdIndexId(thirdIndexId);
+        List<FourthIndexWeight> res = new ArrayList<>();
+        for (FourthIndex f : fourthIndices) {
+            //找到该四级指标所属三级指标、二级指标、一级指标
+            ThirdIndex thirdIndex = new ThirdIndex();
+            SecondIndex secondIndex = new SecondIndex();
+            FirstIndex firstIndex = new FirstIndex();
+            thirdIndex.setId(thirdIndexId);
+            secondIndex.setId(thirdIndexMapper.getThirdIndexParentId(thirdIndexId));
+            firstIndex.setId(secondIndexMapper.getSecondIndexParentId(secondIndex.getId()));
+            f.setThirdIndex(thirdIndex);
+            f.setSecondIndex(secondIndex);
+            f.setFirstIndex(firstIndex);
+
             //对于每个四级指标,找到每个专家给它评分的平均值
             List<Double> fourthWeights = fourthIndexWeightMapper.findAllWeight(f);
             Double fourthAvg = average(fourthWeights);
@@ -100,10 +135,16 @@ public class ThirdIndexService {
             newFourthIndexWeight.setWeight(finalFourthWeight);
             res.add(newFourthIndexWeight);
         }
-        return res;
-        //todo 把上面的功能整合到点击计算按钮里面。然后下面写如何从最终权重表里读出并展示。
+        //将计算出来的四级指标最终权重插入到表里
+        for (FourthIndexWeight f : res) {
+            fourthIndexWeightMapper.insertFinalWeight(f);
+        }
     }
+
     public Double average(List<Double> weights){
+        if (weights == null || weights.size() == 0) {
+            return 0.0;
+        }
         Double sum = 0.0;
         for (Double w : weights) {
             sum += w;
