@@ -392,4 +392,20 @@ public class CommonIndexService {
     public void addProfessorNum() {
         professorMapper.addProfessorNum();
     }
+
+
+    /**
+     * 找出ID对应的最终权重
+     */
+    public ArrayList<Double> findResultWeights(ArrayList<Integer> idList){
+        ArrayList<Double> ret = new ArrayList<>();
+
+        for (Integer id : idList) {
+            FourthIndexWeight finalWeight = fourthIndexWeightMapper.findFinalWeight(fourthIndexMapper.findFourthIndexById(id));
+            ret.add(finalWeight.getWeight());
+        }
+        return ret;
+
+    }
+
 }
