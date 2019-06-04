@@ -32,6 +32,9 @@ public class ResultController {
     @RequestMapping("/result")
     public String result() {return "result/result";}
 
+    @RequestMapping("/personInfo")
+    public String personInfo() {return "result/personInfo";}
+
     @PostMapping(value = "/dataUpload")
     public String dataUpload(@RequestParam("dataFile") MultipartFile dataFile, HttpSession session, Model model) {
         String fileName = dataFile.getOriginalFilename();
