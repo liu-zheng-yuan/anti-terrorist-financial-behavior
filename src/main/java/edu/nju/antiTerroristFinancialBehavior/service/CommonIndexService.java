@@ -406,4 +406,16 @@ public class CommonIndexService {
         }
         return ret;
     }
+
+    /**
+     * ID映射到name,四级指标
+     */
+    public ArrayList<String> findFouthIndecesNamesById(ArrayList<Integer> idList){
+        ArrayList<String> ret = new ArrayList<>();
+        for (Integer id: idList){
+            FourthIndex fourthIndex = fourthIndexMapper.findFourthIndexById(id);
+            ret.add(fourthIndex.getIndex_name());
+        }
+        return ret;
+    }
 }

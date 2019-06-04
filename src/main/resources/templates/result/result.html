@@ -61,7 +61,7 @@
                 </tr>
                 <tr th:each="entry: ${resultMap}" >
                     <td th:text="${entry.key}"></td>
-                    <td th:text="${entry.value}"></td>
+                    <td th:text="${#numbers.formatDecimal(entry.value,1,5)}"></td>
                 </tr>
             </table>
         </div>
