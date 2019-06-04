@@ -53,7 +53,7 @@ public class ShowPersonInfo {
             }
 
         }
-
+        names = commonIndexService.findFouthIndecesNamesById(ids);
         for(int i = 0; i < names.size(); i++){
             map.put(names.get(i), values.get(i));
         }
