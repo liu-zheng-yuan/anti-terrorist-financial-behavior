@@ -62,7 +62,7 @@
                     <div th:each="finalWeight: ${finalWeights}">
                         <tr>
                             <td th:text="${finalWeight.fourth_index.index_name}"></td>
-                            <td th:text="${#numbers.formatDecimal(finalWeight.weight/100.0,1,2)}"></td>
+                            <td th:text="${#numbers.formatDecimal(finalWeight.weight,1,5)}"></td>
                         </tr>
                     </div>
 
