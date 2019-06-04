@@ -1,8 +1,8 @@
 package edu.nju.antiTerroristFinancialBehavior.controller.result;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import edu.nju.antiTerroristFinancialBehavior.service.CommonIndexService;
 import edu.nju.antiTerroristFinancialBehavior.utils.ComputeScore;
+import edu.nju.antiTerroristFinancialBehavior.utils.ShowPersonInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,8 +32,6 @@ public class ResultController {
     @RequestMapping("/result")
     public String result() {return "result/result";}
 
-    @RequestMapping("/personInfo")
-    public String personInfo() {return "result/personInfo";}
 
     @PostMapping(value = "/dataUpload")
     public String dataUpload(@RequestParam("dataFile") MultipartFile dataFile, HttpSession session, Model model) {
@@ -72,9 +70,26 @@ public class ResultController {
 //            model.addAttribute("scoreList", scoreList);
             model.addAttribute("isCalculated", 1);
             model.addAttribute("resultMap", resultMap);
+            model.addAttribute("fileName", fileName);
 
         }
         return "forward:/result";
+    }
+
+    //点击查看详情返回csv文件中一条记录的指标kv
+    @GetMapping("/personalInfo/{personalId}/{fileName}")
+    public String personalInfo(@PathVariable("personalId") String personalId, @PathVariable("fileName")String fileName,Model model) {
+        ShowPersonInfo showPersonInfo = new ShowPersonInfo(this.commonIndexService);
+        String filePath = "D:\\data\\";
+        Map<String, Double> res = showPersonInfo.computeScore(filePath+fileName, personalId);
+        model.addAttribute("personalInfo", res);
+        model.addAttribute("personalId", personalId);
+        return "forward:/personalInfo";
+    }
+
+    @RequestMapping("/personalInfo")
+    public String personalInfo() {
+        return "result/personalInfo";
     }
 
 }

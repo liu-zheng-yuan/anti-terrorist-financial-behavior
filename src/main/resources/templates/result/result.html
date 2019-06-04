@@ -57,10 +57,12 @@
             <table class="table" cellspacing="0" cellpadding="0" width="100%" align="left" border="0">
                 <tr>
                     <th>id</th>
+                    <th>详情</th>
                     <th>Score</th>
                 </tr>
                 <tr th:each="entry: ${resultMap}" >
                     <td th:text="${entry.key}"></td>
+                    <td><a th:href = "@{'/personalInfo/'+${entry.key}+'/'+${fileName}}">查看详情</a></td>
                     <td th:text="${#numbers.formatDecimal(entry.value,1,5)}"></td>
                 </tr>
             </table>
