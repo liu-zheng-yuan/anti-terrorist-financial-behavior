@@ -18,4 +18,6 @@ public interface FourthIndexWeightMapper {
     //在result表中找到每个指标的最终权重
     FourthIndexWeight findFinalWeight(FourthIndex fourthIndex);
 
+
+
 }

@@ -397,7 +397,7 @@ public class CommonIndexService {
     /**
      * 找出ID对应的最终权重
      */
-    public ArrayList<Double> findResultWeights(ArrayList<Integer> idList){
+    public ArrayList<Double> findResultWeights(ArrayList<Integer> idList) {
         ArrayList<Double> ret = new ArrayList<>();
 
         for (Integer id : idList) {
@@ -405,7 +405,5 @@ public class CommonIndexService {
             ret.add(finalWeight.getWeight());
         }
         return ret;
-
     }
-
 }
